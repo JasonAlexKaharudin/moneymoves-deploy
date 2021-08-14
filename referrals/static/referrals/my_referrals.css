@@ -1,0 +1,39 @@
+.referral-container{
+    margin: 7vh 15vw 10vh 15vw;
+}
+
+input[type=submit]{
+    background-color: #40739E;
+    border-radius: 5px;
+}
+
+.receipt-btn{
+    background-color: #ffffff;
+    border: 3px solid #40739E;
+    border-radius: 8px;
+    padding: 10px 20px 10px 20px;
+    font-size: 1.5rem;
+    font-family: 'Kulim Park', sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+.cashback-earned{
+    color:#34A853;
+}
+
+.card-text{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.date{
+    color: grey;
+}
+
+.merchant{
+    font-weight: 900;
+}
+
+.card-text:visited{
+    color: rgb(0, 0, 0);
+}

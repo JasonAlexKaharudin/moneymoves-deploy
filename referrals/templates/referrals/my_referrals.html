@@ -1,0 +1,46 @@
+{% extends "users/base.html" %}
+{% block title %}Wallet{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'referrals/my_referrals.css' %}">
+
+<section class="referral-container">
+  <form action="/referral/upload" class="btn-wrap">
+    <button class="receipt-btn" type="submit">Upload Receipt</button>
+  </form>
+  
+  <h1>Cashback Earned: <span class="cashback-earned">${{request.user.profile.wallet}}</span> </h1>
+  <h2>Purchases Made</h2>
+  
+  {% if Referrals %}
+  {% for r in Referrals %}
+  {% if r.is_Verified %}
+  <a class="card-text" href="{{r.id}}">
+    <p class="">
+      <span class="date">{{ r.date_published }}</span>
+      You earned ${{ r.referer_cashback }}
+      from {{r.referee_Phone_Number}}
+      &#x2192;
+    </p>
+  </a>
+  {% else %}
+  <p>
+    <span class="pending">
+      
+      Purchase from <span class="merchant">{{r.merchant}}</span> made on {{ r.date_published }} is <span style="text-decoration: underline;">pending verification</span>
+    </span>
+    
+  </p>
+  {% endif %}
+  {% endfor %}
+  {% else %}
+  <p>No purchases made yet. Make a purchase from our brands and start getting cashback!</p>  
+  {% endif %}
+
+
+</section>
+
+
+{% endblock %}
+
+

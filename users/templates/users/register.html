@@ -1,0 +1,32 @@
+{% extends "users/base.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/register.css' %}">
+<section class="register_user">
+    {% if messages %}
+    <div class="error-container">
+        {% for message in messages %}
+        <h4 class="error">{{message}}</h4>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="signup-container">   
+        <h1 class="heading">Join today. Start earning <span class="moves">cashback</span>. See it grow 🚀</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input name="username" type="text" placeholder="Username" required>
+            <input name="email" type="email" placeholder="Email" required>
+            <input name="password1" type="password" placeholder="Password" required>
+            <input name="password2" type="password" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div>
+            <small>
+                Already have an account? <a href="{% url 'login' %}">Sign In</a>
+            </small>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends "users/base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'users/profile.css' %}">
+<section class="profile-container">
+    <div class="profile-section">
+        {% if messages %}
+        <div class="error-container">
+            {% for message in messages %}
+            <h4 class="error">{{message}}</h4>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <h1 class="profile-heading">Profile Info</h1>
+        
+        <h3>Username: <span class="inputField">{{user.username}}</span></h3>
+        <h3>Email: <span class="inputField">{{user.email}}</span></h3>
+
+        {% if user.profile.Phone_Number == ''%}
+        <h3>Phone Number: <a href="/phone" class="inputField">Fill up your phone number to receive cashback</a></h3>
+        {% else %}
+        <h3>Phone Number: <span class="inputField">{{user.profile.Phone_Number}}</span></h3>
+        {% endif %}
+        
+        <form class="profile-form" method="post">
+            {% csrf_token %}
+            <fieldset>
+                {{ u_form }}
+            </fieldset>
+            <button class="update-btn" type="submit">Update</button>
+        </form>
+    </div>
+</section>
+{% endblock content %} 

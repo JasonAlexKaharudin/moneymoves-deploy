@@ -1,0 +1,36 @@
+{% extends "users/base.html" %}
+{% block title %}Log In{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/login.css' %}">
+    <section class="login-container">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">  <!-- singular -->
+                <h4>{{ message }}</h4>
+            </div>
+            {% endfor %}
+        {% endif %}   
+        
+        {{ form.errors }}
+
+
+        <h1 class="heading">Log in to Money <span class="moves">Moves</span></h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="inputs">
+                <input name="username" type="text" placeholder="Username" required>
+                <input name="password" type="password" placeholder="Password" required>
+            </div>
+            
+            <div>
+                <button class="btn btn-outline-info" type="submit">Log In</button>
+            </div>
+        </form>
+        <div>
+            <small class="text-muted">
+                Need an account? <a class="ml-2" href="{% url 'register' %}">Sign up here</a>
+            </small>
+        </div>
+    </section>
+{% endblock content %}

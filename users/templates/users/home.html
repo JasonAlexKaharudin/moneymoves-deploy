@@ -1,0 +1,69 @@
+{% extends "users/base.html" %}
+{% block title %}Money Moves{% endblock %}
+{% block extra_head %} <link rel="stylesheet" href="static/users/home.css"> {% endblock %}
+
+{% block content %}
+<!-- Section 1* -->
+<section>
+    <h1 class="section-title" id="earn">Discover. Earn. <span class="blue-color">Invest.</span></h1>
+
+    <div class="flex-container">
+        <div class="flex-item-left">
+                <div class="text-box">
+                    <h2 class="signupTitle" >Start earning today!</h2>
+                    <p>1. Earn Cashbacks 😎 </p>
+                    <p>2. Invest your cashbacks 💰</p>
+                    <p>3. Fast payout via Paylah! 🚀 </p>
+                    <div class="bluecircle-wrapper">
+                        <a href="{% url 'register'%}" class="signup-box">Sign up now</a>
+                    </div>
+                  </div>
+        </div>
+        <div class="flex-item-right">
+            <img src="https://ik.imagekit.io/2bmvtzrfkar/Money_Moves/Group-918_iXJQ0QIN4.png" alt="pic1" width=auto height="500">
+        </div>
+    </div>
+
+  </section>
+
+
+  <!-- How it works * -->
+  <section>
+
+  <h1 class="section-title" id="howitworks">Here's how it <span class="blue-color" >works </span></h1>
+
+  <div class="flex-container">
+    <div class="flex-item-left">
+            <div class="text-box">
+                <p>1. Explore any products or brands you like and share it with your friends </p>
+          </div>
+    </div>
+    <div class="flex-item-right">
+    <img src="https://ik.imagekit.io/2bmvtzrfkar/Money_Moves/Group-919_X3W-949sqw.png" alt="pic" width=auto height="500">
+    </div>
+  </div>
+
+  <div class="flex-container">
+    <div class="flex-item-left">
+            <div class="text-box">
+                <p>2. Upload a screenshot of your friend’s receipt after they make a purchase and key in their phone number </p>
+          </div>
+    </div>
+    <div class="flex-item-right">
+        <img src="https://ik.imagekit.io/2bmvtzrfkar/Money_Moves/Group_951_eurSpnB6J.png" alt="pic" width=auto height="500">
+    </div>
+  </div>
+
+  <div class="flex-container">
+    <div class="flex-item-left">
+            <div class="text-box">
+                <p>3. Both you and your friend received cashback for every purhcase!  </p>
+          </div>
+    </div>
+    <div class="flex-item-right">
+        <img src="https://ik.imagekit.io/2bmvtzrfkar/Money_Moves/MM_Mockup-Cashback_bpnbDCMJeH.png" alt="pic" width=auto height="500">
+    </div>
+  </div>
+
+  </section>
+{% endblock %}

@@ -1,0 +1,112 @@
+/* this is for earn page, discover.earn.invest. section */
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 5%;
+    margin: auto;
+    width: 80%;
+  }
+
+.text-box{
+    text-align: center;
+    font-size: 1em;
+    font-family: 'Kulim Park', sans-serif;
+}
+
+  .flex-item-left {
+    /* background-color: green; */
+    text-align: center;
+    padding: 10px;
+    flex: 50%;
+  }
+
+  .flex-item-right {
+    /* background-color: blue; */
+    padding: 10px;
+    flex: 50%;
+  }
+  
+  @media (max-width: 800px) {
+    .flex-container {
+      flex-direction: column;
+      padding-top: 0;
+      margin-bottom: 12vh;
+    }
+    .section-title{
+        margin-bottom: 1.5vh;
+    }
+  }
+
+/* Text */
+
+  .text-box{
+    text-align: center;
+    font-size: 1em;
+    font-family: 'Kulim Park', sans-serif;
+
+  }
+
+.reserveSteps{
+    padding: 70px 0;
+    text-align: center;
+    align-self: center;
+    font-size: 1em;
+}
+
+.blue-color{
+    color: #40739e;
+}
+
+.section-title{
+    text-align: center;
+    font-size: 3em;
+    font-weight: 400px;
+    padding-top: 20px;
+}
+
+
+.signupTitle{
+    padding-bottom: 10%
+}
+
+.signup-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 700;
+    padding-top: 10px;
+
+    text-decoration: none;
+    color: #40739e;
+}
+
+
+
+/* Circular box style */
+.bluecircle-wrapper {
+    position: relative;
+    left: auto;
+    z-index: 999;
+
+    display: block;
+    width: 75%;
+    height: 60px;
+    margin: auto;
+    
+    justify-content: center;
+    text-align: center;
+
+    border-style: solid;
+    border-width: 3px;
+    border-color: #40739e;
+    border-radius: 100px;
+    background-color: #fff;
+    
+}
+
+
+/* this is for earn page, discover.earn.invest. section */

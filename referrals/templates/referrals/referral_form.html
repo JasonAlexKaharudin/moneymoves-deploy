@@ -1,0 +1,39 @@
+{% extends "users/base.html" %}
+{% block title %}Upload{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'referrals/referral_form.css'%}">
+<section class="referral-form-container">
+    <div class="content-section">
+        <h1>Upload Receipt</h1>
+    
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+    
+            <label for="id_merchant">Merchant:</label>
+            <select name="merchant" required="" id="id_merchant">
+                <option value="" selected="">---------</option>
+                <option value="1">Sunday Valley</option>
+                <option value="2">DO NOT CROSS</option>
+            </select>
+            <!-- need to resolve this select statement -->
+    
+            <label for="id_referee_Phone_Number">Friend's Phone Number/PayNow :</label>
+            <input type="tel" name="referee_Phone_Number" id="id_referee_Phone_Number" required>
+            <label for="id_receipt">Receipt:</label>
+            <input type="file" name="receipt" id="id_receipt" accept="image/*" required>
+            <div class="form-group">
+                <button type="submit">Upload</button>
+            </div>
+        </form>
+
+        
+        <h4 class="get_cashback">Your friend will receive a link to claim their cashback.
+            <br>
+            Receive your cashback once your friend signs up!
+        </h4>
+    </div>
+</section>
+
+
+{% endblock content %}

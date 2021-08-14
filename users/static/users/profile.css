@@ -1,0 +1,57 @@
+.profile-container{
+    margin: 7vh 15vw 10vh 15vw;
+}
+fieldset{
+    display: grid;
+    grid-template-columns: 1fr;
+    border: none;
+    padding:0;
+}
+
+.error-container{
+    align-items: center;
+    text-align: center;
+    background-color: rgb(0, 184, 74);
+    color: rgb(240, 240, 240);
+    max-width: fit-content;
+    padding: 0.5vh 1vw 0.5vh 1vw;
+    border-radius: 10px;
+}
+
+.profile-heading{
+    text-decoration: underline;
+}
+
+.helptext{
+    display: none;
+}
+
+.inputField{
+    font-weight: 400;
+}
+
+input[type=text], input[type=tel], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type=submit] {
+    width: 100%;
+    background-color: #40739E;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+button[type=submit]:hover {
+    background-color: rgb(29, 161, 242);
+}
+  

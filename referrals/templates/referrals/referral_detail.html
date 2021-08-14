@@ -1,0 +1,19 @@
+{% extends "users/base.html" %}
+{% block title %}Details{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'referrals/referral_detail.css' %}">
+
+<section class="detail-container">
+  <h3>Referral Details</h3>
+  <h4 class="referral-title">Merchant: {{object.merchant}}</h4>
+        <p class="r-phone">Referee phone number: {{object.referee_Phone_Number}}</p>
+        <p class="r-cashback">Cashback: ${{object.referer_cashback}}</p>
+        <p class="r-date">Date: {{object.date_published}}</p>
+        <img class="receiptIMG" src="{{ object.receipt.url }}" alt="receipt of purchase">
+</section>
+
+
+
+
+{% endblock %}
