@@ -7,9 +7,9 @@ from .forms import ReferralForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from users.models import Profile
 from .models import Referral
-from merchants.models import Merchant
+from django.contrib.auth.decorators import login_required
+
 
 class ReferralListView(LoginRequiredMixin, ListView):
     model = Referral
@@ -33,6 +33,7 @@ class CreateReferral(LoginRequiredMixin, CreateView):
         form.fields['referee_Phone_Number'].required = True
         return super().form_valid(form)
 
+@login_required
 def UploadReceipt(request):
     user = User.objects.get(pk=request.user.pk)
   
