@@ -1,8 +1,9 @@
 {% extends "users/base.html" %}
 {% block title %}Log In{% endblock %}
-{% block content %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'users/login.css' %}">
+{% block extra_head %}<link rel="stylesheet" type="text/css" href="{% static 'users/login.css' %}">{% endblock %}
+{% block content %}
+
     <section class="login-container">
         {% if messages %}
             {% for message in messages %}
@@ -13,7 +14,6 @@
         {% endif %}   
         
         {{ form.errors }}
-
 
         <h1 class="heading">Log in to Money <span class="moves">Moves</span></h1>
         <form method="POST">
@@ -27,10 +27,10 @@
                 <button class="btn btn-outline-info" type="submit">Log In</button>
             </div>
         </form>
-        <div>
+        <!-- <div>
             <small class="text-muted">
                 Need an account? <a class="ml-2" href="{% url 'register' %}">Sign up here</a>
             </small>
-        </div>
+        </div> -->
     </section>
 {% endblock content %}
