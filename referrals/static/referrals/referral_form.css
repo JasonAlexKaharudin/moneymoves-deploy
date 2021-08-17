@@ -2,6 +2,18 @@
     margin: 10vh 15vw 10vh 15vw;
 }
 
+.error-container{
+    align-items: center;
+    text-align: center;
+    color: rgb(240, 240, 240);
+    max-width: fit-content;
+    padding: 0.5vh 1vw 0.5vh 1vw;
+    border-radius: 10px;
+}
+
+.error{
+    background-color: rgb(196, 49, 49);
+}
 
 fieldset{
     display: grid;

@@ -1,8 +1,10 @@
 {% extends "users/base.html" %}
-{% block title %}Profile{% endblock %}
-{% block content %}
 {% load static %}
+{% block extra_head %}
 <link rel="stylesheet" href="{% static 'users/profile.css' %}">
+{% endblock %}
+{% block content %}
+
 <section class="profile-container">
     <div class="profile-section">
         {% if messages %}

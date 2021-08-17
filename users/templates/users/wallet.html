@@ -1,8 +1,9 @@
 {% extends "users/base.html" %}
-{% block title %} {% endblock %}
-{% block content %}
-{% load static %}
+{% block title %}Wallet{% endblock %}
+{% block extra_head %}
 <link rel="stylesheet" type="text/css" href="{% static 'users/wallet.css' %}">
+{% endblock %}
+{% block content %}
 
     <h1>My Wallet</h1>
 
