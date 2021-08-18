@@ -15,6 +15,15 @@ class BrandListView(ListView):
     template_name = 'users/brands.html'
     context_object_name = 'Brands'
 
+def brands(request):
+    user = User.objects.get(pk=request.user.pk)
+    profile = user.profile
+
+    context = {
+        'profile': profile,
+    }
+    return render(request, 'users/brands.html', context)
+
 @login_required
 def profile(request):
     user = User.objects.get(pk=request.user.pk)

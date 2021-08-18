@@ -2,52 +2,77 @@
 {% block title %}Brands{% endblock %}
 {% load static %}
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'users/brands.css' %}">
+<link rel="stylesheet" href="{% static 'users/brand.css' %}">
 {% endblock %}
 {% block content %}
 
 <header style="text-align: center;">
-  <div class="container" style="padding-top: 25px;padding-bottom: 25px;">
-      <div class="row" style="padding-bottom: 15px;">
-          <div class="col-md-12">
-              <h1>Shop</h1>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-md-12">
-              <h2>Share Upload&nbsp;<span style="color: rgb(64,115,159);">&amp; Earn.</span></h2>
-          </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <a class="btn btn-primary upload" href="https://moneymoves.app/referral/upload/">Upload</a>
+    <div class="container" style="padding-top: 25px;padding-bottom: 25px;">
+        <div class="row" style="padding-bottom: 15px;">
+            <div class="col-md-12">
+                <h1>Shop</h1>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Share Upload&nbsp;<span style="color: rgb(64,115,159);">&amp; Earn.</span></h2>
+            </div>
+        </div><a class="btn btn-primary"  href="https://moneymoves.app/referral/upload/">Upload</a>
     </div>
-  </div>
 </header>
 <section>
-  <section style="padding-top: 15px;padding-bottom: 200px;">
-      <div class="container">
-          <div class="row">
-              <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
-                  <div class="text-center" style="width: 300px;height: 250px;"><a href="https://sunday-valley.com/"><img src="{% static 'users/img/sundayvalley.png' %}" style="width: 250px;height: auto;"></a></div>
-                  <h2>Sunday Valley</h2>
-                  <p>30% cashback</p>
-              </div>
-              <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
-                  <div class="text-center" style="width: 300px;height: 250px;"><a href="https://donotcrosss.com/"><img src="{% static 'users/img/donotcross.png' %}" style="width: 250px;height: auto;"></a></div>
-                  <h2>Do Not Cross</h2>
-                  <p>30% cashback</p>
-              </div>
-              <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
-                  <div class="text-center d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center" style="width: 300px;height: 250px;"><a href="https://singaplex.com/"><img src="{% static 'users/img/singaplex.png' %}" style="width: 250px;height: auto;"></a></div>
-                  <h2>Singaplex</h2>
-                  <p>15% cashback</p>
-              </div>
-          </div>
-      </div>
-  </section>
+    <section style="padding-top: 15px;padding-bottom: 200px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="padding-left: 50px;">
+                    <h1>Wallet:<span style="color: rgb(39,183,45);">${{profile.wallet}}</span></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
+                    <div class="text-center" style="width: 300px;height: 250px;" >
+                        <a href="https://sunday-valley.com/">
+                            <img src="{% static 'users/img/sundayvalley.png' %}" style="width: 250px;height: auto;">
+                        </a>
+                    </div>
+                    <h2>Sunday Valley</h2>
+                    <p>30% cashback</p>
+                </div>
+                <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
+                    <div class="text-center" style="width: 300px;height: 250px;">
+                        <a href="https://donotcrosss.com/">
+                            <img src="{% static 'users/img/donotcross.png' %}" style="width: 250px;height: auto;">
+                        </a>
+                    </div>
+                    <h2>Do Not Cross</h2>
+                    <p>30% cashback</p>
+                </div>
+                <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
+                    <div class="text-center d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center" style="width: 300px;height: 250px;">
+                        <a href="https://singaplex.com/">
+                            <img src="{% static 'users/img/singaplex.png' %}" style="width: 250px;height: auto;">
+                        </a>
+                    </div>
+                    <h2>Singaplex</h2>
+                    <p>15% cashback</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">How to get&nbsp;</h4><span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">Earning</span><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>1. Visit the brand store and share the link with your friend<br>2. Use the <span style="color: rgb(67,68,69);font-weight: bold;">MONEYMOVES</span>&nbsp;discount code on checkout<br>3. Screenshot the email receipt<br>4. Upload it to moneymoves.app<br>5. Enjoy your cashback!</p><small style="font-size: 12px;">Note: You will only get your cashback once your friend creates an account</small>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><a href="#">Sunday Valley</a></div>
+            </div>
+        </div>
+    </div>
 </section>
+<script src="{% static 'users/js/brands.js' %}"></script>
 
 {% endblock %}
