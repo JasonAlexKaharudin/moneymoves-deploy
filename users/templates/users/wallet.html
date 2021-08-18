@@ -5,6 +5,14 @@
 {% endblock %}
 {% block content %}
 
+{% if messages %}
+<div class="message-container ">
+    {% for message in messages %}
+    <h4 class="{{message.tags}}">{{message}}</h4>
+    {% endfor %}
+</div>
+{% endif %}
+
     <h1>My Wallet</h1>
 
     {% if wallet %}

@@ -22,7 +22,7 @@ def profile(request):
         u_form = UserUpdateForm(request.POST, instance=request.user)
         if u_form.is_valid():
             u_form.save()
-            messages.info(request, f'Your account has been updated!')
+            messages.success(request, f'Your account has been updated!')
             return redirect('/profile')
     else:
         u_form = UserUpdateForm(instance=request.user)
@@ -47,7 +47,7 @@ def phone(request):
             user.Phone_Number = phone_number
             user.save()
             messages.success(request, f"Updated phone number successfully!")
-            return redirect('/profile')
+            return redirect('/phone')
     return render(request, 'users/phone.html', {})
 
 def register(request):
@@ -73,6 +73,7 @@ def register(request):
             messages.info(request, f"The email '{email}' already has an account")
             return redirect('register')
         
+        # check if
         elif form.is_valid():
             form.save()    
             username = form.cleaned_data.get('username')

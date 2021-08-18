@@ -8,12 +8,14 @@
 <section class="profile-container">
     <div class="profile-section">
         {% if messages %}
-        <div class="error-container">
+        <div class="message-container ">
             {% for message in messages %}
-            <h4 class="error">{{message}}</h4>
+            <h4 class="{{message.tags}}">{{message}}</h4>
             {% endfor %}
         </div>
         {% endif %}
+
+
         <h1 class="profile-heading">Profile Info</h1>
         
         <h3>Username: <span class="inputField">{{user.username}}</span></h3>

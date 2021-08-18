@@ -5,9 +5,9 @@
 <link rel="stylesheet" type="text/css" href="{% static 'users/phone.css' %}">
 <section class="phone_register_user">
     {% if messages %}
-    <div class="error-container">
+    <div class="message-container ">
         {% for message in messages %}
-        <h4 class="error">{{message}}</h4>
+        <h4 class="{{message.tags}}">{{message}}</h4>
         {% endfor %}
     </div>
     {% endif %}

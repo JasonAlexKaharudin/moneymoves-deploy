@@ -6,11 +6,13 @@
 
 
 <section class="referral-form-container">
-    <div class="error-container">
+    {% if messages %}
+    <div class="message-container ">
         {% for message in messages %}
-        <h4 class="error">{{message}}</h4>
+        <h4 class="{{message.tags}}">{{message}}</h4>
         {% endfor %}
     </div>
+    {% endif %}
     <div class="content-section">
         <h1>Upload Receipt</h1>
         
@@ -21,13 +23,13 @@
             <select name="merchant" required="" id="id_merchant">
                 <option value="" selected="">---------</option>
                 <option value="Sunday Valley">Sunday Valley</option>
-                <option value="DO NOT CROSS">DO NOT CROSS</option>
+                <option value="Do Not Cross">DO NOT CROSS</option>
                 <option value="Singaplex">Singaplex</option>
             </select>
             <!-- need to resolve this select statement -->
     
             <label for="id_referee_Phone_Number">Friend's Phone Number/PayNow :</label>
-            <input type="tel" name="referee_Phone_Number" id="id_referee_Phone_Number" required>
+            <input type="tel" name="referee_Phone_Number" id="id_referee_Phone_Number" value="+65" required>
             <label for="receipt">Receipt:</label>
             <input type="file" name="receipt" id="id_receipt" accept="image/*" required>
             <div class="form-group">
