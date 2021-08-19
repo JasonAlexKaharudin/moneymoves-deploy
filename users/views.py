@@ -16,7 +16,7 @@ class BrandListView(ListView):
     context_object_name = 'Brands'
 
 def brands(request):
-    return render(request, 'users/brands.html')
+    return render(request, 'users/brands.html', {})
 
 @login_required
 def profile(request):
