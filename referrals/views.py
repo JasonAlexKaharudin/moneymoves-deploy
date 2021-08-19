@@ -1,3 +1,4 @@
+from users.views import phone
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -13,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 def wallet_referrals(request):
     curr_user = User.objects.get(pk=request.user.pk)
     curr_user_profile = curr_user.profile
-    print(curr_user.profile.wallet)
+
     # get the referral list for this user
     user_referrals = list(Referral.objects.filter(referer = curr_user))
 
@@ -47,6 +48,8 @@ def UploadReceipt(request):
     if request.method == "POST":
         #get the inputted phone number
         phone_input = request.POST['referee_Phone_Number']
+        phone_input = "+65" + phone_input
+        
         #handles the case when a user has not updated their phone number to their profile
         if user.profile.Phone_Number == '':
             messages.info(request, "Before you upload a receipt, please update your phone number")
@@ -57,6 +60,9 @@ def UploadReceipt(request):
             messages.info(request, "The phone number you entered is registered under your account. Please fill up a friend's phone number")
             return redirect('/referral/upload')
         #handles a successful case - 1. phone number filled and 2. a valid referee's phone number
+        elif len(phone_input) != 11:
+            messages.info(request, "Please enter a Singapore number without the country code")
+            return redirect('/referral/upload')
         else:
             referer = user
             merchant_name = request.POST['merchant']

@@ -14,7 +14,7 @@ urlpatterns = [
     path('phone/', user_views.phone, name='phone'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-    path('brands/', user_views.brands, name = 'brands page' ),
+    path('brands/', user_views.brands, name = 'brands page'),
     path('referral/', include('referrals.urls'))
 ] 
 
