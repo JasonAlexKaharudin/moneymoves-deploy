@@ -7,12 +7,15 @@ from referrals.models import Referral
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=CASCADE)
-    Phone_Number = PhoneNumberField(blank=True)
+    Phone_Number = PhoneNumberField(blank=False)
     wallet= models.DecimalField(max_digits=6, decimal_places=2, default=0)
     num_of_refers = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.user.username}'s profile"
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
 class OrphanList(models.Model):
     Phone_Number = PhoneNumberField(blank=True)

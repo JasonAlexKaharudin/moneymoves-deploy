@@ -49,6 +49,11 @@ input[type=submit]{
     text-decoration: none;
 }
 
+.card-text:hover{
+    color: #0d6efd !important;
+    text-decoration: none;
+}
+
 .date{
     color: grey;
 }

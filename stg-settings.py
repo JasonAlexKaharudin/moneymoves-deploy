@@ -41,9 +41,6 @@ INSTALLED_APPS = [
     'phonenumber_field',
 ]
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
-CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -139,3 +136,11 @@ LOGIN_REDIRECT_URL = '/brands'
 LOGIN_URL = 'profile'
 
 PHONENUMBER_DEFAULT_REGION = "SG"
+
+# for the password reset email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'getmoneymoves@gmail.com'
+EMAIL_HOST_PASSWORD = 'aqqjoxhsylbufpcr'

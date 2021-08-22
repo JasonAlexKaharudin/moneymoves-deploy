@@ -6,12 +6,16 @@
 
 <section class="detail-container">
   <h3>Referral Details</h3>
-  <h4 class="referral-title">Merchant: {{object.merchant}}</h4>
-        <p class="r-phone">Referee phone number: {{object.referee_Phone_Number}}</p>
-        <p class="r-cashback">Cashback: ${{object.referer_cashback}}</p>
-        <p class="r-date">Date: {{object.date_published}}</p>
-        <img class="receiptIMG" src="{{ object.receipt.url }}" alt="receipt of purchase">
+  <p><span style="font-weight:bold;">Date: </span>{{object.date_published}}</p>
+  <p><span style="font-weight:bold;">Cashback: </span>${{object.referer_cashback}}</p>
+  <p><span style="font-weight:bold;">Merchant: </span>{{object.merchant}}</p>
+  <p><span style="font-weight:bold;">Friend: </span>{{object.referee_username}}, {{object.referee_Phone_Number}}</p>
+  <p><span style="font-weight:bold;">Receipt </span></p>
+  <img class="receiptIMG" src="{{ object.receipt.url }}" alt="receipt of purchase">
 </section>
+
+
+
 
 
 

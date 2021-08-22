@@ -1,8 +1,10 @@
 {% extends "users/base.html" %}
 {% block title %}Log Out{% endblock %}
-{% block content %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'users/logout.css' %}">
+{% block extra_head %}<link rel="stylesheet" type="text/css" href="{% static 'users/logout.css' %}">{% endblock %}
+{% block content %}
+
+
 <section class="logout-container">
     <h2 class="thanks">Thanks for visiting Money<span class="moves">Moves</span>! You have been logged out</h2>
 
@@ -14,4 +16,4 @@
     </div>
 </section>
     
-{% endblock content %}
+{% endblock %}

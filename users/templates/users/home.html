@@ -4,11 +4,13 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
+<!-- {% if user.is_authenticated %}
 <section>
-  
+  <h1>You are logged in</h1>
+  <h2>Here is the leaderboard:</h2>
 </section>
 {% else %}
+{% endif %} -->
 <section>
   <h1 class="section-title" id="earn">Discover. Earn. <span class="blue-color">Invest.</span></h1>
   <div class="flex-container">
@@ -69,7 +71,7 @@
 </div>
 
 </section>
-{% endif %}
+
 <!-- Section 1* -->
 
 {% endblock %}

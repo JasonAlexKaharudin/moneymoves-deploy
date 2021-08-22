@@ -18,7 +18,7 @@
   
   <h1>Cashback Earned: <span class="cashback-earned">${{profile.wallet}} </span> </h1>
   <br>
-  <h2>Number of Successful Refers: {{ profile.num_of_refers }}</h2>
+  <h2>Number of Refers: {{ profile.num_of_refers }}</h2>
   <br>
   <h3>Purchases Made</h3>
   
@@ -29,30 +29,32 @@
         <p class="">
          <span class="date">{{ r.date_published }}</span>
           You earned ${{ r.referer_cashback }}
-          from {{r.referee_Phone_Number}}
+          from recommending {{r.referee_username}}
           &#x2192;
         </p>
       </a>
       {% else %}
     <p>
       <span class="pending">
-        Purchase from <span class="merchant">{{r.merchant}}</span> made on {{ r.date_published }} is <span style="text-decoration: underline;">pending verification</span>
+        <span class="date">{{ r.date_published }}</span> Recommendation from <span class="merchant">{{r.merchant}}</span> is pending verification
       </span>
     </p>
       {% endif %}
     {% endfor %}
-  {% else %}
-    <p>No purchases made yet. Make a purchase from our brands and start getting cashback!</p>  
   {% endif %}
 
-
-  <h4>Earnings from getting referred</h4>
   {% for r in user_referred %}
-  {% if r.is_Verified %}
-  <p><span class="date">{{ r.date_published }}</span> You earned ${{r.referee_cashback}} from {{r.referer}}</p>
-  {% else %}
-  <p>You got referred on the <span class="date">{{ r.date_published }}</span> is pending verification</p>
-  {% endif %}
+    {% if r.is_Verified %}
+    <a class="card-text" href="{{r.id}}">
+      <p class="">
+        <span class="date">{{ r.date_published }}</span> 
+        You saved ${{r.referee_cashback}} from {{r.referer}} &#x2192;
+      </p>
+    </a>
+      
+    {% else %}
+      <p><span class="date">{{ r.date_published }}</span> Your earnings from <span class="merchant">{{r.merchant}}</span> is pending verification</p>
+    {% endif %}
   {% endfor %}
   
 
