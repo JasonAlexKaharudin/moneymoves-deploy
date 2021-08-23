@@ -3,11 +3,15 @@ from django.db.models.deletion import CASCADE
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from referrals.models import Referral
+from django.contrib.auth.models import User
+
+
+User._meta.get_field('email')._unique = True
 
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=CASCADE)
-    Phone_Number = PhoneNumberField(blank=False)
+    Phone_Number = PhoneNumberField(blank=False, unique=True)
     wallet= models.DecimalField(max_digits=6, decimal_places=2, default=0)
     num_of_refers = models.IntegerField(default=0)
 

@@ -57,6 +57,16 @@ button[type=submit]:hover {
     font-size: 2rem;
 }
 
+.errorlist>li{
+    list-style-type: none;
+    color: white    ;
+}
+
+.nonfield>li{
+    list-style-type: none;
+    color: rgb(196, 49, 49);
+}
+
 @media (max-width: 800px) {
     .login-container{
         margin: 7vh;

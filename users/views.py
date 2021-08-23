@@ -45,9 +45,9 @@ def register(request):
         p_reg_form = PhoneForm(request.POST)
         if form.is_valid() and p_reg_form.is_valid():
             user = form.save()
-            user.refresh_from_db()  # load the profile instance created by the signal
-            p_reg_form = PhoneForm(request.POST, instance=user.profile)
-            p_reg_form.full_clean()
+            #user.refresh_from_db()  # load the profile instance created by the signal
+            p_reg_form = p_reg_form.save(commit=False)
+            p_reg_form.user = user
             p_reg_form.save()
 
             username = user.username
