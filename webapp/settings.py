@@ -32,17 +32,16 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-
+SHOPIFY_WEBHOOK_SIGNED_KEY = os.getenv('SHOPIFY_WEBHOOK_SIGNED_KEY','') 
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'referrals.apps.ReferralsConfig',
     'merchants.apps.MerchantsConfig',
     'users.apps.UsersConfig',
+    'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

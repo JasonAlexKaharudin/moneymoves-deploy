@@ -26,12 +26,19 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# using ngrok to test api 
+# ALLOWED_HOSTS = ['*']
+
+SHOPIFY_WEBHOOK_SIGNED_KEY = '861014dfdc17f51698d6e0a902cb55fae580b5f1a8dc269f7900bb111859d14c'
+
+
 # Application definition
 
 INSTALLED_APPS = [
     'referrals.apps.ReferralsConfig',
     'merchants.apps.MerchantsConfig',
     'users.apps.UsersConfig',
+    'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phonenumber_field',
+    'rest_framework',
 ]
 
 

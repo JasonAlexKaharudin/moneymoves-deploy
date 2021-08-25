@@ -1,0 +1,482 @@
+{
+    "id": 3972479549574,
+    "admin_graphql_api_id": "gid://shopify/Order/3972479549574",
+    "app_id": 580111,
+    "browser_ip": "42.61.204.117",
+    "buyer_accepts_marketing": "False",
+    "cancel_reason": "None",
+    "cancelled_at": "None",
+    "cart_token": "29de574b380ef42017066cf2c7ef2da6",
+    "checkout_id": 22015388418182,
+    "checkout_token": "56988d7df5d501746ee460318ce955b3",
+    "client_details": {
+      "accept_language": "en-GB,en-US;q=0.9,en;q=0.8",
+      "browser_height": "None",
+      "browser_ip": "42.61.204.117",
+      "browser_width": "None",
+      "session_hash": "None",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
+    },
+    "closed_at": "2021-08-25T16:24:17+08:00",
+    "confirmed": "True",
+    "contact_email": "jasonakaharudin@gmail.com",
+    "created_at": "2021-08-25T16:24:14+08:00",
+    "currency": "SGD",
+    "current_subtotal_price": "50.00",
+    "current_subtotal_price_set": {
+      "shop_money": {
+        "amount": "50.00",
+        "currency_code": "SGD"
+      },
+      "presentment_money": {
+        "amount": "50.00",
+        "currency_code": "SGD"
+      }
+    },
+    "current_total_discounts": "0.00",
+    "current_total_discounts_set": {
+      "shop_money": {
+        "amount": "0.00",
+        "currency_code": "SGD"
+      },
+      "presentment_money": {
+        "amount": "0.00",
+        "currency_code": "SGD"
+      }
+    },
+    "current_total_duties_set": "None",
+    "current_total_price": "50.00",
+    "current_total_price_set": {
+      "shop_money": {
+        "amount": "50.00",
+        "currency_code": "SGD"
+      },
+      "presentment_money": {
+        "amount": "50.00",
+        "currency_code": "SGD"
+      }
+    },
+    "current_total_tax": "0.00",
+    "current_total_tax_set": {
+      "shop_money": {
+        "amount": "0.00",
+        "currency_code": "SGD"
+      },
+      "presentment_money": {
+        "amount": "0.00",
+        "currency_code": "SGD"
+      }
+    },
+    "customer_locale": "en",
+    "device_id": "None",
+    "discount_codes": [
+      {
+        "code": "MoneyMoves",
+        "amount": "0.00",
+        "type": "percentage"
+      }
+    ],
+    "email": "jasonakaharudin@gmail.com",
+    "estimated_taxes": "False",
+    "financial_status": "paid",
+    "fulfillment_status": "fulfilled",
+    "gateway": "shopify_payments",
+    "landing_site": "/",
+    "landing_site_ref": "None",
+    "location_id": "None",
+    "name": "#1028",
+    "note": "None",
+    "note_attributes": [],
+    "number": 28,
+    "order_number": 1028,
+    "order_status_url": "https://sunday-valley.com/21539487844/orders/9adee532ba7050c88302cb9a4fe56db8/authenticate?key=f5863b00fd9c0a530952dce2813e81ee",
+    "original_total_duties_set": "None",
+    "payment_gateway_names": [
+      "shopify_payments"
+    ],
+    "phone": "None",
+    "presentment_currency": "SGD",
+    "processed_at": "2021-08-25T16:24:13+08:00",
+    "processing_method": "direct",
+    "reference": "None",
+    "referring_site": "",
+    "source_identifier": "None",
+    "source_name": "web",
+    "source_url": "None",
+    "subtotal_price": "50.00",
+    "subtotal_price_set": {
+      "shop_money": {
+        "amount": "50.00",
+        "currency_code": "SGD"
+      },
+      "presentment_money": {
+        "amount": "50.00",
+        "currency_code": "SGD"
+      }
+    },
+    "tags": "",
+    "tax_lines": [],
+    "taxes_included": "False",
+    "test": "True",
+    "token": "9adee532ba7050c88302cb9a4fe56db8",
+    "total_discounts": "0.00",
+    "total_discounts_set": {
+      "shop_money": {
+        "amount": "0.00",
+        "currency_code": "SGD"
+      },
+      "presentment_money": {
+        "amount": "0.00",
+        "currency_code": "SGD"
+      }
+    },
+    "total_line_items_price": "50.00",
+    "total_line_items_price_set": {
+      "shop_money": {
+        "amount": "50.00",
+        "currency_code": "SGD"
+      },
+      "presentment_money": {
+        "amount": "50.00",
+        "currency_code": "SGD"
+      }
+    },
+    "total_outstanding": "0.00",
+    "total_price": "50.00",
+    "total_price_set": {
+      "shop_money": {
+        "amount": "50.00",
+        "currency_code": "SGD"
+      },
+      "presentment_money": {
+        "amount": "50.00",
+        "currency_code": "SGD"
+      }
+    },
+    "total_price_usd": "36.86",
+    "total_shipping_price_set": {
+      "shop_money": {
+        "amount": "0.00",
+        "currency_code": "SGD"
+      },
+      "presentment_money": {
+        "amount": "0.00",
+        "currency_code": "SGD"
+      }
+    },
+    "total_tax": "0.00",
+    "total_tax_set": {
+      "shop_money": {
+        "amount": "0.00",
+        "currency_code": "SGD"
+      },
+      "presentment_money": {
+        "amount": "0.00",
+        "currency_code": "SGD"
+      }
+    },
+    "total_tip_received": "0.00",
+    "total_weight": 300,
+    "updated_at": "2021-08-25T16:24:17+08:00",
+    "user_id": "None",
+    "billing_address": {
+      "first_name": "jason",
+      "address1": "342r",
+      "phone": "",
+      "city": "Singapore",
+      "zip": "229955",
+      "province": "None",
+      "country": "Singapore",
+      "last_name": "test",
+      "address2": "r32r",
+      "company": "",
+      "latitude": 1.3096509,
+      "longitude": 103.838467,
+      "name": "jason test",
+      "country_code": "SG",
+      "province_code": "None"
+    },
+    "customer": {
+      "id": 5312147259526,
+      "email": "jasonakaharudin@gmail.com",
+      "accepts_marketing": "True",
+      "created_at": "2021-08-20T13:25:37+08:00",
+      "updated_at": "2021-08-25T16:24:15+08:00",
+      "first_name": "jason",
+      "last_name": "test",
+      "orders_count": 0,
+      "state": "disabled",
+      "total_spent": "0.00",
+      "last_order_id": "None",
+      "note": "None",
+      "verified_email": "True",
+      "multipass_identifier": "None",
+      "tax_exempt": "False",
+      "phone": "None",
+      "tags": "",
+      "last_order_name": "None",
+      "currency": "SGD",
+      "accepts_marketing_updated_at": "2021-08-20T14:08:47+08:00",
+      "marketing_opt_in_level": "single_opt_in",
+      "admin_graphql_api_id": "gid://shopify/Customer/5312147259526",
+      "default_address": {
+        "id": 6530838462598,
+        "customer_id": 5312147259526,
+        "first_name": "jason",
+        "last_name": "test",
+        "company": "None",
+        "address1": "342r",
+        "address2": "r32r",
+        "city": "Singapore",
+        "province": "None",
+        "country": "Singapore",
+        "zip": "229955",
+        "phone": "",
+        "name": "jason test",
+        "province_code": "None",
+        "country_code": "SG",
+        "country_name": "Singapore",
+        "default": "True"
+      }
+    },
+    "discount_applications": [
+      {
+        "target_type": "line_item",
+        "type": "discount_code",
+        "value": "0.0",
+        "value_type": "percentage",
+        "allocation_method": "across",
+        "target_selection": "all",
+        "code": "MoneyMoves"
+      }
+    ],
+    "fulfillments": [
+      {
+        "id": 3536666886278,
+        "admin_graphql_api_id": "gid://shopify/Fulfillment/3536666886278",
+        "created_at": "2021-08-25T16:24:16+08:00",
+        "location_id": 27945369700,
+        "name": "#1028.1",
+        "order_id": 3972479549574,
+        "receipt": {},
+        "service": "manual",
+        "shipment_status": "None",
+        "status": "success",
+        "tracking_company": "None",
+        "tracking_number": "None",
+        "tracking_numbers": [],
+        "tracking_url": "None",
+        "tracking_urls": [],
+        "updated_at": "2021-08-25T16:24:16+08:00",
+        "line_items": [
+          {
+            "id": 10315121950854,
+            "admin_graphql_api_id": "gid://shopify/LineItem/10315121950854",
+            "fulfillable_quantity": 0,
+            "fulfillment_service": "manual",
+            "fulfillment_status": "fulfilled",
+            "gift_card": "False",
+            "grams": 300,
+            "name": "INRI tote bag",
+            "origin_location": {
+              "id": 783184789604,
+              "country_code": "SG",
+              "province_code": "",
+              "name": "Sunday Valley",
+              "address1": "226 Westwood Avenue #10-18",
+              "address2": "The Floravale",
+              "city": "Singapore",
+              "zip": "648357"
+            },
+            "price": "50.00",
+            "price_set": {
+              "shop_money": {
+                "amount": "50.00",
+                "currency_code": "SGD"
+              },
+              "presentment_money": {
+                "amount": "50.00",
+                "currency_code": "SGD"
+              }
+            },
+            "product_exists": "True",
+            "product_id": 6580585595014,
+            "properties": [],
+            "quantity": 1,
+            "requires_shipping": "True",
+            "sku": "5",
+            "taxable": "True",
+            "title": "INRI tote bag",
+            "total_discount": "0.00",
+            "total_discount_set": {
+              "shop_money": {
+                "amount": "0.00",
+                "currency_code": "SGD"
+              },
+              "presentment_money": {
+                "amount": "0.00",
+                "currency_code": "SGD"
+              }
+            },
+            "variant_id": 39398142017670,
+            "variant_inventory_management": "shopify",
+            "variant_title": "",
+            "vendor": "Sunday Valley",
+            "tax_lines": [],
+            "duties": [],
+            "discount_allocations": [
+              {
+                "amount": "0.00",
+                "amount_set": {
+                  "shop_money": {
+                    "amount": "0.00",
+                    "currency_code": "SGD"
+                  },
+                  "presentment_money": {
+                    "amount": "0.00",
+                    "currency_code": "SGD"
+                  }
+                },
+                "discount_application_index": 0
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "line_items": [
+      {
+        "id": 10315121950854,
+        "admin_graphql_api_id": "gid://shopify/LineItem/10315121950854",
+        "fulfillable_quantity": 0,
+        "fulfillment_service": "manual",
+        "fulfillment_status": "fulfilled",
+        "gift_card": "False",
+        "grams": 300,
+        "name": "INRI tote bag",
+        "origin_location": {
+          "id": 783184789604,
+          "country_code": "SG",
+          "province_code": "",
+          "name": "Sunday Valley",
+          "address1": "226 Westwood Avenue #10-18",
+          "address2": "The Floravale",
+          "city": "Singapore",
+          "zip": "648357"
+        },
+        "price": "50.00",
+        "price_set": {
+          "shop_money": {
+            "amount": "50.00",
+            "currency_code": "SGD"
+          },
+          "presentment_money": {
+            "amount": "50.00",
+            "currency_code": "SGD"
+          }
+        },
+        "product_exists": "True",
+        "product_id": 6580585595014,
+        "properties": [],
+        "quantity": 1,
+        "requires_shipping": "True",
+        "sku": "5",
+        "taxable": "True",
+        "title": "INRI tote bag",
+        "total_discount": "0.00",
+        "total_discount_set": {
+          "shop_money": {
+            "amount": "0.00",
+            "currency_code": "SGD"
+          },
+          "presentment_money": {
+            "amount": "0.00",
+            "currency_code": "SGD"
+          }
+        },
+        "variant_id": 39398142017670,
+        "variant_inventory_management": "shopify",
+        "variant_title": "",
+        "vendor": "Sunday Valley",
+        "tax_lines": [],
+        "duties": [],
+        "discount_allocations": [
+          {
+            "amount": "0.00",
+            "amount_set": {
+              "shop_money": {
+                "amount": "0.00",
+                "currency_code": "SGD"
+              },
+              "presentment_money": {
+                "amount": "0.00",
+                "currency_code": "SGD"
+              }
+            },
+            "discount_application_index": 0
+          }
+        ]
+      }
+    ],
+    "payment_details": {
+      "credit_card_bin": "424242",
+      "avs_result_code": "Y",
+      "cvv_result_code": "None",
+      "credit_card_number": "•••• •••• •••• 4242",
+      "credit_card_company": "Visa"
+    },
+    "refunds": [],
+    "shipping_address": {
+      "first_name": "jason",
+      "address1": "342r",
+      "phone": "",
+      "city": "Singapore",
+      "zip": "229955",
+      "province": "None",
+      "country": "Singapore",
+      "last_name": "test",
+      "address2": "r32r",
+      "company": "",
+      "latitude": 1.3096509,
+      "longitude": 103.838467,
+      "name": "jason test",
+      "country_code": "SG",
+      "province_code": "None"
+    },
+    "shipping_lines": [
+      {
+        "id": 3388075868294,
+        "carrier_identifier": "None",
+        "code": "Free Worldwide Shipping",
+        "delivery_category": "None",
+        "discounted_price": "0.00",
+        "discounted_price_set": {
+          "shop_money": {
+            "amount": "0.00",
+            "currency_code": "SGD"
+          },
+          "presentment_money": {
+            "amount": "0.00",
+            "currency_code": "SGD"
+          }
+        },
+        "phone": "None",
+        "price": "0.00",
+        "price_set": {
+          "shop_money": {
+            "amount": "0.00",
+            "currency_code": "SGD"
+          },
+          "presentment_money": {
+            "amount": "0.00",
+            "currency_code": "SGD"
+          }
+        },
+        "requested_fulfillment_service_id": "None",
+        "source": "shopify",
+        "title": "Free Worldwide Shipping",
+        "tax_lines": [],
+        "discount_allocations": []
+      }
+    ]
+  }
