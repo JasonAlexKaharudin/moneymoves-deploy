@@ -164,3 +164,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'getmoneymoves@gmail.com'
 EMAIL_HOST_PASSWORD = 'aqqjoxhsylbufpcr'
+ALLOWED_HOSTS = os.getenv("EMAIL_HOST_PASSWORD", '')
