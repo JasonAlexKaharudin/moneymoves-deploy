@@ -10,7 +10,7 @@ from datetime import datetime
 class Referral(models.Model):
     referer = models.ForeignKey(User, on_delete=CASCADE, related_name="referer")
     referee_Phone_Number = PhoneNumberField(blank=True)
-    merchant = models.ForeignKey(Merchant ,on_delete=CASCADE)
+    merchant = models.ForeignKey(Merchant ,on_delete=CASCADE, null=True)
     referer_cashback = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     referee_cashback = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     referee_username = models.CharField(max_length=20, default="None")

@@ -19,19 +19,22 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
     
-            <label for="id_merchant">Merchant:</label>
+            <!-- <label for="id_merchant">Merchant:</label>
             <select name="merchant" required="" id="id_merchant">
                 <option value="" selected="">---------</option>
                 <option value="Sunday Valley">Sunday Valley</option>
                 <option value="Do Not Cross">DO NOT CROSS</option>
                 <option value="Singaplex">Singaplex</option>
-            </select>
+            </select> -->
             <!-- need to resolve this select statement -->
     
             <label for="id_referee_Phone_Number">Friend's Phone Number/PayNow :</label>
             <input type="tel" name="referee_Phone_Number" id="id_referee_Phone_Number" required>
+            
+            <br>
             <label for="receipt">Receipt:</label>
             <input type="file" name="receipt" id="id_receipt" accept="image/*" required>
+            
             <div class="form-group">
                 <button type="submit">Upload</button>
             </div>

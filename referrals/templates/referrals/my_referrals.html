@@ -13,7 +13,7 @@
 </div>
 {% endif %}
   <form action="/referral/upload" class="btn-wrap">
-    <button class="receipt-btn" type="submit">Upload Receipt</button>
+    <button class="receipt-btn" style="margin-bottom: 15px;" type="submit">Upload Receipt</button>
   </form>
   
   <h1>Cashback Earned: <span class="cashback-earned">${{profile.wallet}} </span> </h1>
@@ -36,7 +36,7 @@
       {% else %}
     <p>
       <span class="pending">
-        <span class="date">{{ r.date_published }}</span> Recommendation from <span class="merchant">{{r.merchant}}</span> is pending verification
+        <span class="date">{{ r.date_published }}</span> Recommendation #<span class="merchant">{{r.id}}</span> is pending verification
       </span>
     </p>
       {% endif %}
@@ -53,7 +53,7 @@
     </a>
       
     {% else %}
-      <p><span class="date">{{ r.date_published }}</span> Your earnings from <span class="merchant">{{r.merchant}}</span> is pending verification</p>
+      <p><span class="date">{{ r.date_published }}</span> Your earnings from #<span class="merchant">{{r.id}}</span> is pending verification</p>
     {% endif %}
   {% endfor %}
   

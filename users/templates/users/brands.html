@@ -6,22 +6,23 @@
 {% endblock %}
 {% block content %}
 
-<header style="text-align: center;">
-    <div class="container" style="padding-top: 25px;padding-bottom: 25px;">
+<header style="text-align: center; background-color: #f7f7f7;">
+    <div class="container" style="padding-top: 25px;padding-bottom: 25px; ">
         <div class="row" style="padding-bottom: 15px;">
             <div class="col-md-12">
-                <h1>Shop</h1>
+                <h1>Share Upload&nbsp;<span style="color: rgb(64,115,159);">&amp; Earn.</span></h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Share Upload&nbsp;<span style="color: rgb(64,115,159);">&amp; Earn.</span></h2>
-            </div>
-        </div><a class="btn btn-primary" href="/referral/upload/">Upload Receipt</a>
+        {% if user.is_authenticated %}
+        <a class="btn btn-primary" style="background-color: rgb(64,115,159); border-color: rgb(64,115,159);" href="/referral/upload/">Upload Receipt</a>
+        {% else %}
+        <a class="btn btn-primary" style="background-color: rgb(64,115,159); border-color: rgb(64,115,159);" href="/register">Upload Receipt</a>
+        {% endif %}
+        
     </div>
 </header>
-<main>
-    <section style="padding-top: 15px;padding-bottom: 200px;">
+
+    <section style="padding-top: 15px;padding-bottom: 200px; background-color: #f7f7f7;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12" style="padding-left: 50px;">
@@ -32,42 +33,149 @@
             </div>
             <div class="row">
                 <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
+                    <div data-bs-toggle="modal" data-bs-target="#larocheModal" class="text-center" style="width: 300px;height: 250px; padding-top: 25px;">
+                        
+                            <img src="{% static 'users/img/laroche.png'%}" style="width: 250px;height: auto;">
+                        
+                    </div>
+                    <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">12% cashback</p>
+                </div>
+                <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
+                    <div data-bs-toggle="modal" data-bs-target="#adidasModal" class="text-center" style="width: 300px;height: 250px; padding-top: 25px;">
+                        
+                            <img src="{% static 'users/img/adidas.png'%}" style="width: 250px;height: auto;">
+                        
+                    </div>
+                    <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">10% cashback</p>
+                </div>
+                <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
+                    <div data-bs-toggle="modal" data-bs-target="#ckModal" class="text-center" style="width: 300px;height: 250px; padding-top: 115px;">
+                        
+                            <img src="{% static 'users/img/ck.png'%}" style="width: 250px;height: auto;">
+                        
+                    </div>
+                    <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">10% cashback</p>
+                </div>
+                <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
                     <div data-bs-toggle="modal" data-bs-target="#sundayModal" class="text-center" style="width: 300px;height: 250px;"><a href="#"><img src="{% static 'users/img/sundayvalley.png' %}" style="width: 250px;height: auto;"></a></div>
                     <h2>Sunday Valley</h2>
-                    <p>30% cashback</p>
+                    <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">30% cashback</p>
                 </div>
                 <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
                     <div data-bs-toggle="modal" data-bs-target="#crossModal" class="text-center" style="width: 300px;height: 250px;"><a href="#"><img src="{% static 'users/img/donotcross.png' %}" style="width: 250px;height: auto;"></a></div>
                     <h2>Do Not Cross</h2>
-                    <p>30% cashback</p>
+                    <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">30% cashback</p>
                 </div>
                 <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
                     <div data-bs-toggle="modal" data-bs-target="#singaplexModal" class="text-center d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center" style="width: 300px;height: 250px;"><a href="#">
                         <img src="{% static 'users/img/singaplex.png' %}" style="width: 250px;height: auto;"></a></div>
                     <h2>Singaplex</h2>
-                    <p>15% cashback</p>
+                    <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">15% cashback</p>
                 </div>
             </div>
         </div>
     </section>
+
+
+ <!-- affiliate Modal -->
+    <div class="modal fade" id="larocheModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    1. Visit the store and share the link with your friend
+                    <br>
+                    
+                    2. Get the receipt from your friend once they have made a purchase with your link
+                    <br>
+                    3. Upload the receipt on moneymoves.app and split the cashback with your friend!
+                    <br>
+                    4. Enjoy your cashback!
+                </p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <a type="button" href="https://amzn.to/3DJmEog" class="btn btn-primary">La Roche Posay ></a>
+            </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="adidasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>1. Visit the store and share the link with your friend
+                    <br>
+                    2. Get the receipt from your friend once they have made a purchase with your link
+                    <br>
+                    3. Upload the receipt on moneymoves.app and split the cashback with your friend!
+                    <br>
+                    4. Enjoy your cashback!
+                </p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <a type="button" href="https://amzn.to/3BBIg4k" class="btn btn-primary">Adidas ></a>
+            </div>
+        </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="ckModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>1. Visit the store and share the link with your friend
+                    <br>
+                    2. Get the receipt from your friend once they have made a purchase with your link
+                    <br>
+                    3. Upload the receipt on moneymoves.app and split the cashback with your friend!
+                    <br>
+                    4. Enjoy your cashback!
+                </p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <a type="button" href="https://amzn.to/3kMifZa" class="btn btn-primary">Calvin Klein ></a>
+            </div>
+        </div>
+        </div>
+      </div>
     
-    <!-- Modal -->
+   <!-- affiliate Modal -->
+
+   <!-- PARTNER Modal -->
     <div class="modal fade" id="sundayModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h4 class="modal-title">How to get&nbsp;</h4><span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">Earning</span>
+            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>1. Visit the brand store and share the link with your friend
+                <p>1. Visit Sunday Valley's store and share the link with your friend
                     <br>
                     2. Use the <span style="color: rgb(67,68,69);font-weight: bold;">MONEYMOVES</span>&nbsp;discount code on checkout
                     <br>
                     3. Screenshot the email receipt
                     <br>
                     4. Upload it to moneymoves.app
-                    <br>5. Enjoy your cashback!
+                    <br>
+                    5. Enjoy your cashback!
                 </p>
                 <small style="font-size: 12px;">Note: You will only get your cashback once your friend creates an account</small>
             </div>
@@ -84,11 +192,11 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h4 class="modal-title">How to get&nbsp;</h4><span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">Earning</span>
+            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>1. Visit the brand store and share the link with your friend
+                <p>1. Visit Do Not Cross's store and share the link with your friend
                     <br>
                     2. Use the <span style="color: rgb(67,68,69);font-weight: bold;">MONEYMOVES</span>&nbsp;discount code on checkout
                     <br>
@@ -111,11 +219,11 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h4 class="modal-title">How to get&nbsp;</h4><span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">Earning</span>
+            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>1. Visit the brand store and share the link with your friend
+                <p>1. Visit Singaplex's store and share the link with your friend
                     <br>
                     2. Use the <span style="color: rgb(67,68,69);font-weight: bold;">MONEYMOVES</span>&nbsp;discount code on checkout
                     <br>
@@ -133,7 +241,12 @@
         </div>
         </div>
     </div>
-</main>
+
+       <!-- PARTNER Modal -->
+
 <script src="{% static 'users/js/brands.js' %}"></script>
+<script>
+
+</script>
 
 {% endblock %}
