@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
 from webapp import settings
-from .models import WebhookOrder
+from .models import WebhookOrder, orderRefs
 
 import hmac
 import hashlib
@@ -16,6 +16,13 @@ def computed_hmac(secret, body):
 
 def verify_hmac(secret, body, shopify_hmac):
     return computed_hmac(secret, body) == shopify_hmac
+
+@csrf_exempt
+@api_view(['POST']) 
+def ref_api(request):
+    print(request.data)
+    return Response(status=status.HTTP_200_OK) 
+
 
 @csrf_exempt
 @api_view(['POST'])  
@@ -44,3 +51,4 @@ def api_view_webhook(request):
     else:
         print('invalid')  
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
