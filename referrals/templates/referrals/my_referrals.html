@@ -5,59 +5,47 @@
 {% block content %}
 
 <section class="referral-container">
-{% if messages %}
-<div class="message-container ">
-    {% for message in messages %}
-    <h4 class="{{message.tags}}">{{message}}</h4>
-    {% endfor %}
-</div>
-{% endif %}
-  <form action="/referral/upload" class="btn-wrap">
-    <button class="receipt-btn" style="margin-bottom: 15px;" type="submit">Upload Receipt</button>
-  </form>
-  
-  <h1>Cashback Earned: <span class="cashback-earned">${{profile.wallet}} </span> </h1>
+  <h1>Cashback Earned: <span class="cashback-earned">${{user.profile.wallet}} </span></h1>
   <br>
-  <h2>Number of Refers: {{ profile.num_of_refers }}</h2>
-  <br>
-  <h3>Purchases Made</h3>
-  
-  {% if referrals %}
-    {% for r in referrals %}
+  <h1>Refers: {{user.profile.num_of_refers}}</h1>
+  <h1>Purchases Made:</h1>
+  {% if refers %}
+    {% for r in refers %}
       {% if r.is_Verified %}
       <a class="card-text" href="{{r.id}}">
-        <p class="">
-         <span class="date">{{ r.date_published }}</span>
+        <p>
+        <span class="date">{{ r.date_published }}</span>
           You earned <span class="cashback-earned">${{ r.referer_cashback }}</span>
-          from recommending {{r.referee_username}}
+          from recommending 
+          <span class="merchant">{{r.referee_username}}</span>
           &#x2192;
         </p>
       </a>
       {% else %}
-    <p>
-      <span class="pending">
-        <span class="date">{{ r.date_published }}</span> Recommendation #<span class="merchant">{{r.id}}</span> is pending verification
-      </span>
-    </p>
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-
-  {% for r in user_referred %}
-    {% if r.is_Verified %}
-    <a class="card-text" href="{{r.id}}">
-      <p class="">
-        <span class="date">{{ r.date_published }}</span> 
-        You saved ${{r.referee_cashback}} from {{r.referer}} &#x2192;
+      <p>
+        <span class="pending">
+          <span class="date">{{ r.date_published }}</span> Recommendation from <span class="merchant">{{r.referee_email}}</span> is pending verification.
+        </span>
       </p>
-    </a>
-      
-    {% else %}
-      <p><span class="date">{{ r.date_published }}</span> Your earnings from #<span class="merchant">{{r.id}}</span> is pending verification</p>
-    {% endif %}
+      {% endif %}
   {% endfor %}
+  {% endif %}
   
 
+  {% if referred %}
+  {% for r in referred %}
+      {% if r.is_Verified %}
+      <a class="card-text" href="{{r.id}}">
+        <p class="">
+          <span class="date">{{ r.date_published }}</span> 
+          You saved <span class="cashback-earned">${{ r.referer_cashback }}</span> from {{r.referer_username}} &#x2192;
+        </p>
+      </a>
+      {% else %}
+      <p><span class="date">{{ r.date_published }}</span> Your earnings from <span class="merchant">{{r.referer_username}}</span> is pending verification</p>
+      {% endif %}
+  {% endfor %}
+  {% endif %}
 </section>
 {% endblock %}
 

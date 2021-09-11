@@ -2,8 +2,9 @@ from django.db import models
 from django.db.models.deletion import CASCADE
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
-from referrals.models import Referral
-from django.contrib.auth.models import User
+from referrals.models import Referral, OrphanList
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 User._meta.get_field('email')._unique = True
@@ -19,9 +20,31 @@ class Profile(models.Model):
         return f"{self.user.username}'s profile"
     
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+        super().save(*args, **kwargs)    
 
-class OrphanList(models.Model):
-    Phone_Number = PhoneNumberField(blank=True)
-    orphan_cashback = models.DecimalField(max_digits=6, decimal_places=2, default=0)
-    referral_obj = models.ForeignKey(Referral, on_delete=CASCADE, default=None)
+@receiver(post_save, sender = Profile)
+def post_save_profile(sender, instance, created, *args, **kwargs):
+    if created:
+        #check orphans
+        if OrphanList.objects.filter(refereeEmail = instance.user.email).exists():
+            # update the username in the ref object
+            ref_obj = OrphanList.objects.filter(refereeEmail = instance.user.email)[0].referral_obj
+            ref_obj.referee_username = instance.user.username
+            ref_obj.referee_has_account = True
+            
+            #update the wallet and num refers of referee and referer
+            referee = User.objects.filter(username = ref_obj.referer_username)[0]
+            referee.profile.wallet = referee.profile.wallet + ref_obj.referee_cashback
+            referee.profile.num_of_refers = referee.profile.num_of_refers + 1
+            referee.profile.save()
+
+            referer = User.objects.filter(email = ref_obj.referee_email)[0]
+            referer.profile.wallet = referer.profile.wallet + ref_obj.referer_cashback
+            referer.profile.num_of_refers = referer.profile.num_of_refers + 1
+            referer.profile.save()
+
+            ref_obj.save()
+         
+            #delete the orphan list object
+            obj = OrphanList.objects.filter(refereeEmail = instance.user.email)[0]
+            obj.delete()

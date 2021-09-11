@@ -5,19 +5,12 @@
 <link rel="stylesheet" href="{% static 'referrals/referral_detail.css' %}">
 
 <section class="detail-container">
-  <h3>Referral Details</h3>
-  <p><span style="font-weight:bold;">Date: </span>{{object.date_published}}</p>
-  <p><span style="font-weight:bold;">Cashback: </span>${{object.referer_cashback}}</p>
-  <p><span style="font-weight:bold;">Merchant: </span>{{object.merchant}}</p>
-  <p><span style="font-weight:bold;">Friend: </span>{{object.referee_username}}, {{object.referee_Phone_Number}}</p>
-  <p><span style="font-weight:bold;">Receipt </span></p>
-  <img class="receiptIMG" src="{{ object.receipt.url }}" alt="receipt of purchase">
+  <h1>Order #{{object.orderID}} - {{object.merchant}}</h1>
+  <small>{{object.date_published}}</small>  
+  <br>
+  <br>
+  <h2>Order Details:</h2>
+  <p style="font-size: 1.5rem;">Total Amount: <span class="cashback">${{object.totalAmt}}</span></p>
+  <p style="font-size: 1.5rem;">You earned <span class="cashback">${{object.referer_cashback}}</span> from <span style="font-weight:bold;">{{object.referee_username}}</span></p>  
 </section>
-
-
-
-
-
-
-
 {% endblock %}

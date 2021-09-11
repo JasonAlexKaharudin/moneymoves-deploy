@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.generic import ListView
-from .forms import UserRegisterForm, UserUpdateForm, PhoneForm
+from .forms import UserUpdateForm, UserRegisterForm, PhoneForm
 from django.contrib.auth.decorators import login_required
 from merchants.models import Merchant
 from django.contrib.auth.models import User
-from .models import OrphanList
-from referrals.models import Referral
 
 def home(request):
     return render(request, 'users/home.html', {})
@@ -52,16 +50,6 @@ def register(request):
 
             username = user.username
             messages.success(request, f"Account created for '{username}', login to start Earning!")       
-
-            phone_num = request.POST['Phone_Number']
-            #check orphan list and populate if there is any matching phone number
-            if OrphanList.objects.filter(Phone_Number=phone_num).exists():
-                for orphan in OrphanList.objects.filter(Phone_Number=phone_num):
-                    if orphan.Phone_Number == phone_num:
-                        ref_obj = orphan.referral_obj
-                        ref_obj.referee_username = username
-                        ref_obj.save()
-                        orphan.delete()
 
             return redirect('login')
     else:

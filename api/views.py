@@ -4,11 +4,57 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
 from webapp import settings
-from .models import WebhookOrder, orderRefs
+from django.contrib.auth.models import User
+from .models import WebhookOrder, orderRef
+from referrals.models import Referral
+from merchants.models import Merchant
 
 import hmac
 import hashlib
 import base64
+
+@api_view(['POST']) 
+def ref_api(request):
+    data = request.data
+    
+    referrer = data['username']
+    referrer = User.objects.filter(username = referrer)[0]
+
+    sessionID = data['sesh']
+    orderID = data['orderID']
+    
+    totalAmt = data['amount']
+    totalAmt = totalAmt[1:]
+    
+    refereeEmail = data['email']
+    merchant_name = data['merchant']
+    merchant_name = Merchant.objects.filter(name = merchant_name)[0]
+    
+    # create new orderRef object, create new ReferralObj
+    orderRef_obj = orderRef.objects.create(
+        referrer = referrer,
+        sessionID = sessionID, 
+        orderID = orderID, 
+        totalAmt = totalAmt, 
+        refereeEmail = refereeEmail, 
+        merchant_name = merchant_name
+    )
+    orderRef_obj.save()
+
+    referral_obj = Referral.objects.create(
+        referer_username = referrer,
+        merchant = merchant_name,
+        sessionID = sessionID,
+        orderID = orderID,
+        totalAmt = totalAmt,
+        referee_email = refereeEmail,
+        orderRef_obj = orderRef_obj
+    )
+    referral_obj.save()
+
+    return Response(status=status.HTTP_200_OK) 
+
+
 
 def computed_hmac(secret, body):
     hash_code = hmac.new(secret.encode('utf-8'), body, hashlib.sha256)
@@ -16,13 +62,6 @@ def computed_hmac(secret, body):
 
 def verify_hmac(secret, body, shopify_hmac):
     return computed_hmac(secret, body) == shopify_hmac
-
-@csrf_exempt
-@api_view(['POST']) 
-def ref_api(request):
-    print(request.data)
-    return Response(status=status.HTTP_200_OK) 
-
 
 @csrf_exempt
 @api_view(['POST'])  
