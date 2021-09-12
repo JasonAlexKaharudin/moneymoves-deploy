@@ -12,6 +12,7 @@ from merchants.models import Merchant
 import hmac
 import hashlib
 import base64
+import decimal
 
 @api_view(['POST']) 
 def ref_api(request):
@@ -24,7 +25,7 @@ def ref_api(request):
     orderID = data['orderID']
     
     totalAmt = data['amount']
-    totalAmt = totalAmt[1:]
+    totalAmt = decimal.Decimal(totalAmt[1:])
     
     refereeEmail = data['email']
     
