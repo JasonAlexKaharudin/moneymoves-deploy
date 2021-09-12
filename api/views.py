@@ -27,8 +27,14 @@ def ref_api(request):
     totalAmt = totalAmt[1:]
     
     refereeEmail = data['email']
+    
     merchant_name = data['merchant']
-    merchant_name = Merchant.objects.filter(name = merchant_name)[0]
+    if merchant_name == "sv":
+        merchant_name = Merchant.objects.filter(pk=1)[0]
+    elif merchant_name == "sp":
+        merchant_name = Merchant.objects.filter(pk=2)[0]
+    elif merchant_name == "dnc":
+        merchant_name = Merchant.objects.filter(pk=3)[0]
     
     # create new orderRef object, create new ReferralObj
     orderRef_obj = orderRef.objects.create(
