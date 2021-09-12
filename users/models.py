@@ -32,16 +32,11 @@ def post_save_profile(sender, instance, created, *args, **kwargs):
             ref_obj.referee_username = instance.user.username
             ref_obj.referee_has_account = True
             
-            #update the wallet and num refers of referee and referer
+            #update the wallet and num refers of referee
             referee = User.objects.filter(username = ref_obj.referer_username)[0]
             referee.profile.wallet = referee.profile.wallet + ref_obj.referee_cashback
             referee.profile.num_of_refers = referee.profile.num_of_refers + 1
             referee.profile.save()
-
-            referer = User.objects.filter(email = ref_obj.referee_email)[0]
-            referer.profile.wallet = referer.profile.wallet + ref_obj.referer_cashback
-            referer.profile.num_of_refers = referer.profile.num_of_refers + 1
-            referer.profile.save()
 
             ref_obj.save()
          

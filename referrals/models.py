@@ -45,23 +45,26 @@ class OrphanList(models.Model):
 @receiver(post_save, sender=Referral)
 def post_save_Referral(sender, instance, created, *args, **kwargs):
     if created:
-        instance.referer_cashback = decimal.Decimal(instance.totalAmt)/2
-        instance.referee_cashback = decimal.Decimal(instance.totalAmt)/2
-        instance.save()
+        # sunday valley has 30% cashback: 15% each 
+        if instance.merchant.name == "Sunday Valley":
+            instance.referer_cashback = decimal.Decimal(instance.totalAmt) * 0.15
+            instance.referee_cashback = decimal.Decimal(instance.totalAmt) * 0.15
+            instance.save()
+        
+        #update referrer cashback
+        referer = instance.referer_username
+        referer.profile.wallet = referer.profile.wallet + instance.referer_cashback
+        referer.profile.num_of_refers = referer.profile.num_of_refers + 1
+        referer.profile.save()
 
         #check the if refereeEmail has an account 
-        #if exist, then update wallet of referee and referrer, 
+        #if exist, then update wallet of referee, 
         #if dne, then send email to them and populate orphan list
         if User.objects.filter(email=instance.referee_email).exists():
             referee = User.objects.filter(email=instance.referee_email)[0]
             referee.profile.wallet = referee.profile.wallet + instance.referee_cashback
             referee.profile.num_of_refers = referee.profile.num_of_refers + 1
             referee.profile.save()
-
-            referer = instance.referer_username
-            referer.profile.wallet = referer.profile.wallet + instance.referer_cashback
-            referer.profile.num_of_refers = referer.profile.num_of_refers + 1
-            referer.profile.save()
 
             instance.referee_username = referee.username
             instance.referee_has_account = True
