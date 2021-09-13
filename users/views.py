@@ -9,13 +9,9 @@ from django.contrib.auth.models import User
 def home(request):
     return render(request, 'users/home.html', {})
 
-class BrandListView(ListView):
-    model = Merchant
-    template_name = 'users/brands.html'
-    context_object_name = 'Brands'
 
-def brands(request):
-    return render(request, 'users/brands.html', {})
+def shop(request):
+    return render(request, 'users/shop.html', {})
 
 @login_required
 def profile(request):
