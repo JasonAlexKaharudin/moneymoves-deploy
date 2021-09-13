@@ -50,6 +50,14 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
             instance.referer_cashback = decimal.Decimal(instance.totalAmt) * 0.15
             instance.referee_cashback = decimal.Decimal(instance.totalAmt) * 0.15
             instance.save()
+        if instance.merchant.name == "Singaplex":
+            instance.referer_cashback = decimal.Decimal(instance.totalAmt) * 0.075
+            instance.referee_cashback = decimal.Decimal(instance.totalAmt) * 0.075
+            instance.save()
+        if instance.merchant.name == "Do Not Cross":
+            instance.referer_cashback = decimal.Decimal(instance.totalAmt) * 0.15
+            instance.referee_cashback = decimal.Decimal(instance.totalAmt) * 0.15
+            instance.save()
         
         #update referrer cashback
         referer = instance.referer_username
