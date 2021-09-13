@@ -20,16 +20,13 @@ def ref_api(request):
     
     referrer = data['username']
     referrer = User.objects.filter(username = referrer)[0]
-
     sessionID = data['sesh']
     orderID = data['orderID']
-    
     totalAmt = data['amount']
     totalAmt = decimal.Decimal(totalAmt[1:])
-    
     refereeEmail = data['email']
-    
     merchant_name = data['merchant']
+
     if merchant_name == "sv":
         merchant_name = Merchant.objects.filter(pk=1)[0]
     elif merchant_name == "sp":
@@ -37,6 +34,7 @@ def ref_api(request):
     elif merchant_name == "dnc":
         merchant_name = Merchant.objects.filter(pk=3)[0]
     
+
     # create new orderRef object, create new ReferralObj
     orderRef_obj = orderRef.objects.create(
         referrer = referrer,

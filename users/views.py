@@ -10,8 +10,8 @@ def home(request):
     return render(request, 'users/home.html', {})
 
 
-def shop(request):
-    return render(request, 'users/shop.html', {})
+def brands(request):
+    return render(request, 'users/brands.html', {})
 
 @login_required
 def profile(request):

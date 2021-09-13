@@ -45,25 +45,31 @@ class OrphanList(models.Model):
 @receiver(post_save, sender=Referral)
 def post_save_Referral(sender, instance, created, *args, **kwargs):
     if created:
-        # sunday valley has 30% cashback: 15% each 
-        if instance.merchant.name == "Sunday Valley":
-            instance.referer_cashback = decimal.Decimal(instance.totalAmt) * 0.15
-            instance.referee_cashback = decimal.Decimal(instance.totalAmt) * 0.15
-            instance.save()
-        if instance.merchant.name == "Singaplex":
-            instance.referer_cashback = decimal.Decimal(instance.totalAmt) * 0.075
-            instance.referee_cashback = decimal.Decimal(instance.totalAmt) * 0.075
-            instance.save()
-        if instance.merchant.name == "Do Not Cross":
-            instance.referer_cashback = decimal.Decimal(instance.totalAmt) * 0.15
-            instance.referee_cashback = decimal.Decimal(instance.totalAmt) * 0.15
-            instance.save()
+
+        if instance.referer_username.email == instance.referee_email:
+            pass
+        else:
+            # sunday valley has 30% cashback: 15% each 
+            if instance.merchant.name == "Sunday Valley":
+                instance.referer_cashback = decimal.Decimal(instance.totalAmt) * 0.15
+                instance.referee_cashback = decimal.Decimal(instance.totalAmt) * 0.15
+                instance.save()
+            if instance.merchant.name == "Singaplex":
+                instance.referer_cashback = decimal.Decimal(instance.totalAmt) * 0.075
+                instance.referee_cashback = decimal.Decimal(instance.totalAmt) * 0.075
+                instance.save()
+            if instance.merchant.name == "Do Not Cross":
+                instance.referer_cashback = decimal.Decimal(instance.totalAmt) * 0.15
+                instance.referee_cashback = decimal.Decimal(instance.totalAmt) * 0.15
+                instance.save()
+            
+            #update referrer cashback
+            referer = instance.referer_username
+            referer.profile.wallet = referer.profile.wallet + instance.referer_cashback
+            referer.profile.num_of_refers = referer.profile.num_of_refers + 1
+            referer.profile.save()
+
         
-        #update referrer cashback
-        referer = instance.referer_username
-        referer.profile.wallet = referer.profile.wallet + instance.referer_cashback
-        referer.profile.num_of_refers = referer.profile.num_of_refers + 1
-        referer.profile.save()
 
         #check the if refereeEmail has an account 
         #if exist, then update wallet of referee, 
