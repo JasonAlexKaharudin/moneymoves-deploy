@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import ListView
 from .forms import UserUpdateForm, UserRegisterForm, PhoneForm
 from django.contrib.auth.decorators import login_required
-from merchants.models import Merchant
 from django.contrib.auth.models import User
 
 def home(request):
@@ -21,7 +19,7 @@ def profile(request):
         if u_form.is_valid():
             u_form.save()
             messages.success(request, f'Your account has been updated!')
-            return redirect('/referral/upload')
+            return redirect('/profile')
     else:
         u_form = UserUpdateForm(instance=request.user)
 

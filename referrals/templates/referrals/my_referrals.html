@@ -11,7 +11,7 @@
   <h1>Purchases Made:</h1>
   {% if refers %}
     {% for r in refers %}
-      {% if r.is_Verified %}
+      {% if r.referee_has_account%}
       <a class="card-text" href="{{r.id}}">
         <p>
         <span class="date">{{ r.date_published }}</span>
@@ -30,11 +30,10 @@
       {% endif %}
   {% endfor %}
   {% endif %}
-  
 
   {% if referred %}
   {% for r in referred %}
-      {% if r.is_Verified %}
+  {% if r.referee_has_account%}
       <a class="card-text" href="{{r.id}}">
         <p class="">
           <span class="date">{{ r.date_published }}</span> 
