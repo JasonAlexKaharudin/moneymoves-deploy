@@ -21,8 +21,8 @@ class Referral(models.Model):
     referee_cashback = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     referee_email = models.EmailField(max_length=50, default="None")
     referee_username = models.CharField(max_length=40, default="Not Signed Up")
-    is_Verified = models.BooleanField(default=False) #if verified is true then show cashback earned on profile
-    stored_in_wallet = models.BooleanField(default=False) #if it has been stored in the wallet
+    is_Verified = models.BooleanField(default=False)
+    stored_in_wallet = models.BooleanField(default=False)
     referee_has_account = models.BooleanField(default=False)
     orderRef_obj = models.OneToOneField(api.models.orderRef, on_delete=CASCADE, null=True, default=None)
     date_published = models.DateTimeField(default=datetime.now, blank=True)
@@ -31,7 +31,7 @@ class Referral(models.Model):
         return reverse('referrals:referral-list')
 
     def __str__(self):
-        return f"Session ID #{self.sessionID}"    
+        return f"{self.merchant.name} {self.orderID}. Referred by: {self.referer_username.username}"
 
 class OrphanList(models.Model):
     refereeEmail = models.EmailField(max_length=40, default=0)
@@ -39,7 +39,7 @@ class OrphanList(models.Model):
     referral_obj = models.OneToOneField(Referral, on_delete=CASCADE, default=None, null=True)
 
     def __str__(self):
-        return f"Referee Email: {self.refereeEmail}"   
+        return f"{self.merchant.name} {self.orderID}. Referred by: {self.referer_username.username}"   
 
 
 @receiver(post_save, sender=Referral)
@@ -68,8 +68,6 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
             referer.profile.wallet = referer.profile.wallet + instance.referer_cashback
             referer.profile.num_of_refers = referer.profile.num_of_refers + 1
             referer.profile.save()
-
-        
 
         #check the if refereeEmail has an account 
         #if exist, then update wallet of referee, 
