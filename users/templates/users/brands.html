@@ -26,6 +26,43 @@
                 </div>
             </div>
             <div class="row">
+                {% if zalora %}
+                {% for brand in zalora %}
+                    <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
+                        <div data-bs-toggle="modal" data-bs-target="#{{brand.brand_name}}Modal" class="text-center" style="width: 300px;height: 250px; padding-top: 25px;">
+                                <img src="{{brand.img_link}}" style="width: 250px;height: auto;">
+                        </div>
+                        <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">{{brand.cashback_amt}}% cashback</p>
+                    </div>
+
+                    <div class="modal fade" id="{{brand.brand_name}}Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>1. Copy this link and share it with your friend
+                                    <br>
+                                    2. Let your friend make a purchase
+                                    <br>
+                                    3. Once the purchase is made, head back here to enjoy your cashback!
+                
+                                </p>
+                                <small style="font-size: 12px;">Note: You will only get your cashback once your friend creates an account</small>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a href="https://prf.hn/click/camref:1011ljVWH/pubref:{{user.username}}/{{brand.brand_link}}" class="btn btn-primary">Copy this Link</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+
+
                 <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
                     <div data-bs-toggle="modal" data-bs-target="#larocheModal" class="text-center" style="width: 300px;height: 250px; padding-top: 25px;">
                         
@@ -34,6 +71,34 @@
                     </div>
                     <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">12% cashback</p>
                 </div>
+
+                <div class="modal fade" id="larocheModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                1. Visit the store and share the link with your friend
+                                <br>
+                                
+                                2. Get the receipt from your friend once they have made a purchase with your link
+                                <br>
+                                3. Upload the receipt on moneymoves.app and split the cashback with your friend!
+                                <br>
+                                4. Enjoy your cashback!
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a type="button" href="https://amzn.to/3DJmEog" class="btn btn-primary">La Roche Posay ></a>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+
                 <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
                     <div data-bs-toggle="modal" data-bs-target="#adidasModal" class="text-center" style="width: 300px;height: 250px; padding-top: 25px;">
                         
@@ -42,196 +107,160 @@
                     </div>
                     <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">10% cashback</p>
                 </div>
+                
+                <div class="modal fade" id="adidasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>1. Visit the store and share the link with your friend
+                                <br>
+                                2. Get the receipt from your friend once they have made a purchase with your link
+                                <br>
+                                3. Upload the receipt on moneymoves.app and split the cashback with your friend!
+                                <br>
+                                4. Enjoy your cashback!
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a type="button" href="https://amzn.to/3BBIg4k" class="btn btn-primary">Adidas ></a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
                 <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
                     <div data-bs-toggle="modal" data-bs-target="#ckModal" class="text-center" style="width: 300px;height: 250px; padding-top: 115px;">
-                        
                             <img src="{% static 'users/img/ck.png'%}" style="width: 250px;height: auto;">
-                        
                     </div>
                     <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">10% cashback</p>
                 </div>
+                <div class="modal fade" id="ckModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>1. Visit the store and share the link with your friend
+                                <br>
+                                2. Get the receipt from your friend once they have made a purchase with your link
+                                <br>
+                                3. Upload the receipt on moneymoves.app and split the cashback with your friend!
+                                <br>
+                                4. Enjoy your cashback!
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a type="button" href="https://amzn.to/3kMifZa" class="btn btn-primary">Calvin Klein ></a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+
                 <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
                     <div data-bs-toggle="modal" data-bs-target="#sundayModal" class="text-center" style="width: 300px;height: 250px;"><a href="#"><img src="{% static 'users/img/sundayvalley.png' %}" style="width: 250px;height: auto;"></a></div>
                     <h2>Sunday Valley</h2>
                     <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">30% cashback</p>
                 </div>
+
+                <div class="modal fade" id="sundayModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>1. Copy this link and share it with your friend
+                                <br>
+                                2. Let your friend make a purchase
+                                <br>
+                                3. Once the purchase is made, head back here to enjoy your cashback!
+                
+                            </p>
+                            <small style="font-size: 12px;">Note: You will only get your cashback once your friend creates an account</small>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="https://sunday-valley.com/?u={{user.username}}&sesh={{user.pk}}{{user.profile.num_of_refers}}" class="btn btn-primary">Copy this Link</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
                 <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
                     <div data-bs-toggle="modal" data-bs-target="#crossModal" class="text-center" style="width: 300px;height: 250px;"><a href="#"><img src="{% static 'users/img/donotcross.png' %}" style="width: 250px;height: auto;"></a></div>
                     <h2>Do Not Cross</h2>
                     <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">30% cashback</p>
                 </div>
+
+                <div class="modal fade" id="crossModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>1. Copy this link and share it with your friend
+                                <br>
+                                2. Let your friend make a purchase
+                                <br>
+                                3. Once the purchase is made, head back here to enjoy your cashback!
+                
+                            </p>
+                            <small style="font-size: 12px;">Note: You will only get your cashback once your friend creates an account</small>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="https://donotcrosss.com/?u={{user.username}}&sesh={{user.pk}}{{user.profile.num_of_refers}}" class="btn btn-primary">Copy this Link</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
                 <div class="col-md-4 d-flex d-xl-flex flex-column align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center" style="padding-bottom: 25px;">
                     <div data-bs-toggle="modal" data-bs-target="#singaplexModal" class="text-center d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center" style="width: 300px;height: 250px;"><a href="#">
                         <img src="{% static 'users/img/singaplex.png' %}" style="width: 250px;height: auto;"></a></div>
                     <h2>Singaplex</h2>
                     <p style=" margin-top: 15px; font-size: 23px;border-radius: 14px;padding: 0px;padding-bottom: 6px;padding-top: 6px;padding-right: 12px;padding-left: 12px;background: #f7f7f7;border-style: solid;border-color: rgb(64,115,159);">15% cashback</p>
                 </div>
+
+                <div class="modal fade" id="singaplexModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>1. Copy this link and share it with your friend
+                                <br>
+                                2. Let your friend make a purchase
+                                <br>
+                                3. Once the purchase is made, head back here to enjoy your cashback!
+                
+                            </p>
+                            <small style="font-size: 12px;">Note: You will only get your cashback once your friend creates an account</small>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="https://singaplex.com/?u={{user.username}}&sesh={{user.pk}}{{user.profile.num_of_refers}}" class="btn btn-primary">Copy this Link</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-
- <!-- affiliate Modal -->
-    <div class="modal fade" id="larocheModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    1. Visit the store and share the link with your friend
-                    <br>
-                    
-                    2. Get the receipt from your friend once they have made a purchase with your link
-                    <br>
-                    3. Upload the receipt on moneymoves.app and split the cashback with your friend!
-                    <br>
-                    4. Enjoy your cashback!
-                </p>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <a type="button" href="https://amzn.to/3DJmEog" class="btn btn-primary">La Roche Posay ></a>
-            </div>
-        </div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="adidasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>1. Visit the store and share the link with your friend
-                    <br>
-                    2. Get the receipt from your friend once they have made a purchase with your link
-                    <br>
-                    3. Upload the receipt on moneymoves.app and split the cashback with your friend!
-                    <br>
-                    4. Enjoy your cashback!
-                </p>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <a type="button" href="https://amzn.to/3BBIg4k" class="btn btn-primary">Adidas ></a>
-            </div>
-        </div>
-        </div>
-      </div>
-
-
-      <div class="modal fade" id="ckModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>1. Visit the store and share the link with your friend
-                    <br>
-                    2. Get the receipt from your friend once they have made a purchase with your link
-                    <br>
-                    3. Upload the receipt on moneymoves.app and split the cashback with your friend!
-                    <br>
-                    4. Enjoy your cashback!
-                </p>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <a type="button" href="https://amzn.to/3kMifZa" class="btn btn-primary">Calvin Klein ></a>
-            </div>
-        </div>
-        </div>
-      </div>
-    
-   <!-- affiliate Modal -->
-
-   <!-- PARTNER Modal -->
-    <div class="modal fade" id="sundayModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>1. Copy this link and share it with your friend
-                    <br>
-                    2. Let your friend make a purchase
-                    <br>
-                    3. Once the purchase is made, head back here to enjoy your cashback!
-    
-                </p>
-                <small style="font-size: 12px;">Note: You will only get your cashback once your friend creates an account</small>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <a href="https://sunday-valley.com/?u={{user.username}}&sesh={{user.pk}}{{user.profile.num_of_refers}}" class="btn btn-primary">Copy this Link</a>
-            </div>
-        </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="crossModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>1. Copy this link and share it with your friend
-                    <br>
-                    2. Let your friend make a purchase
-                    <br>
-                    3. Once the purchase is made, head back here to enjoy your cashback!
-    
-                </p>
-                <small style="font-size: 12px;">Note: You will only get your cashback once your friend creates an account</small>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <a href="https://donotcrosss.com/?u={{user.username}}&sesh={{user.pk}}{{user.profile.num_of_refers}}" class="btn btn-primary">Copy this Link</a>
-            </div>
-        </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="singaplexModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title">How to start <span style="font-size: 23px;font-weight: bold;color: rgb(49,90,132);">earning cashback</span></h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>1. Copy this link and share it with your friend
-                    <br>
-                    2. Let your friend make a purchase
-                    <br>
-                    3. Once the purchase is made, head back here to enjoy your cashback!
-    
-                </p>
-                <small style="font-size: 12px;">Note: You will only get your cashback once your friend creates an account</small>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <a href="https://singaplex.com/?u={{user.username}}&sesh={{user.pk}}{{user.profile.num_of_refers}}" class="btn btn-primary">Copy this Link</a>
-            </div>
-        </div>
-        </div>
-    </div>
-
-       <!-- PARTNER Modal -->
-
 <script src="{% static 'users/js/brands.js' %}"></script>
 <script>
 

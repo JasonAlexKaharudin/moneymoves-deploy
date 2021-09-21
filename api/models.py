@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
-from merchants.models import Merchant
+from merchants.models import Partner_Merchant
 from django.db.models.deletion import CASCADE
 
 # Create your models here.
@@ -21,7 +21,7 @@ class orderRef(models.Model):
     orderID = models.CharField(max_length=20)
     totalAmt = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     refereeEmail = models.EmailField(max_length=40, default = "None")
-    merchant_name = models.ForeignKey(Merchant, on_delete=CASCADE, null=True, default=None)
+    merchant_name = models.ForeignKey(Partner_Merchant, on_delete=CASCADE, null=True, default=None)
     date_published = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
@@ -33,7 +33,7 @@ class invalidOrder(models.Model):
     orderID = models.CharField(max_length=20)
     totalAmt = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     refereeEmail = models.EmailField(max_length=40, default = "None")
-    merchant_name = models.ForeignKey(Merchant, on_delete=CASCADE, null=True, default=None)
+    merchant_name = models.ForeignKey(Partner_Merchant, on_delete=CASCADE, null=True, default=None)
     date_published = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):

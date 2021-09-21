@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Merchant
+from .models import Partner_Merchant, Zalora_Brand
 # Register your models here.
 
-admin.site.register(Merchant)
+admin.site.register(Partner_Merchant)
+admin.site.register(Zalora_Brand)

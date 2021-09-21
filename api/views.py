@@ -7,7 +7,7 @@ from webapp import settings
 from django.contrib.auth.models import User
 from .models import WebhookOrder, orderRef, invalidOrder
 from referrals.models import Referral
-from merchants.models import Merchant
+from merchants.models import Partner_Merchant
 
 import hmac
 import hashlib
@@ -28,11 +28,11 @@ def ref_api(request):
     merchant_name = data['merchant']
 
     if merchant_name == "sv":
-        merchant_name = Merchant.objects.filter(pk=1)[0]
+        merchant_name = Partner_Merchant.objects.filter(pk=1)[0]
     elif merchant_name == "sp":
-        merchant_name = Merchant.objects.filter(pk=2)[0]
+        merchant_name = Partner_Merchant.objects.filter(pk=2)[0]
     elif merchant_name == "dnc":
-        merchant_name = Merchant.objects.filter(pk=3)[0]
+        merchant_name = Partner_Merchant.objects.filter(pk=3)[0]
     
     if referrer.email == refereeEmail:
         #invalid referral. Referee email must be different from your account.

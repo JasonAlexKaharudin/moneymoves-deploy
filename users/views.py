@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from merchants.models import Partner_Merchant, Zalora_Brand
 from .forms import UserUpdateForm, UserRegisterForm, PhoneForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -9,7 +10,10 @@ def home(request):
 
 
 def brands(request):
-    return render(request, 'users/brands.html', {})
+    context = {
+        'zalora': Zalora_Brand.objects.all(),
+    }
+    return render(request, 'users/brands.html', context)
 
 @login_required
 def profile(request):

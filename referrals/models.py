@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
-from merchants.models import Merchant
+from merchants.models import Partner_Merchant
 import api.models
 from datetime import datetime
 from django.db.models.signals import post_save
@@ -13,7 +13,7 @@ import decimal
 # Create your models here.
 class Referral(models.Model):
     referer_username = models.ForeignKey(User, on_delete=CASCADE, related_name="referer", null=True)
-    merchant = models.ForeignKey(Merchant ,on_delete=CASCADE, null=True)
+    merchant = models.ForeignKey(Partner_Merchant ,on_delete=CASCADE, null=True)
     sessionID = models.IntegerField(default=0)
     orderID = models.CharField(max_length=20, default=0)  
     totalAmt = models.DecimalField(max_digits=6, decimal_places=2, default=0)
