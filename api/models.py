@@ -7,7 +7,8 @@ from django.db.models.deletion import CASCADE
 # Create your models here.
 class WebhookOrder(models.Model):
     merchant_name = models.CharField(max_length=40)
-    discount_code = models.CharField(max_length=12)
+    customer_email = models.EmailField(max_length=60, default = "None")
+    location = models.CharField(max_length=20, default="SG")
     order_id = models.IntegerField()
     total_price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     date_published = models.DateTimeField(default=datetime.now, blank=True)

@@ -88,19 +88,20 @@ def api_view_webhook(request):
 
         #get necessary data from the webhook order    
         order = request.data
-        
+        email = order['contact_email']
+        location = order['billing_address'][0]['country']
         merchant = order['fulfillments'][0]['line_items'][0]['vendor']
         total_price = order['total_price']
         order_id = order['order_number']
 
-        if len(order['discount_codes'][0]['code']) == 0:
-            print("Order not using moneymoves discount code")
-            pass 
-        elif order['discount_codes'][0]['code'] == "MoneyMoves" or order['discount_codes'][0]['code'] == "MONEYMOVES" or order['discount_codes'][0]['code'] == "moneymoves":
-            obj = WebhookOrder.objects.create(merchant_name=merchant, discount_code=order['discount_codes'][0]['code'], order_id=order_id, total_price=total_price)
-            obj.save()
-        else:
-            pass
+        obj = WebhookOrder.objects.create(
+            merchant_name=merchant,
+            customer_email = email, 
+            location =  location,
+            order_id=order_id, 
+            total_price=total_price
+        )
+        obj.save()
 
         return Response(status=status.HTTP_200_OK) 
     else:
