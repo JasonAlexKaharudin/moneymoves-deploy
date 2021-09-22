@@ -4,18 +4,6 @@ from django.contrib.auth.models import User
 from merchants.models import Partner_Merchant
 from django.db.models.deletion import CASCADE
 
-# Create your models here.
-class WebhookOrder(models.Model):
-    merchant_name = models.CharField(max_length=40)
-    customer_email = models.EmailField(max_length=60, default = "None")
-    location = models.CharField(max_length=20, default="SG")
-    order_id = models.IntegerField()
-    total_price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
-    date_published = models.DateTimeField(default=datetime.now, blank=True)
-
-    def __str__(self):
-        return f"Order ID: #{self.order_id}"
-
 class orderRef(models.Model):
     referrer = models.ForeignKey(User, on_delete=CASCADE,null=True, default=None)
     sessionID = models.IntegerField()

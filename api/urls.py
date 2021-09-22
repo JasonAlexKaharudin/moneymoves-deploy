@@ -4,6 +4,5 @@ from api import views as api_views
 app_name = 'api'
 
 urlpatterns = [
-    path('webhook/', api_views.api_view_webhook, name='api_view_webhook'),
     path('refs/', api_views.ref_api, name='ref_api'),
 ]

@@ -1,17 +1,12 @@
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
-from webapp import settings
 from django.contrib.auth.models import User
-from .models import WebhookOrder, orderRef, invalidOrder
+from .models import orderRef, invalidOrder
 from referrals.models import Referral
 from merchants.models import Partner_Merchant
 
-import hmac
-import hashlib
-import base64
 import decimal
 
 @api_view(['POST']) 
@@ -69,42 +64,3 @@ def ref_api(request):
         referral_obj.save()
 
     return Response(status=status.HTTP_200_OK) 
-
-
-
-def computed_hmac(secret, body):
-    hash_code = hmac.new(secret.encode('utf-8'), body, hashlib.sha256)
-    return base64.b64encode(hash_code.digest()).decode()
-
-def verify_hmac(secret, body, shopify_hmac):
-    return computed_hmac(secret, body) == shopify_hmac
-
-@csrf_exempt
-@api_view(['POST'])  
-def api_view_webhook(request):
-    shopify_hmac = request.headers.get('X-Shopify-Hmac-Sha256')  
-    if verify_hmac(settings.SHOPIFY_WEBHOOK_SIGNED_KEY, request.body, shopify_hmac): 
-        print('Keys have been verified as valid.')  
-
-        #get necessary data from the webhook order    
-        order = request.data
-        email = order['contact_email']
-        location = order['billing_address']['country']
-        merchant = order['fulfillments'][0]['line_items'][0]['vendor']
-        total_price = order['total_price']
-        order_id = order['order_number']
-
-        obj = WebhookOrder.objects.create(
-            merchant_name=merchant,
-            customer_email = email, 
-            location =  location,
-            order_id=order_id, 
-            total_price=total_price
-        )
-        obj.save()
-
-        return Response(status=status.HTTP_200_OK) 
-    else:
-        print('invalid')  
-        return Response(status=status.HTTP_400_BAD_REQUEST)
-
