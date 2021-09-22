@@ -5,7 +5,13 @@
 <link rel="stylesheet" href="{% static 'users/brand.css' %}">
 {% endblock %}
 {% block content %}
-
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">  <!-- singular -->
+        <h4>{{ message }}</h4>
+    </div>
+    {% endfor %}
+{% endif %}   
 <header style="text-align: center; background-color: #f7f7f7;">
     <div class="container" style="padding-top: 25px;padding-bottom: 25px; ">
         <div class="row" style="padding-bottom: 15px;">

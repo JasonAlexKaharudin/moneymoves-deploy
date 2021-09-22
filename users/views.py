@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from merchants.models import Partner_Merchant, Zalora_Brand
+from django.contrib.auth import authenticate, login
+from merchants.models import Zalora_Brand
 from .forms import UserUpdateForm, UserRegisterForm, PhoneForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 def home(request):
     return render(request, 'users/home.html', {})
-
 
 def brands(request):
     context = {
@@ -47,9 +47,13 @@ def register(request):
             p_reg_form.save()
 
             username = user.username
-            messages.success(request, f"Account created for '{username}', login to start Earning!")       
-
-            return redirect('login')
+            messages.success(request, f"Thank you for creating an account,'{username}'. Now you can start earning now!")       
+            new_user = authenticate(
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password1'],
+            )
+            login(request, new_user)
+            return redirect('brands page')
     else:
         form = UserRegisterForm()
         p_reg_form = PhoneForm()
