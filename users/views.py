@@ -46,8 +46,8 @@ def register(request):
             p_reg_form.user = user
             p_reg_form.save()
 
-            username = user.username
-            messages.success(request, f"Thank you for creating an account,'{username}'. Now you can start earning now!")       
+            username = user.username      
+            messages.succes(request, f"Account created for '{username}'.")
             new_user = authenticate(
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password1'],
