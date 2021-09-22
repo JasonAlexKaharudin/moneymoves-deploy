@@ -89,7 +89,7 @@ def api_view_webhook(request):
         #get necessary data from the webhook order    
         order = request.data
         email = order['contact_email']
-        location = order['billing_address'][0]['country']
+        location = order['billing_address']['country']
         merchant = order['fulfillments'][0]['line_items'][0]['vendor']
         total_price = order['total_price']
         order_id = order['order_number']
