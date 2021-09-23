@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.messages import constants
 from django.contrib.auth import authenticate, login
-from merchants.models import Zalora_Brand
+from merchants.models import Zalora_Brand, Partner_Merchant
 from .forms import UserUpdateForm, UserRegisterForm, PhoneForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -12,6 +13,7 @@ def home(request):
 def brands(request):
     context = {
         'zalora': Zalora_Brand.objects.all(),
+        'partner': Partner_Merchant.objects.all()
     }
     return render(request, 'users/brands.html', context)
 
@@ -47,7 +49,7 @@ def register(request):
             p_reg_form.save()
 
             username = user.username      
-            messages.succes(request, f"Account created for '{username}'.")
+            messages.add_message(request, constants.SUCCESS, f"Account created for '{username}'.")
             new_user = authenticate(
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password1'],

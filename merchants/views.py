@@ -35,7 +35,7 @@ def webhook_sunday_valley(request):
         merchant = Partner_Merchant.objects.get(pk=1)
 
         obj = webhookOrders.objects.create(
-            merchant_name=merchant,
+            merchant=merchant,
             customer_email = email, 
             location =  location,
             order_id=order_id, 
@@ -65,7 +65,7 @@ def webhook_dnc(request):
         merchant = Partner_Merchant.objects.get(pk=3)
 
         obj = webhookOrders.objects.create(
-            merchant_name=merchant,
+            merchant=merchant,
             customer_email = email, 
             location = location,
             order_id=order_id, 

@@ -14,7 +14,7 @@ def ref_api(request):
     data = request.data
     
     referrer = data['username']
-    referrer = User.objects.filter(username = referrer)[0]
+    referrer = User.objects.get(username = referrer)
     sessionID = data['sesh']
     orderID = data['orderID']
     totalAmt = data['amount']
@@ -29,6 +29,7 @@ def ref_api(request):
     elif merchant_name == "dnc":
         merchant_name = Partner_Merchant.objects.filter(pk=3)[0]
     
+    print("Referreal received by ",referrer)
     if referrer.email == refereeEmail:
         #invalid referral. Referee email must be different from your account.
         invalidOrder_obj = invalidOrder.objects.create(

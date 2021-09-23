@@ -8,6 +8,7 @@ class Partner_Merchant(models.Model):
     date_joined = models.DateTimeField("Date Joined")
     store_link = models.URLField(max_length=200, null = True)
     img_link = models.URLField(max_length=200, null = True)
+    cashback_amt = models.IntegerField(default=0)
 
     class Meta:
         verbose_name_plural = "Partner Merchants"
