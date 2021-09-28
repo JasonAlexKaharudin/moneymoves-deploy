@@ -7,6 +7,10 @@ import api.models
 from datetime import datetime
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core import mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from webapp import settings
 
 import decimal
 
@@ -69,6 +73,15 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
             referer.profile.num_of_refers = referer.profile.num_of_refers + 1
             referer.profile.save()
 
+            #send email to referrer
+            subject = 'Successful Referral!'
+            html_message = render_to_string('referrals/success-referral.html', {'referer': referer, 'wallet': instance.referer_cashback, 'referee': instance.referee_email})
+            plain_message = strip_tags(html_message)
+            from_email = settings.EMAIL_HOST_USER
+            to = referer.email
+            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+            
+
         #check the if refereeEmail has an account 
         #if exist, then update wallet of referee, 
         #if dne, then send email to them and populate orphan list
@@ -88,4 +101,9 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
                 referral_obj = instance
             )
             newOrphan.save()
-            #send an email
+            subject = 'Successful Purchase!'
+            html_message = render_to_string('referrals/success-referral.html', {'referer': instance.referer_username.username, 'cashback': instance.referee_cashback})
+            plain_message = strip_tags(html_message)
+            from_email = settings.EMAIL_HOST_USER
+            to = instance.referee_email
+            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)

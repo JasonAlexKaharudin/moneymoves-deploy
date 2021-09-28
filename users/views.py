@@ -2,10 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.messages import constants
 from django.contrib.auth import authenticate, login
+from django.utils import html
 from merchants.models import Zalora_Brand, Partner_Merchant
 from .forms import UserUpdateForm, UserRegisterForm, PhoneForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core import mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from webapp import settings
 
 def home(request):
     context = {
@@ -58,6 +63,14 @@ def register(request):
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password1'],
             )
+
+            subject = 'Thank you for signing up!'
+            html_message = render_to_string('users/register_email.html', {'username': username})
+            plain_message = strip_tags(html_message)
+            from_email = settings.EMAIL_HOST_USER
+            to = user.email
+            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+
             login(request, new_user)
             return redirect('brands page')
     else:

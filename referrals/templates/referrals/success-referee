@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success!</title>
+</head>
+<body style="margin-left: 100px; margin-right: 100px; margin-bottom: 100px; font-family: Arial, Helvetica, sans-serif;">
+    <header style="display: flex; align-items: center; justify-content: space-evenly; background-color: #D9E3EC;">
+        <img style="padding: 30px;" src="https://ik.imagekit.io/2bmvtzrfkar/Email_templates/MMLogo_V4Sbekfx3NW.png" alt="moneymoves logo">
+    </header>
+
+    <section style="padding-left: 20px; padding-right: 20px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;">
+        <img style="padding-top: 25px;" src="https://ik.imagekit.io/2bmvtzrfkar/Email_templates/moneybag_Lm5UWQw-L.png" alt="moneybag icon">
+        <h1>Congrats! 🚀</h1>
+        <div>
+            <h2 style="font-weight: 400; font-size: 1.3rem;">You just earned <span style="color:#00B907;"></span> ${{cashback}} by using {{referer}}'s link!</h2>
+            <h3 style="font-weight: 100; font-size: 1.1rem;">P.S. Cashback expires in 7 day, so sign up now!</h3>
+        </div>
+    </section>
+
+    <section class="tips" style="padding:20px;">
+        <div style="display: flex; align-items: center; justify-content: space-evenly;">
+            <a style="font-size: 30px; text-decoration: none; padding-bottom: 10px; padding-top: 10px; padding-left: 20px; padding-right: 20px; border-radius: 20px; color: white; background-color: #0086FF;" href="https://moneymoves.app/register">Claim your cashback</a>
+        </div>
+    </section>
+
+    <section class="questions" style="background-color: #F8F9FB;">
+        <div style="display: flex; align-items: center; justify-content: space-evenly; flex-direction: column; padding-bottom: 30px;">
+            <h1 style="padding-bottom: 5px;">Questions?</h1>
+            <p>Reply to this email or get in touch with us at <a href="mailto:hello@moves.money">hello@moves.money</a></p>
+        </div>
+    </section>
+
+    <section style="padding:20px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;">
+        <a href="https://www.instagram.com/get.moneymoves/">
+            <img src="https://ik.imagekit.io/2bmvtzrfkar/Email_templates/insta_UInoS_nLv.png" alt="instagram icon">
+        </a>
+        <p style="font-weight: 100;">MoneyMoves 2021</p>
+    </section>
+</body>
+</html>
