@@ -8,7 +8,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 def home(request):
-    return render(request, 'users/home.html', {})
+    context = {
+        'zalora': Zalora_Brand.objects.all(),
+        'partner': Partner_Merchant.objects.all()
+    }
+    return render(request, 'users/home.html', context)
 
 def brands(request):
     context = {
