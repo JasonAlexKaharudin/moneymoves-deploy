@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Referral
-from users.models import Profile
+from users.models import Profile, OrphanList
 from django.contrib.auth.decorators import login_required
 
 @login_required

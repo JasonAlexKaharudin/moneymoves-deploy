@@ -94,6 +94,15 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
             instance.referee_username = referee.username
             instance.referee_has_account = True
             instance.save()
+            subject = 'Successful Purchase!'
+            html_message = render_to_string('referrals/success-referral.html', {
+                'referer': instance.referer_username.username, 
+                'cashback': instance.referee_cashback
+            })
+            plain_message = strip_tags(html_message)
+            from_email = settings.EMAIL_HOST_USER
+            to = instance.referee_email
+            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
         else:
             newOrphan = OrphanList.objects.create(
                 refereeEmail = instance.referee_email,
