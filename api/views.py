@@ -28,8 +28,11 @@ def ref_api(request):
         merchant_name = Partner_Merchant.objects.filter(pk=2)[0]
     elif merchant_name == "dnc":
         merchant_name = Partner_Merchant.objects.filter(pk=3)[0]
-    
+    elif merchant_name == "jmc":
+        merchant_name = Partner_Merchant.objects.filter(pk=4)[0]
+
     print("Referreal received by ",referrer)
+    
     if referrer.email == refereeEmail:
         #invalid referral. Referee email must be different from your account.
         invalidOrder_obj = invalidOrder.objects.create(

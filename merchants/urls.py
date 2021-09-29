@@ -6,4 +6,5 @@ app_name = 'merchants'
 urlpatterns = [
     path('sundayvalley/', merchant_views.webhook_sunday_valley, name="Sunday Valley orders"),
     path('dnc/', merchant_views.webhook_dnc, name="Do Not Cross orders"),
+    path('jmc/', merchant_views.webhook_jmc, name="Jemaime Co orders"),
 ]

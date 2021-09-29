@@ -77,3 +77,33 @@ def webhook_dnc(request):
     else:
         print('invalid')  
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@csrf_exempt
+@api_view(['POST'])  
+def webhook_jmc(request):
+    shopify_hmac = request.headers.get('X-Shopify-Hmac-Sha256')  
+    if verify_hmac(settings.SHOPIFY_WEBHOOK_SIGNED_KEY_JMC, request.body, shopify_hmac): 
+        print('Keys have been verified as valid.')  
+
+        #get necessary data from the webhook order    
+        order = request.data
+        email = order['contact_email']
+        location = order['billing_address']['country']
+        total_price = order['total_price']
+        order_id = order['order_number']
+
+        merchant = Partner_Merchant.objects.get(pk=4)
+
+        obj = webhookOrders.objects.create(
+            merchant=merchant,
+            customer_email = email, 
+            location = location,
+            order_id=order_id, 
+            total_price=total_price
+        )
+        obj.save()
+
+        return Response(status=status.HTTP_200_OK) 
+    else:
+        print('invalid')  
+        return Response(status=status.HTTP_400_BAD_REQUEST)

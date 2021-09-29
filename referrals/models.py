@@ -95,7 +95,7 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
             instance.referee_has_account = True
             instance.save()
             subject = 'Successful Purchase!'
-            html_message = render_to_string('referrals/success-referral.html', {
+            html_message = render_to_string('referrals/success-referee.html', {
                 'referer': instance.referer_username.username, 
                 'cashback': instance.referee_cashback
             })
