@@ -25,7 +25,7 @@ class webhookOrders(models.Model):
     date_published = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
-        return f"Order ID: #{self.order_id}"
+        return f"{self.merchant.name} order ID: #{self.order_id}"
 
 
 class Zalora_Brand(models.Model):
