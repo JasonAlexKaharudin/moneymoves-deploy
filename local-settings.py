@@ -65,6 +65,8 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://sunday-valley.com",
+    "https://donotcrosss.com",
+    "https://jemaime.co"
 ]
 
 ROOT_URLCONF = 'webapp.urls'

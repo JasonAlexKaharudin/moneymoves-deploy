@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from .models import orderRef, invalidOrder
 from referrals.models import Referral
 from merchants.models import Partner_Merchant
+from merchants.models import webhookOrders
 
 import decimal
 
@@ -16,23 +17,17 @@ def ref_api(request):
     referrer = data['username']
     referrer = User.objects.get(username = referrer)
     sessionID = data['sesh']
-    orderID = data['orderID']
-    totalAmt = data['amount']
-    totalAmt = decimal.Decimal(totalAmt[1:])
     refereeEmail = data['email']
     merchant_name = data['merchant']
+    merchant_name = Partner_Merchant.objects.get(name = merchant_name)
 
-    if merchant_name == "sv":
-        merchant_name = Partner_Merchant.objects.filter(pk=1)[0]
-    elif merchant_name == "sp":
-        merchant_name = Partner_Merchant.objects.filter(pk=2)[0]
-    elif merchant_name == "dnc":
-        merchant_name = Partner_Merchant.objects.filter(pk=3)[0]
-    elif merchant_name == "jmc":
-        merchant_name = Partner_Merchant.objects.filter(pk=4)[0]
+    webhooks = webhookOrders.objects.filter(merchant = merchant_name)
+    obj = webhooks.filter(customer_email = refereeEmail).latest('date_published')
+    orderID = obj.order_id
+    totalAmt = decimal.Decimal(obj.total_price)
 
-    print("Referreal received by ",referrer)
-    
+    print("Referreal received by",referrer)
+
     if referrer.email == refereeEmail:
         #invalid referral. Referee email must be different from your account.
         invalidOrder_obj = invalidOrder.objects.create(
@@ -52,7 +47,8 @@ def ref_api(request):
             orderID = orderID, 
             totalAmt = totalAmt, 
             refereeEmail = refereeEmail, 
-            merchant_name = merchant_name
+            merchant_name = merchant_name,
+            webhook_obj = obj
         )
         orderRef_obj.save()
 

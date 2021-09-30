@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
-from merchants.models import Partner_Merchant
+from merchants.models import Partner_Merchant, webhookOrders
 from django.db.models.deletion import CASCADE
 
 class orderRef(models.Model):
@@ -12,6 +12,7 @@ class orderRef(models.Model):
     refereeEmail = models.EmailField(max_length=40, default = "None")
     merchant_name = models.ForeignKey(Partner_Merchant, on_delete=CASCADE, null=True, default=None)
     date_published = models.DateTimeField(default=datetime.now, blank=True)
+    webhook_obj = models.ForeignKey(webhookOrders, on_delete=CASCADE, null=True, default=None)
 
     def __str__(self):
         return f"{self.merchant_name.name} {self.orderID}. Referred by: {self.referrer.username}"
