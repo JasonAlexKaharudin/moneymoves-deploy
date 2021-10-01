@@ -16,12 +16,19 @@ class Partner_Merchant(models.Model):
     def __str__(self):
         return self.name
 
+def jsonfield_default_value(): 
+    productList = {
+        "product": 0
+    }
+    return productList
+
 class webhookOrders(models.Model):
     merchant = models.ForeignKey(Partner_Merchant, on_delete=CASCADE)
     order_id = models.IntegerField()
     customer_email = models.EmailField(max_length=60, default = "None")
     location = models.CharField(max_length=20, default="SG")
     total_price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    products = models.JSONField(default = jsonfield_default_value, null=True)
     date_published = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):

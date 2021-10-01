@@ -14,6 +14,14 @@ from webapp import settings
 
 import decimal
 
+
+def jsonfield_default_value(): 
+    productList = {
+        "product": 0
+    }
+    return productList
+
+
 # Create your models here.
 class Referral(models.Model):
     referer_username = models.ForeignKey(User, on_delete=CASCADE, related_name="referer", null=True)
@@ -21,6 +29,7 @@ class Referral(models.Model):
     sessionID = models.IntegerField(default=0)
     orderID = models.CharField(max_length=20, default=0)  
     totalAmt = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    products = models.JSONField(default = jsonfield_default_value, null=True)
     referer_cashback = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     referee_cashback = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     referee_email = models.EmailField(max_length=50, default="None")
@@ -54,17 +63,36 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
         else:
             # sunday valley has 30% cashback: 15% each 
             if instance.merchant.name == "Sunday-Valley":
-                instance.referer_cashback = round(decimal.Decimal(instance.totalAmt) * decimal.Decimal(0.15), 2)
-                instance.referee_cashback = round(decimal.Decimal(instance.totalAmt) * decimal.Decimal(0.15), 2)
-                instance.save()
+                products = instance.products
+                for p in products:
+                    if p == "The Crown tote bag [King Collection V1]":
+                        instance.referer_cashback = round(decimal.Decimal(products['The Crown tote bag [King Collection V1]']) * decimal.Decimal(0.15), 2)
+                        instance.referee_cashback = round(decimal.Decimal(products['The Crown tote bag [King Collection V1]']) * decimal.Decimal(0.15), 2)   
+                        instance.save()                        
+                    elif p == "Anno Domini tote bag [King Collection V1]":
+                        instance.referer_cashback = round(decimal.Decimal(products['Anno Domini tote bag [King Collection V1]']) * decimal.Decimal(0.15), 2)
+                        instance.referee_cashback = round(decimal.Decimal(products['Anno Domini tote bag [King Collection V1]']) * decimal.Decimal(0.15), 2)   
+                        instance.save()                                  
+                    elif p == "INRI tote bag":
+                        instance.referer_cashback = round(decimal.Decimal(products['INRI tote bag']) * decimal.Decimal(0.05), 2)
+                        instance.referee_cashback = round(decimal.Decimal(products['INRI tote bag']) * decimal.Decimal(0.05), 2)   
+                        instance.save()          
             if instance.merchant.name == "Singaplex":
                 instance.referer_cashback = round(decimal.Decimal(instance.totalAmt) * decimal.Decimal(0.075), 2)
                 instance.referee_cashback = round(decimal.Decimal(instance.totalAmt) * decimal.Decimal(0.075), 2)
                 instance.save()
             if instance.merchant.name == "Do-Not-Cross":
-                instance.referer_cashback = round(decimal.Decimal(instance.totalAmt) * decimal.Decimal(0.15), 2)
-                instance.referee_cashback = round(decimal.Decimal(instance.totalAmt) * decimal.Decimal(0.15), 2)
-                instance.save()
+                products = instance.products
+                for p in products:
+                    if p == "BURNED BEIGE":
+                        instance.referer_cashback = round(decimal.Decimal(products['BURNED BEIGE']) * decimal.Decimal(0.15), 2)
+                        instance.referee_cashback = round(decimal.Decimal(products['BURNED BEIGE']) * decimal.Decimal(0.15), 2)   
+                        instance.save()
+                    elif p == "DO NOT CROSS X ABEL TAN":       
+                        instance.referer_cashback = round(decimal.Decimal(products['DO NOT CROSS X ABEL TAN']) * decimal.Decimal(0.0425), 2)
+                        instance.referee_cashback = round(decimal.Decimal(products['DO NOT CROSS X ABEL TAN']) * decimal.Decimal(0.0425), 2)   
+                        instance.save()       
+                
             if instance.merchant.name == "Jemaime":
                 instance.referer_cashback = round(decimal.Decimal(instance.totalAmt) * decimal.Decimal(0.05), 2)
                 instance.referee_cashback = round(decimal.Decimal(instance.totalAmt) * decimal.Decimal(0.05), 2)

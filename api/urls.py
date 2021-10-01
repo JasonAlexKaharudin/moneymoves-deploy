@@ -5,4 +5,5 @@ app_name = 'api'
 
 urlpatterns = [
     path('refs/', api_views.ref_api, name='ref_api'),
+    path('widget/', api_views.widget, name='ref_api'),
 ]

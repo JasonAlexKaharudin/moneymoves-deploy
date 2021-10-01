@@ -24,14 +24,19 @@ def webhook_sunday_valley(request):
     shopify_hmac = request.headers.get('X-Shopify-Hmac-Sha256')  
     if verify_hmac(settings.SHOPIFY_WEBHOOK_SIGNED_KEY_SV, request.body, shopify_hmac): 
         print('Keys have been verified as valid.')  
-
+        
         #get necessary data from the webhook order    
         order = request.data
         email = order['contact_email']
         location = order['billing_address']['country']    
         total_price = order['total_price']
         order_id = order['order_number']
-
+        
+        products = {}
+        product = order['line_items']
+        for p in product:
+            products[p['name']] = p['price']
+        
         merchant = Partner_Merchant.objects.get(pk=1)
 
         obj = webhookOrders.objects.create(
@@ -39,7 +44,8 @@ def webhook_sunday_valley(request):
             customer_email = email, 
             location =  location,
             order_id=order_id, 
-            total_price=total_price
+            total_price=total_price,
+            products = products
         )
         obj.save()
 
@@ -62,6 +68,11 @@ def webhook_dnc(request):
         total_price = order['total_price']
         order_id = order['order_number']
 
+        products = {}
+        product = order['line_items']
+        for p in product:
+            products[p['name']] = p['price']
+
         merchant = Partner_Merchant.objects.get(pk=3)
 
         obj = webhookOrders.objects.create(
@@ -69,7 +80,8 @@ def webhook_dnc(request):
             customer_email = email, 
             location = location,
             order_id=order_id, 
-            total_price=total_price
+            total_price=total_price,
+            products = products
         )
         obj.save()
 
@@ -92,6 +104,11 @@ def webhook_jmc(request):
         total_price = order['total_price']
         order_id = order['order_number']
 
+        products = {}
+        product = order['line_items']
+        for p in product:
+            products[p['name']] = p['price']
+
         merchant = Partner_Merchant.objects.get(pk=4)
 
         obj = webhookOrders.objects.create(
@@ -99,7 +116,8 @@ def webhook_jmc(request):
             customer_email = email, 
             location = location,
             order_id=order_id, 
-            total_price=total_price
+            total_price=total_price,
+            products = products
         )
         obj.save()
 

@@ -10,6 +10,10 @@ from merchants.models import webhookOrders
 
 import decimal
 
+@api_view(['GET']) 
+def widget(request):
+    return Response({'message'})
+
 @api_view(['POST']) 
 def ref_api(request):
     data = request.data
@@ -21,9 +25,11 @@ def ref_api(request):
     merchant_name = data['merchant']
     merchant_name = Partner_Merchant.objects.get(name = merchant_name)
 
+    # match the webhook object with merchant name first then filter the referee email with the latest webhook obj
     webhooks = webhookOrders.objects.filter(merchant = merchant_name)
     obj = webhooks.filter(customer_email = refereeEmail).latest('date_published')
     orderID = obj.order_id
+    products = obj.products
     totalAmt = decimal.Decimal(obj.total_price)
 
     print("Referreal received by",referrer)
@@ -59,6 +65,7 @@ def ref_api(request):
             orderID = orderID,
             totalAmt = totalAmt,
             referee_email = refereeEmail,
+            products = products,
             orderRef_obj = orderRef_obj
         )
         referral_obj.save()
