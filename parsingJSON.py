@@ -6,7 +6,19 @@ data = json.load(file)
 # print(data['line_items'][0]['name'])
 # print(data['line_items'][0]['price'])
 
-order = {}
+
 products = data['line_items']
-for p in products:
-    print(p['name'])
+
+order = {
+    "INRI tote bag": "50.00", 
+    "The Crown tote bag [King Collection V1]": "50.00"
+}
+
+for p in order:
+    
+    if p == "The Crown tote bag [King Collection V1]":
+        print(order['The Crown tote bag [King Collection V1]'])
+    elif p == "Anno Domini tote bag [King Collection V1]":
+        print("price of Domini:", order['Anno Domini tote bag [King Collection V1]'])
+    elif p == "INRI tote bag":
+        print(order['INRI tote bag'])
