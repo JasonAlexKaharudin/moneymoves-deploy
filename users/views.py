@@ -19,6 +19,9 @@ def home(request):
     }
     return render(request, 'users/home.html', context)
 
+def home2(request):
+    return render(request, 'theme/base.html', {})
+
 def brands(request):
     context = {
         'zalora': Zalora_Brand.objects.all(),
