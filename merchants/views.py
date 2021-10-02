@@ -10,6 +10,7 @@ from .models import webhookOrders
 import hmac
 import hashlib
 import base64
+import json
 
 def computed_hmac(secret, body):
     hash_code = hmac.new(secret.encode('utf-8'), body, hashlib.sha256)
@@ -35,8 +36,9 @@ def webhook_sunday_valley(request):
         products = {}
         product = order['line_items']
         for p in product:
-            products[p['name']] = p['price']
-        
+            products[p['name']] = (p['price'],p['quantity'])
+        products = json.dumps(products)
+
         merchant = Partner_Merchant.objects.get(pk=1)
 
         obj = webhookOrders.objects.create(
@@ -71,7 +73,8 @@ def webhook_dnc(request):
         products = {}
         product = order['line_items']
         for p in product:
-            products[p['name']] = p['price']
+            products[p['name']] = (p['price'],p['quantity'])
+        products = json.dumps(products)
 
         merchant = Partner_Merchant.objects.get(pk=3)
 
@@ -107,7 +110,8 @@ def webhook_jmc(request):
         products = {}
         product = order['line_items']
         for p in product:
-            products[p['name']] = p['price']
+            products[p['name']] = (p['price'],p['quantity'])
+        products = json.dumps(products)
 
         merchant = Partner_Merchant.objects.get(pk=4)
 
