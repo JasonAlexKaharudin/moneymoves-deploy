@@ -90,7 +90,7 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
                         cashback = cashback + cashbackCalc(0.15, products['INRI tote bag'])
 
                 instance.referer_cashback = splitCashback(instance.referer_cashback, cashback)
-                instance.referee_cashback = splitCashback(instance.referer_cashback, cashback)
+                instance.referee_cashback = splitCashback(instance.referee_cashback, cashback)
                 instance.save()  
 
             if instance.merchant.name == "Singaplex":
