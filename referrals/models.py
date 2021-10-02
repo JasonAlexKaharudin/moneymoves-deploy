@@ -14,13 +14,11 @@ from webapp import settings
 
 import decimal
 
-
 def jsonfield_default_value(): 
     productList = {
         "product": 0
     }
     return productList
-
 
 # Create your models here.
 class Referral(models.Model):
@@ -55,6 +53,23 @@ class OrphanList(models.Model):
         return f"{self.merchant.name} {self.orderID}. Referred by: {self.referer_username.username}"   
 
 
+def sendEmailHelper(EmailSubject, template, context, to):
+    template = render_to_string(template, context)
+    message = strip_tags(template)
+    mail.send_mail(EmailSubject, message, settings.EMAIL_HOST_USER, [to], html_message=template);
+
+def updateWallet(user, cashback):
+        user.profile.wallet = user.profile.wallet + cashback
+        user.profile.num_of_refers = user.profile.num_of_refers + 1
+        user.profile.save()
+
+def cashbackCalc(cashbackAmt, productName):
+    return round(decimal.Decimal(productName) * decimal.Decimal(cashbackAmt),2)
+
+def splitCashback(currentCash, newCash):
+    return currentCash + round(decimal.Decimal(newCash), 2)
+
+
 @receiver(post_save, sender=Referral)
 def post_save_Referral(sender, instance, created, *args, **kwargs):
     if created:
@@ -68,13 +83,14 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
                 # Parse the Product list 
                 for p in products:
                     if p == "The Crown tote bag [King Collection V1]":
-                        cashback = cashback + round(decimal.Decimal(decimal.Decimal(products['The Crown tote bag [King Collection V1]'])*decimal.Decimal(0.15)),2)
+                        cashback = cashback + cashbackCalc(0.15, products['The Crown tote bag [King Collection V1]'])
                     elif p == "Anno Domini tote bag [King Collection V1]":
-                        cashback = cashback + round(decimal.Decimal(decimal.Decimal(products['Anno Domini tote bag [King Collection V1]'])*decimal.Decimal(0.15)),2)
+                        cashback = cashback + cashbackCalc(0.15, products['Anno Domini tote bag [King Collection V1]'])
                     elif p == "INRI tote bag":
-                        cashback = cashback + round(decimal.Decimal(decimal.Decimal(products['INRI tote bag'])*decimal.Decimal(0.15)),2)
-                instance.referer_cashback = instance.referer_cashback + round(decimal.Decimal(cashback), 2)
-                instance.referee_cashback = instance.referee_cashback + round(decimal.Decimal(cashback), 2)
+                        cashback = cashback + cashbackCalc(0.15, products['INRI tote bag'])
+
+                instance.referer_cashback = splitCashback(instance.referer_cashback, cashback)
+                instance.referee_cashback = splitCashback(instance.referer_cashback, cashback)
                 instance.save()  
 
             if instance.merchant.name == "Singaplex":
@@ -87,12 +103,12 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
                 cashback = 0
                 for p in products:
                     if p == "BURNED BEIGE":
-                        cashback = cashback + round(decimal.Decimal(decimal.Decimal(products['BURNED BEIGE'])*decimal.Decimal(0.15)),2)
+                        cashback = cashback + cashbackCalc(0.15, products['BURNED BEIGE'])
                     elif p == "DO NOT CROSS X ABEL TAN":       
-                        cashback = cashback + round(decimal.Decimal(decimal.Decimal(products['DO NOT CROSS X ABEL TAN'])*decimal.Decimal(0.0425)),2)
-                print("cashback:",cashback)
-                instance.referer_cashback = instance.referer_cashback + round(decimal.Decimal(cashback), 2)
-                instance.referee_cashback = instance.referee_cashback + round(decimal.Decimal(cashback), 2)
+                        cashback = cashback + cashbackCalc(0.0425, products['DO NOT CROSS X ABEL TAN'])
+                
+                instance.referer_cashback = splitCashback(instance.referer_cashback, cashback)
+                instance.referee_cashback = splitCashback(instance.referee_cashback, cashback)
                 instance.save()       
                 
             if instance.merchant.name == "Jemaime":
@@ -100,49 +116,35 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
                 instance.referee_cashback = round(decimal.Decimal(instance.totalAmt) * decimal.Decimal(0.05), 2)
                 instance.save()
 
-            #update referrer cashback
+            #update referrer wallet
             referer = instance.referer_username
-            referer.profile.wallet = referer.profile.wallet + instance.referer_cashback
-            referer.profile.num_of_refers = referer.profile.num_of_refers + 1
-            referer.profile.save()
-            
+            updateWallet(referer, instance.referer_cashback)
 
         #check the if refereeEmail has an account 
         #if exist, then update wallet of referee, 
         #if dne, then send email to them and populate orphan list
         if User.objects.filter(email=instance.referee_email).exists():
             referee = User.objects.filter(email=instance.referee_email)[0]
-            referee.profile.wallet = referee.profile.wallet + instance.referee_cashback
-            referee.profile.num_of_refers = referee.profile.num_of_refers + 1
-            referee.profile.save()
+            updateWallet(referee, instance.referee_cashback)
 
             instance.referee_username = referee.username
             instance.referee_has_account = True
             instance.save()
-
+            
             #send email to referrer with an account
-            subject = 'Successful Referral!'
-            html_message = render_to_string('referrals/success-referral.html', {
+            sendEmailHelper('Successful Referral', 'referrals/success-referral.html', {
                 'referer': referer, 
                 'wallet': instance.referer_cashback, 
                 'referee': User.objects.get(username = instance.referee_username)
-            })
-            plain_message = strip_tags(html_message)
-            from_email = settings.EMAIL_HOST_USER
-            to = referer.email
-            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+            }, referer.email)
+
 
             #send email to referee with an account
-            subject = 'Successful Purchase!'
-            html_message = render_to_string('referrals/success-referee.html', {
+            sendEmailHelper('Successful Purchase', 'referrals/success-referee.html', {
                 'referee': referee,
                 'referer': instance.referer_username.username, 
                 'cashback': instance.referee_cashback
-            })
-            plain_message = strip_tags(html_message)
-            from_email = settings.EMAIL_HOST_USER
-            to = instance.referee_email
-            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+            }, instance.referee_email)
 
         else:
             newOrphan = OrphanList.objects.create(
@@ -153,23 +155,14 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
             newOrphan.save()
 
             #send email to referrer without an account
-            subject = 'Successful Referral!'
-            html_message = render_to_string('referrals/success-referral.html', {
+            sendEmailHelper('Successful Referral!', 'referrals/success-referral.html', {
                 'referer': referer, 
                 'wallet': instance.referer_cashback, 
                 'referee': instance.referee_email
-            })
-            plain_message = strip_tags(html_message)
-            from_email = settings.EMAIL_HOST_USER
-            to = referer.email
-            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+            }, referer.email)
 
-            subject = 'Successful Purchase!'
-            html_message = render_to_string('referrals/success-referee-no-acc.html', {
+            #send email to referrer with an account
+            sendEmailHelper('Successful Purchase!', 'referrals/success-referee-no-acc.html', {
                 'referer': instance.referer_username.username, 
                 'cashback': instance.referee_cashback
-            })
-            plain_message = strip_tags(html_message)
-            from_email = settings.EMAIL_HOST_USER
-            to = instance.referee_email
-            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+            }, instance.referee_email)
