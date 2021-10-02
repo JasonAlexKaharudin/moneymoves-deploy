@@ -80,7 +80,7 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
             # sunday valley has 30% cashback: 15% each 
             if instance.merchant.name == "Sunday-Valley":
                 products = instance.products
-                products = json.loads(products)
+                products = json.loads(str(products))
 
                 cashback = 0
                 # Parse the Product list 
@@ -103,6 +103,8 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
 
             if instance.merchant.name == "Do-Not-Cross":
                 products = instance.products
+                products = json.loads(str(products))
+                
                 cashback = 0
                 for p in products:
                     if p == "BURNED BEIGE":
