@@ -15,7 +15,7 @@ def widget(request):
     data = request.data
 
     numofclicks = data['clicks']
-    merchant = Partner_Merchant.objects.get(name = "Sunday-Valley")
+    merchant = Partner_Merchant.objects.get(name = data['merchant'])
     tracking = trackWidget.objects.create(
         merchant = merchant,
         numClicks = numofclicks
