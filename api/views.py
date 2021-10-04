@@ -10,7 +10,7 @@ from merchants.models import webhookOrders
 
 import decimal
 
-@api_view(['GET']) 
+@api_view(['POST']) 
 def widget(request):
     data = request.data
 
