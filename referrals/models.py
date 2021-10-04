@@ -13,6 +13,7 @@ from django.utils.html import strip_tags
 from webapp import settings
 
 import decimal
+import json
 
 def jsonfield_default_value(): 
     productList = {
@@ -63,8 +64,8 @@ def updateWallet(user, cashback):
         user.profile.num_of_refers = user.profile.num_of_refers + 1
         user.profile.save()
 
-def cashbackCalc(cashbackAmt, productName):
-    return round(decimal.Decimal(productName) * decimal.Decimal(cashbackAmt),2)
+def cashbackCalc(cashbackAmt, price, qty):
+    return round(decimal.Decimal(price) * decimal.Decimal(cashbackAmt) * decimal.Decimal(qty),2)
 
 def splitCashback(currentCash, newCash):
     return currentCash + round(decimal.Decimal(newCash), 2)
@@ -79,15 +80,17 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
             # sunday valley has 30% cashback: 15% each 
             if instance.merchant.name == "Sunday-Valley":
                 products = instance.products
+                products = json.loads(str(products))
+
                 cashback = 0
                 # Parse the Product list 
                 for p in products:
                     if p == "The Crown tote bag [King Collection V1]":
-                        cashback = cashback + cashbackCalc(0.15, products['The Crown tote bag [King Collection V1]'])
+                        cashback = cashback + cashbackCalc(0.15, products['The Crown tote bag [King Collection V1]'][0],products['The Crown tote bag [King Collection V1]'][1])
                     elif p == "Anno Domini tote bag [King Collection V1]":
-                        cashback = cashback + cashbackCalc(0.15, products['Anno Domini tote bag [King Collection V1]'])
+                        cashback = cashback + cashbackCalc(0.15, products['Anno Domini tote bag [King Collection V1]'][0], products['Anno Domini tote bag [King Collection V1]'][1])
                     elif p == "INRI tote bag":
-                        cashback = cashback + cashbackCalc(0.15, products['INRI tote bag'])
+                        cashback = cashback + cashbackCalc(0.15, products['INRI tote bag'][0], products['INRI tote bag'][1])
 
                 instance.referer_cashback = splitCashback(instance.referer_cashback, cashback)
                 instance.referee_cashback = splitCashback(instance.referee_cashback, cashback)
@@ -100,12 +103,14 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
 
             if instance.merchant.name == "Do-Not-Cross":
                 products = instance.products
+                products = json.loads(str(products))
+                
                 cashback = 0
                 for p in products:
                     if p == "BURNED BEIGE":
-                        cashback = cashback + cashbackCalc(0.15, products['BURNED BEIGE'])
+                        cashback = cashback + cashbackCalc(0.15, products['BURNED BEIGE'][0], products['BURNED BEIGE'][1])
                     elif p == "DO NOT CROSS X ABEL TAN":       
-                        cashback = cashback + cashbackCalc(0.0425, products['DO NOT CROSS X ABEL TAN'])
+                        cashback = cashback + cashbackCalc(0.0425, products['DO NOT CROSS X ABEL TAN'][0], products['DO NOT CROSS X ABEL TAN'][1])
                 
                 instance.referer_cashback = splitCashback(instance.referer_cashback, cashback)
                 instance.referee_cashback = splitCashback(instance.referee_cashback, cashback)
