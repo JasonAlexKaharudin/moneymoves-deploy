@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
 from django.contrib.auth.models import User
-from .models import orderRef, invalidOrder
+from .models import orderRef, invalidOrder, trackWidget
 from referrals.models import Referral
 from merchants.models import Partner_Merchant
 from merchants.models import webhookOrders
@@ -12,7 +12,16 @@ import decimal
 
 @api_view(['GET']) 
 def widget(request):
-    return Response({'message'})
+    data = request.data
+
+    numofclicks = data['clicks']
+    merchant = Partner_Merchant.objects.get(name = "Sunday-Valley")
+    tracking = trackWidget.objects.create(
+        merchant = merchant,
+        numClicks = numofclicks
+    )
+    tracking.save()
+    return Response(status=status.HTTP_200_OK) 
 
 @api_view(['POST']) 
 def ref_api(request):

@@ -28,3 +28,8 @@ class invalidOrder(models.Model):
 
     def __str__(self):
         return f"Referrer: {self.referrer.email}, Referee email: {self.refereeEmail}"
+
+class trackWidget(models.Model):
+    merchant = models.ForeignKey(Partner_Merchant, on_delete=CASCADE, null = True, default = None)
+    numClicks = models.IntegerField()
+    date_recorded = models.DateTimeField(default = datetime.now, blank=True)
