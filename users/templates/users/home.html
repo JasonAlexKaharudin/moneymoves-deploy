@@ -1,9 +1,9 @@
 {% extends "users/base.html" %}
-{% block title %}Money Moves{% endblock %}
-{% block extra_head %} <link rel="stylesheet" href="static/users/home.css"> {% endblock %}
-
-{% block content %}
 {% load static %}
+{% block title %}Money Moves{% endblock %}
+{% block extra_head %} <link rel="stylesheet" href="{% static 'users/home.css' %}"> {% endblock %}
+{% block content %}
+
 <header style="background: #ffffff;">
   <div class="container" style="padding-top: 50px;padding-bottom: 50px;padding-right: 30px;padding-left: 30px;">
       <div class="row">

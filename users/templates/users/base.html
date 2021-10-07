@@ -7,9 +7,9 @@
     <title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'users/base.css'%}">
     <link rel="stylesheet" href="{% static 'users/fonts/ionicons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'users/Footer-Dark.css' %}">
+    <link rel="stylesheet" href="{% static 'users/Footer-Clean.css' %}">
     <link rel="stylesheet" href="{% static 'users/Navigation-with-Button.css' %}">
-    <link rel="shortcut icon" href="{% static 'users/img/logo.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'users/img/m-logo.png' %}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&amp;display=swap">
@@ -36,11 +36,12 @@
                     <li class="nav-item"><a class="nav-link" href="/brands/" style="font-size: 17.5px;">Shop</a></li>
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="/referral/" style="font-size: 17.5px;">Wallet</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/profile/" style="font-size: 17.5px;">Profile</a></li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="#" style="font-size: 17.5px;">How it Works</a></li>
                     <li class="nav-item"><a class="nav-link" href="https://moves.money/merchant" style="font-size: 17.5px;">Merchants</a></li>
                     {% endif %}
-                    <li class="nav-item"><a class="nav-link" href="https://www.notion.so/FAQs-a-tag-on-nav-bar-827cb177fbb44000b100b43746cbd45d#bb943e3f29e140f4a92b96c1e01fac62" style="font-size: 17.5px;">FAQs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://rainy-mint-11d.notion.site/MoneyMoves-FAQ-00239b8983544167b533490fdddcdf8e" style="font-size: 17.5px;">FAQs</a></li>
                     
                 </ul>
                 {% if user.is_authenticated %}
