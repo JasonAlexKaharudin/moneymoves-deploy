@@ -20,65 +20,70 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background: #e4ebf7;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="font-family: 'DM Sans', sans-serif;">
         <div class="container">
-            <a class="navbar-brand d-xl-flex" href="/">
-                <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex align-items-center align-items-sm-center align-items-md-center align-items-lg-center align-items-xl-center align-items-xxl-center">
-                    <img src="{% static 'users/img/favicon_mPqGWc0kA.png' %}" style="width: 32px;padding-right: 2px;">
-                    <div><span>Money</span><span style="color: rgb(64,115,159);">Moves</span></div>
-                </div>
+            
+            <a class="navbar-brand" href="/" style="padding-top: 5px;font-size: 23.2px;padding-left: 3.3px;">
+                <img style="padding-bottom: 8px;" src="{% static 'users/img/m-logo.png' %}">
+                Money<span style="color: rgb(64,115,159);">Moves</span>
             </a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
-                <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+                <span class="visually-hidden">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav me-auto">          
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="https://moneymoves.app/brands/" style="font-size: 17.5px;">Shop</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="/referral/" style="font-size: 17.5px;">Wallet</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="#" style="font-size: 17.5px;">How it Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://moves.money/merchant/" style="font-size: 17.5px;">Merchants</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="https://moneymoves.app/faq/" style="font-size: 17.5px;">FAQs</a></li>
+                    
+                </ul>
                 {% if user.is_authenticated %}
-                  <li class="nav-item"><a class="nav-link" href="/brands" style="color: rgb(0,0,0);">Shop</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/referral" style="color: rgb(0,0,0);">Wallet</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/profile" style="color: rgb(0,0,0);">Profile</a></li>
-              </ul><span class="navbar-text actions"> <a class="login" href="/logout"></a><a class="btn btn-light action-button" role="button" href="/logout" style="background: #40739f;">Log out</a></span>
+                <span class="navbar-text actions"> 
+                    <a class="btn btn-light action-button" role="button" href="/logout/" style="background: #40739f;font-size: 17.5px;margin-bottom: 5px;">Log Out</a>
+                </span>
                 {% else %}
-                  <li class="nav-item"><a class="nav-link" href="/brands" style="color: rgb(0,0,0);">Shop</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/" style="color: rgb(0,0,0);">How It Works</a></li>
-                  <li class="nav-item"><a class="nav-link" href="https://moves.money/merchant" style="color: rgb(0,0,0);">Merchants</a></li>
-              </ul>
-                <span class="navbar-text actions" style="display: flex;"> 
-                    <a class="nav-link" href="/login/">Login</a>
-                    <a class="btn btn-light action-button" role="button" href="/register/" style="background: #40739f;">Sign Up</a>
+                <span class="navbar-text actions"> 
+                    <a class="login" href="/login/" style="font-size: 17.5px;">Log In</a>
+                    <a class="btn btn-light action-button" role="button" href="/register/" style="background: #40739f;font-size: 17.5px;margin-bottom: 5px;">Sign Up</a>
                 </span>
                 {% endif %}
+
             </div>
         </div>
     </nav>
-    <main>
-      {% block content %}
-      {% endblock %}
-    </main>
-    <footer class="footer-dark" style="filter: hue-rotate(0deg);">
+    
+    {% block content %}
+    {% endblock %}
+    
+    <footer class="footer-clean">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-3 item">
-                    <h3>Product</h3>
+            <div class="row justify-content-center">
+                <div class="col-sm-4 col-md-3 item">
+                    <h3 style="color: rgb(64,115,159);">Get cashback</h3>
                     <ul>
-                        <li><a href="https://moneymoves.app">How it Works</a></li>
-                        <li><a href="https://moves.money/shop.html">Shop</a></li>
+                        <li><a href="https://moneymoves.app/">How it Works</a></li>
+                        <li><a href="https://moneymoves.app/brands/">Brands</a></li>
+                        <li><a href="https://moneymoves.app/faq/">FAQs</a></li>
                     </ul>
                 </div>
-                <div class="col-sm-6 col-md-3 item">
-                    <h3>Merchants</h3>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3 style="color: rgb(64,115,159);">Merchants</h3>
                     <ul>
-                        <li><a href="https://moves.money/merchant">Why Join us</a></li>
-                        <li><a href="https://moves.money/merchant">Get Conversions</a></li>
+                        <li><a href="https://moves.money/merchant/">Why Join Us</a></li>
+                        <li><a href="https://moves.money/merchant/">Reward your Customers</a></li>
                     </ul>
                 </div>
-                <div class="col-md-6 item text">
-                    <h3>Money Moves</h3>
-                    <p>Get rewarded for your recommendations. Invest the cashback.</p>
+                <div class="col-lg-3 item social">
+                    <h3 style="color: rgb(64,115,159);">Follow Us</h3><a href="https://www.instagram.com/get.moneymoves/"><i class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">Money Moves © 2021</p>
                 </div>
-                <div class="col item social"><a href="https://www.instagram.com/get.moneymoves/"><i class="icon ion-social-instagram"></i></a></div>
             </div>
-            <p class="copyright">MoneyMoves © 2021</p>
         </div>
     </footer>
     <script src="{% static 'users/js/base.js' %}"></script>
