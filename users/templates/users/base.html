@@ -33,14 +33,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="https://moneymoves.app/brands/" style="font-size: 17.5px;">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/brands/" style="font-size: 17.5px;">Shop</a></li>
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="/referral/" style="font-size: 17.5px;">Wallet</a></li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="#" style="font-size: 17.5px;">How it Works</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://moves.money/merchant/" style="font-size: 17.5px;">Merchants</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://moves.money/merchant" style="font-size: 17.5px;">Merchants</a></li>
                     {% endif %}
-                    <li class="nav-item"><a class="nav-link" href="https://moneymoves.app/faq/" style="font-size: 17.5px;">FAQs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://www.notion.so/FAQs-a-tag-on-nav-bar-827cb177fbb44000b100b43746cbd45d#bb943e3f29e140f4a92b96c1e01fac62" style="font-size: 17.5px;">FAQs</a></li>
                     
                 </ul>
                 {% if user.is_authenticated %}
@@ -53,7 +53,6 @@
                     <a class="btn btn-light action-button" role="button" href="/register/" style="background: #40739f;font-size: 17.5px;margin-bottom: 5px;">Sign Up</a>
                 </span>
                 {% endif %}
-
             </div>
         </div>
     </nav>
