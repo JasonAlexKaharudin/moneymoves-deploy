@@ -1,6 +1,8 @@
+import decimal
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.contrib.auth.models import User
+from django.db.models.fields import DecimalField, related
 from phonenumber_field.modelfields import PhoneNumberField
 from referrals.models import Referral, OrphanList
 from django.db.models.signals import post_save
@@ -14,12 +16,11 @@ class Profile(models.Model):
     Phone_Number = PhoneNumberField(blank=False, unique=True)
     wallet= models.DecimalField(max_digits=6, decimal_places=2, default=0)
     num_of_refers = models.IntegerField(default=0)
+    code = models.CharField(max_length=30, blank= True)
+    recommended_by = models.ForeignKey(User, on_delete=CASCADE, blank=True, related_name="ref_by", null=True)
 
     def __str__(self):
         return f"{self.user.username}'s profile"
-    
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)    
 
 @receiver(post_save, sender = Profile)
 def post_save_profile(sender, instance, created, *args, **kwargs):

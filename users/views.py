@@ -1,3 +1,4 @@
+import decimal
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.messages import constants
@@ -10,6 +11,7 @@ from django.contrib.auth.models import User
 from django.core import mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from .models import Profile
 from webapp import settings
 
 def home(request):
@@ -19,13 +21,19 @@ def home(request):
     }
     return render(request, 'users/home.html', context)
 
+def refSignUp(request, *args, **kwargs):
+    code = str(kwargs.get('ref_code'))
+    if User.objects.filter(username = code).exists():
+        return register(request, code)
+    else:
+        return render(request, 'users/home.html', {})
+
 def intlBrands(request):
     context = {
         'amazon': Amazon_Brand.objects.all(),
         'partner': Partner_Merchant.objects.all()
     }
     return render(request, 'users/IntlBrands.html', context)
-
 
 def brands(request):
     context = {
@@ -54,7 +62,7 @@ def profile(request):
 
     return render(request, 'users/profile.html', context)
 
-def register(request):
+def register(request, code):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         p_reg_form = PhoneForm(request.POST)
@@ -63,7 +71,18 @@ def register(request):
             #user.refresh_from_db()  # load the profile instance created by the signal
             p_reg_form = p_reg_form.save(commit=False)
             p_reg_form.user = user
+            referer = User.objects.get(username = code)
+            p_reg_form.code = user.username
+            p_reg_form.recommended_by = referer
+            p_reg_form.wallet = p_reg_form.wallet + round(decimal.Decimal(5),2)
+            p_reg_form.num_of_refers = p_reg_form.num_of_refers + 1
             p_reg_form.save()
+
+            
+            referer.profile.num_of_refers = referer.profile.num_of_refers + 1
+            print("referer's refers: ", referer.profile.num_of_refers)
+            referer.profile.wallet = referer.profile.wallet + round(decimal.Decimal(5),2)
+            referer.profile.save()
 
             username = user.username      
             messages.add_message(request, constants.SUCCESS, f"Account created for '{username}'.")
@@ -77,10 +96,10 @@ def register(request):
             plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
             to = user.email
-            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+            # mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
 
             login(request, new_user)
-            return redirect('brands page')
+            return redirect('brands')
     else:
         form = UserRegisterForm()
         p_reg_form = PhoneForm()
