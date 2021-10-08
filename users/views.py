@@ -96,7 +96,7 @@ def register(request, code):
             plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
             to = user.email
-            # mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
 
             login(request, new_user)
             return redirect('brands')
