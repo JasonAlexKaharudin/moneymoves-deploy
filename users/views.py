@@ -11,7 +11,6 @@ from django.contrib.auth.models import User
 from django.core import mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-from .models import Profile
 from webapp import settings
 
 def home(request):
@@ -24,9 +23,54 @@ def home(request):
 def refSignUp(request, *args, **kwargs):
     code = str(kwargs.get('ref_code'))
     if User.objects.filter(username = code).exists():
-        return register(request, code)
+        return registerWCode(request, code)
     else:
         return render(request, 'users/home.html', {})
+
+def registerWCode(request, code):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        p_reg_form = PhoneForm(request.POST)
+        if form.is_valid() and p_reg_form.is_valid():
+            user = form.save()
+            #user.refresh_from_db()  # load the profile instance created by the signal
+            p_reg_form = p_reg_form.save(commit=False)
+            p_reg_form.user = user
+            referer = User.objects.get(username = code)
+            p_reg_form.code = user.username
+            p_reg_form.recommended_by = referer
+            p_reg_form.wallet = p_reg_form.wallet + round(decimal.Decimal(5),2)
+            p_reg_form.num_of_refers = p_reg_form.num_of_refers + 1
+            p_reg_form.save()
+
+            referer.profile.num_of_refers = referer.profile.num_of_refers + 1
+            print("referer's refers: ", referer.profile.num_of_refers)
+            referer.profile.wallet = referer.profile.wallet + round(decimal.Decimal(5),2)
+            referer.profile.save()
+            username = user.username      
+            messages.add_message(request, constants.SUCCESS, f"Account created for '{username}'.")
+            new_user = authenticate(
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password1'],
+            )
+
+            subject = 'Thank you for signing up!'
+            html_message = render_to_string('users/register_email.html', {'username': username})
+            plain_message = strip_tags(html_message)
+            from_email = settings.EMAIL_HOST_USER
+            to = user.email
+            # mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+
+            login(request, new_user)
+            return redirect('brands')
+    else:
+        form = UserRegisterForm()
+        p_reg_form = PhoneForm()
+    context = {
+        'form': form,
+        'p_reg_form': p_reg_form
+    }
+    return render(request, 'users/register.html', context)
 
 def intlBrands(request):
     context = {
@@ -62,7 +106,7 @@ def profile(request):
 
     return render(request, 'users/profile.html', context)
 
-def register(request, code):
+def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         p_reg_form = PhoneForm(request.POST)
@@ -71,18 +115,7 @@ def register(request, code):
             #user.refresh_from_db()  # load the profile instance created by the signal
             p_reg_form = p_reg_form.save(commit=False)
             p_reg_form.user = user
-            referer = User.objects.get(username = code)
-            p_reg_form.code = user.username
-            p_reg_form.recommended_by = referer
-            p_reg_form.wallet = p_reg_form.wallet + round(decimal.Decimal(5),2)
-            p_reg_form.num_of_refers = p_reg_form.num_of_refers + 1
             p_reg_form.save()
-
-            
-            referer.profile.num_of_refers = referer.profile.num_of_refers + 1
-            print("referer's refers: ", referer.profile.num_of_refers)
-            referer.profile.wallet = referer.profile.wallet + round(decimal.Decimal(5),2)
-            referer.profile.save()
 
             username = user.username      
             messages.add_message(request, constants.SUCCESS, f"Account created for '{username}'.")
@@ -96,7 +129,7 @@ def register(request, code):
             plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
             to = user.email
-            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+            # mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
 
             login(request, new_user)
             return redirect('brands')
