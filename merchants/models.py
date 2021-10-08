@@ -34,15 +34,14 @@ class webhookOrders(models.Model):
     def __str__(self):
         return f"{self.merchant.name} order ID: #{self.order_id}"
 
-
-class Zalora_Brand(models.Model):
+class Amazon_Brand(models.Model):
     brand_name = models.CharField(max_length=200)
     brand_link = models.CharField(max_length=500, default="None")
     cashback_amt = models.IntegerField(default=0)
     img_link = models.URLField(max_length=300)
 
     class Meta:
-        verbose_name_plural = "Zalora Merchants"
+        verbose_name_plural = "Amazon Merchants"
 
     def __str__(self):
         return self.brand_name

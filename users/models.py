@@ -6,7 +6,6 @@ from referrals.models import Referral, OrphanList
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
 User._meta.get_field('email')._unique = True
 
 # Create your models here.

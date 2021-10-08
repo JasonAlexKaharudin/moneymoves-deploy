@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.messages import constants
 from django.contrib.auth import authenticate, login
 from django.utils import html
-from merchants.models import Zalora_Brand, Partner_Merchant
+from merchants.models import Amazon_Brand, Partner_Merchant
 from .forms import UserUpdateForm, UserRegisterForm, PhoneForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -14,14 +14,14 @@ from webapp import settings
 
 def home(request):
     context = {
-        'zalora': Zalora_Brand.objects.all(),
+        'amazon': Amazon_Brand.objects.all(),
         'partner': Partner_Merchant.objects.all()
     }
     return render(request, 'users/home.html', context)
 
 def intlBrands(request):
     context = {
-        'zalora': Zalora_Brand.objects.all(),
+        'amazon': Amazon_Brand.objects.all(),
         'partner': Partner_Merchant.objects.all()
     }
     return render(request, 'users/IntlBrands.html', context)
@@ -29,7 +29,7 @@ def intlBrands(request):
 
 def brands(request):
     context = {
-        'zalora': Zalora_Brand.objects.all(),
+        'amazon': Amazon_Brand.objects.all(),
         'partner': Partner_Merchant.objects.all()
     }
     return render(request, 'users/brands.html', context)

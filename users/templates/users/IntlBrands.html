@@ -56,8 +56,8 @@
     </div>
 
     <div class="row d-md-flex d-lg-flex">
-        {% if partner %}
-        {% for brand in partner %}    
+        {% if amazon %}
+        {% for brand in amazon %}    
         <div class="col-md-4 brand-card" style="margin-bottom: 0px;padding-right: 12px;">
             <div data-bs-toggle="modal" data-bs-target="#{{brand.name}}Modal" style="cursor: pointer;background: #f7f7f7;box-shadow: 0px 0px 2px 0px;margin-bottom: 65px;padding-bottom: 10px;"><img src="{{brand.img_link}}" style="height: auto;width: 100%;">
                 <h1 class="text-center" style="font-size: 33px;">Up to {{brand.cashback_amt}}% cashback</h1>
@@ -72,11 +72,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>1. Copy your personalized link
+                    <p>1. Share this link with your friend
                         <br>
-                        2. Share your link with your friend
+                        2. Get a screenshot of the receipt once your friend makes a purchase
                         <br>
-                        3. We credit your wallet once your friend makes a purchase!
+                        3. Upload the receipt and pslit the cashback with your friend!
                     </p>
                     <a href="{{brand.store_link}}">Check them out here</a>
                     <br>

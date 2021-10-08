@@ -59,7 +59,8 @@
         {% if partner %}
         {% for brand in partner %}    
         <div class="col-md-4 brand-card" style="margin-bottom: 0px;padding-right: 12px;">
-            <div data-bs-toggle="modal" data-bs-target="#{{brand.name}}Modal" style="cursor: pointer;background: #f7f7f7;box-shadow: 0px 0px 2px 0px;margin-bottom: 65px;padding-bottom: 10px;"><img src="{{brand.img_link}}" style="height: auto;width: 100%;">
+            <div data-bs-toggle="modal" data-bs-target="#{{brand.name}}Modal" style="cursor: pointer;background: #f7f7f7;box-shadow: 0px 0px 2px 0px;margin-bottom: 65px;padding-bottom: 10px;">
+                <img src="{{brand.img_link}}" style="height: auto;width: 100%;">
                 <h1 class="text-center" style="font-size: 33px;">Up to {{brand.cashback_amt}}% cashback</h1>
             </div>
         </div>
@@ -120,8 +121,34 @@
                 </div>
             </a>
         </div>
-        
-        <div class="col-md-4 brand-card" style="margin-bottom: 0px;padding-right: 12px;"><img src="https://ik.imagekit.io/2bmvtzrfkar/icons/Refer_UtPoniLS1.png" style="height: auto;width: 100%;padding-bottom: 47px;"></div>
+    </div>
+
+
+    <div class="col-md-4 brand-card" data-bs-toggle="modal" data-bs-target="refer-cardModal"   style="margin-bottom: 0px;padding-right: 12px;">
+        <img src="https://ik.imagekit.io/2bmvtzrfkar/icons/Refer_UtPoniLS1.png" style="height: auto;width: 100%;padding-bottom: 47px;">
+    </div>
+
+    <div class="modal fade" id="refer-cardModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span>How to Start Earning</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>1. Share your own link with your friend
+                        <br>
+                        2. Get $5 for every successful friend that joins
+                    </p>
+                </div>
+                <div style="margin-bottom: 8px; margin-left: 10px;">
+                    <div class="field" id="fieldRef">
+                        <input id="uniqueLinkRef" type="text" readonly value="{}">
+                        <button id="copyBtnRef">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 
@@ -139,10 +166,14 @@
     document.getElementById("copyBtn-Jemaime").addEventListener('click', function(){
         confetti();
     })
+
+    document.getElementById("copyBtnRef").addEventListener('click', function(){
+        confetti();
+    })
+
 </script>
 
 <script>
-
     function copyToClipboard(field, input, copy){
         copy.onclick = ()=>{
             input.select(); //select input value
@@ -170,9 +201,15 @@
     inputDNC = document.getElementById("uniqueLink-Do-Not-Cross");
     copyDNC = document.getElementById("copyBtn-Do-Not-Cross");
 
+    fieldRef = document.getElementById("fieldRef")
+    inputRef = document.getElementById("uniqueLinkRef");
+    copyRef = document.getElementById("copyBtnRef");
+
+    
     copyToClipboard(fieldJ, inputJ, copyJ);
     copyToClipboard(fieldDNC, inputDNC, copyDNC);
     copyToClipboard(fieldSV, inputSV, copySV);
+    copyToClipboard(fieldRef, inputRef, copyRef);
 
 </script>
 <script src="{% static 'users/js/brands.js' %}"></script>
