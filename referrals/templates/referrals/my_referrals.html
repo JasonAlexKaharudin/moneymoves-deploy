@@ -3,49 +3,68 @@
 {% load static %}
 {% block extra_head %}<link rel="stylesheet" type="text/css" href="{% static 'referrals/my_referrals.css' %}">{% endblock %}
 {% block content %}
+<main style="padding-right: 0px;padding-left: 0px;margin-top: 60px;">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6" style="padding: 0px;">
+              <div class="d-flex flex-column justify-content-between align-items-start flex-sm-row align-items-sm-center flex-md-row align-items-md-center flex-lg-row align-items-lg-center flex-xl-row align-items-xl-center flex-xxl-row align-items-xxl-center" style="padding-bottom: 16px;">
+                  <h1 class="d-xxl-flex">Cashback Earned:&nbsp;<span style="color: rgb(0,185,7);">${{user.profile.wallet}}</span></h1><button class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">Invest</button>
+              </div>
+              <p style="font-size: 21px;">Hey {{user.username}}! You have successfully referred&nbsp;<strong>{{user.profile.num_of_refers}} friends</strong> and you also created&nbsp;<strong>CHANGE ME SUPPOSED TO BE # LINKS</strong>&nbsp;so far!<br><br><a href="#">Refer more friends to MoneyMoves and get up to&nbsp;$5!</a><br></p>
+          </div>
+      </div>
+  </div>
+  <div class="container">
+      <div class="row" style="margin-top: 50px;">
+          <div class="col-md-6" style="padding: 0px;">
+              <div class="d-flex flex-column justify-content-between align-items-start flex-sm-row align-items-sm-center flex-md-row align-items-md-center flex-lg-row align-items-lg-center flex-xl-row align-items-xl-center flex-xxl-row align-items-xxl-center" style="padding-bottom: 16px;">
+                  <h1 class="d-xxl-flex">Referral History</h1><button class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">Upload</button>
+              </div>
+              {% if refers %}
+              {% for r in refers %}
+                {% if r.referee_has_account%}
+                <a class="card-text" href="{{r.id}}">
+                  <p>
+                  <span class="date">{{ r.date_published }}</span>
+                    You earned <span class="cashback-earned">${{ r.referer_cashback }}</span>
+                    from recommending 
+                    <span class="merchant">{{r.referee_username}}</span>
+                    &#x2192;
+                  </p>
+                </a>
+                {% else %}
+                <p>
+                  <span class="pending">
+                    <span class="date">{{ r.date_published }}</span> Recommendation from <span class="merchant">{{r.referee_email}}</span> is pending verification.
+                  </span>
+                </p>
+                {% endif %}
+            {% endfor %}
+            {% endif %}
 
-<section class="referral-container">
-  <h1>Cashback Earned: <span class="cashback-earned">${{user.profile.wallet}} </span></h1>
-  <br>
-  <h1>Refers: {{user.profile.num_of_refers}}</h1>
-  <h1>Purchases Made:</h1>
-  {% if refers %}
-    {% for r in refers %}
-      {% if r.referee_has_account%}
-      <a class="card-text" href="{{r.id}}">
-        <p>
-        <span class="date">{{ r.date_published }}</span>
-          You earned <span class="cashback-earned">${{ r.referer_cashback }}</span>
-          from recommending 
-          <span class="merchant">{{r.referee_username}}</span>
-          &#x2192;
-        </p>
-      </a>
-      {% else %}
-      <p>
-        <span class="pending">
-          <span class="date">{{ r.date_published }}</span> Recommendation from <span class="merchant">{{r.referee_email}}</span> is pending verification.
-        </span>
-      </p>
-      {% endif %}
-  {% endfor %}
-  {% endif %}
-
-  {% if referred %}
-  {% for r in referred %}
-  {% if r.referee_has_account%}
-      <a class="card-text" href="{{r.id}}">
-        <p class="">
-          <span class="date">{{ r.date_published }}</span> 
-          You saved <span class="cashback-earned">${{ r.referer_cashback }}</span> from {{r.referer_username}} &#x2192;
-        </p>
-      </a>
-      {% else %}
-      <p><span class="date">{{ r.date_published }}</span> Your earnings from <span class="merchant">{{r.referer_username}}</span> is pending verification</p>
-      {% endif %}
-  {% endfor %}
-  {% endif %}
-</section>
+            {% if referred %}
+            {% for r in referred %}
+            {% if r.referee_has_account%}
+                <a class="card-text" href="{{r.id}}">
+                  <p class="">
+                    <span class="date">{{ r.date_published }}</span> 
+                    <br>
+                    <span class="cashback-earned">+${{ r.referer_cashback }}</span> from {{r.referer_username}} &#x2192;
+                  </p>
+                </a>
+                {% else %}
+                <p><span class="date">{{ r.date_published }}</span> Your earnings from <span class="merchant">{{r.referer_username}}</span> is pending verification</p>
+                {% endif %}
+            {% endfor %}
+            {% endif %}
+              
+              <p style="color: rgb(113,113,113);"><span style="color: rgb(0,185,7);">+$12.80</span>&nbsp;from referring&nbsp;<span style="font-weight: bold;color: rgb(0,0,0);">MonkGod</span></p><button class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(208,208,208);border-width: 0px;">Withdraw</button>
+          </div>
+      </div>
+  </div>
+</main>
 {% endblock %}
+
+
 
 

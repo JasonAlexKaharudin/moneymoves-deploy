@@ -19,6 +19,14 @@ def home(request):
     }
     return render(request, 'users/home.html', context)
 
+def intlBrands(request):
+    context = {
+        'zalora': Zalora_Brand.objects.all(),
+        'partner': Partner_Merchant.objects.all()
+    }
+    return render(request, 'users/IntlBrands.html', context)
+
+
 def brands(request):
     context = {
         'zalora': Zalora_Brand.objects.all(),
