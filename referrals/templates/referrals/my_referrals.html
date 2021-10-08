@@ -10,84 +10,100 @@
 </div>
 {% endfor %}
 {% endif %}   
-<main style="padding-right: 0px;padding-left: 0px;margin-top: 60px;">
-  <div class="container">
-      <div class="row">
-          <div class="col-md-6" style="padding: 0px;">
-              <div class="d-flex flex-column justify-content-between align-items-start flex-sm-row align-items-sm-center flex-md-row align-items-md-center flex-lg-row align-items-lg-center flex-xl-row align-items-xl-center flex-xxl-row align-items-xxl-center" style="padding-bottom: 16px;">
-                  <h1 class="d-xxl-flex">Cashback Earned:&nbsp;<span style="color: rgb(0,185,7);">${{user.profile.wallet}}</span></h1><button class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">Invest</button>
-              </div>
-              <p style="font-size: 21px;">Hey {{user.username}}! You have successfully referred&nbsp;<strong>{{user.profile.num_of_refers}} friends</strong> and you also created&nbsp;<strong>CHANGE ME SUPPOSED TO BE # LINKS</strong>&nbsp;so far!<br><br><a href="#">Refer more friends to MoneyMoves and get up to&nbsp;$5!</a><br></p>
-          </div>
-      </div>
-  </div>
-  <div class="container">
-      <div class="row" style="margin-top: 50px;">
-          <div class="col-md-6" style="padding: 0px;">
-              <div class="d-flex flex-column justify-content-between align-items-start flex-sm-row align-items-sm-center flex-md-row align-items-md-center flex-lg-row align-items-lg-center flex-xl-row align-items-xl-center flex-xxl-row align-items-xxl-center" style="padding-bottom: 16px;">
-                  <h1 class="d-xxl-flex">Referral History</h1><a href="/referral/upload" class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">Upload</a>
-              </div>
-              {% if refers %}
-              {% for r in refers %}
-                {% if r.referee_has_account%}
-                <a class="card-text" href="{{r.id}}">
-                  <p>
-                  <span class="date">{{ r.date_published }}</span>
-                    You earned <span class="cashback-earned">${{ r.referer_cashback }}</span>
-                    from recommending 
-                    <span class="merchant">{{r.referee_username}}</span>
-                    &#x2192;
-                  </p>
-                </a>
-                {% else %}
-                <p>
-                  <span class="pending">
-                    <span class="date">{{ r.date_published }}</span> Recommendation from <span class="merchant">{{r.referee_email}}</span> is pending verification.
-                  </span>
-                </p>
-                {% endif %}
-            {% endfor %}
-            {% endif %}
+<main style="margin: 7vh 15vw 10vh 15vw;">
+  <h1>Cashback Earned:&nbsp;<span style="color: rgb(0,185,7);">${{user.profile.wallet}}</span></h1>
+  <p style="color: grey;" >You have referred <span style="color: black;">{{user.profile.num_of_refers}} friends</span> so far!</p>
 
-            {% if referred %}
-            {% for r in referred %}
-            {% if r.referee_has_account%}
-                <a class="card-text" href="{{r.id}}">
-                  <p class="">
-                    <span class="date">{{ r.date_published }}</span> 
-                    <br>
-                    <span class="cashback-earned">+${{ r.referer_cashback }}</span> from {{r.referer_username}} &#x2192;
-                  </p>
-                </a>
-                {% else %}
-                <p><span class="date">{{ r.date_published }}</span> Your earnings from <span class="merchant">{{r.referer_username}}</span> is pending verification</p>
-                {% endif %}
-            {% endfor %}
-            {% endif %}
+  <button id="investBtn" class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">Invest</button>
 
-            {% if receipt %}
-            {% for r in receipt %}
-            {% if r.is_verified %}
-            <span class="date">{{ r.date_published }}</span>
-            <p class="">
-              <span class="cashback-earned">+${{ r.cashback }}</span> from {{r.referee}}, purchased from Amazon.
-            </p>
-            {% else %}  
-            <span class="date">{{ r.date_published }}</span>
-            <p>
-              <span class="pending">
-                Uploaded receipt is pending verification.
-              </span>
-            </p>    
-            {% endif %}
-            {% endfor %}
-            {% endif %}
-              
-              <p style="color: rgb(113,113,113);"><span style="color: rgb(0,185,7);">+$12.80</span>&nbsp;from referring&nbsp;<span style="font-weight: bold;color: rgb(0,0,0);">MonkGod</span></p><button class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(208,208,208);border-width: 0px;">Withdraw</button>
-          </div>
-      </div>
+  <div class="history" style="margin-top: 35px;">
+    <h1>Referral History</h1>
+    <a href="/referral/upload" class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">Upload</a>
+    <br>
+    <br>
+    {% if refers %}
+    {% for r in refers %}
+      {% if r.referee_has_account%}
+      <a class="card-text" href="{{r.id}}">
+        <p>
+        <span class="date">{{ r.date_published }}</span>
+          You earned <span class="cashback-earned">${{ r.referer_cashback }}</span>
+          from recommending 
+          <span class="merchant">{{r.referee_username}}</span>
+          &#x2192;
+        </p>
+      </a>
+      {% else %}
+      <p>
+        <span class="pending">
+          <span class="date">{{ r.date_published }}</span> Recommendation from <span class="merchant">{{r.referee_email}}</span> is pending verification.
+        </span>
+      </p>
+      {% endif %}
+  {% endfor %}
+  {% endif %}
+  
+  {% if referred %}
+  {% for r in referred %}
+  {% if r.referee_has_account%}
+      <a class="card-text" href="{{r.id}}">
+        <p class="">
+          <span class="date">{{ r.date_published }}</span> 
+          <br>
+          <span class="cashback-earned">+${{ r.referer_cashback }}</span> from {{r.referer_username}} &#x2192;
+        </p>
+      </a>
+      {% else %}
+      <p><span class="date">{{ r.date_published }}</span> Your earnings from <span class="merchant">{{r.referer_username}}</span> is pending verification</p>
+      {% endif %}
+  {% endfor %}
+  {% endif %}
+
+  {% if receipt %}
+  {% for r in receipt %}
+  {% if r.is_verified %}
+  <span class="date">{{ r.date_published }}</span>
+  <p class="">
+    <span class="cashback-earned">+${{ r.cashback }}</span> from {{r.referee}}, purchased from Amazon.
+  </p>
+  {% else %}  
+  <span class="date">{{ r.date_published }}</span>
+  <p>
+    <span class="pending">
+      Uploaded receipt is pending verification.
+    </span>
+  </p>    
+  {% endif %}
+  {% endfor %}
+  {% endif %}
   </div>
+
+  <button class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(208, 208, 208);border-width: 0px;">Withdraw</button>
+
+  <div class="input-group col-md-4" style="margin-top: 25px;">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-default">Share and get $5</span>
+    </div>
+    <input id="inputRef" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" readonly value="https://moneymoves.app/ref/{{user.username}}">
+    <button class="btn btn-primary" id="copyBtnRef">Copy</button>
+</div>
 </main>
+
+<script type="module">
+  import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+  
+  document.getElementById("investBtn").addEventListener('click', function(){
+    confetti();
+  })
+  const myInp = document.getElementById("inputRef");
+  const btnCopy = document.getElementById("copyBtnRef")
+
+  btnCopy.onclick = function(){
+      myInp.select();
+      confetti();
+      document.execCommand("Copy");
+  }
+</script>
 {% endblock %}
 
 

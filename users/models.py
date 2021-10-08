@@ -16,6 +16,7 @@ class Profile(models.Model):
     Phone_Number = PhoneNumberField(blank=False, unique=True)
     wallet= models.DecimalField(max_digits=6, decimal_places=2, default=0)
     num_of_refers = models.IntegerField(default=0)
+    links_created = models.IntegerField(default=0)
     code = models.CharField(max_length=30, blank= True)
     recommended_by = models.ForeignKey(User, on_delete=CASCADE, blank=True, related_name="ref_by", null=True)
 

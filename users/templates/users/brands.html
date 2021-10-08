@@ -2,7 +2,6 @@
 {% block title %}Brands{% endblock %}
 {% load static %}
 {% block extra_head %}
-
 <link rel="stylesheet" href="{% static 'users/brand.css' %}">
 {% endblock %}
 {% block content %}
@@ -18,25 +17,25 @@
     <p style="font-size: 20.4px;width: 100%;font-family: 'DM Sans', sans-serif;">Check out ourPartners to kickstart your financial journey</p>
 </header>
 
-<main>
+<main style="padding-right: 50px; padding-left: 50px;">
     {% if user.is_authenticated %}
     <div class="container">
         <div class="row d-md-flex flex-column justify-content-evenly flex-sm-column flex-md-column flex-lg-row flex-xl-row flex-xxl-row" style="padding-bottom: 0px;margin-bottom: 92px;">
             <div class="col d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center" style="margin-bottom: 30px;">
                 <div style="box-shadow: 1px 1px 4px rgb(154,154,154);border-top-left-radius: 5px;border-top-right-radius: 5px;width: 80%;padding-bottom: 1px;">
-                    <h1 class="text-center" style="background: #40739f;color: rgb(255,255,255);font-size: 33px;padding: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;">Earnings</h1>
+                    <h1 class="text-center" style="background: #40739f;color: rgb(255,255,255);font-size: 25px;padding: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;">Earnings</h1>
                     <h2 class="display-5 text-center" style="color: #4ecb71;">${{user.profile.wallet}}</h2>
                 </div>
         </div>
-        <div class="col d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center align-items-xl-center" style="margin-bottom: 30px;">
+        <!-- <div class="col d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center align-items-xl-center" style="margin-bottom: 30px;">
             <div style="box-shadow: 1px 1px 4px rgb(154,154,154);border-top-left-radius: 5px;border-top-right-radius: 5px;width: 80%;padding-bottom: 1px;">
                 <h1 class="text-center" style="background: #40739f;color: rgb(255,255,255);font-size: 33px;padding: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;">Links Created</h1>
                 <h2 class="display-5 text-center" style="color: #4ecb71;">{change me}</h2>
             </div>
-        </div>
+        </div> -->
         <div class="col d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center align-items-xl-center" style="margin-bottom: 30px;">
             <div style="box-shadow: 1px 1px 4px rgb(154,154,154);border-top-left-radius: 5px;border-top-right-radius: 5px;width: 80%;padding-bottom: 1px;">
-                <h1 class="text-center" style="background: #40739f;color: rgb(255,255,255);font-size: 33px;padding: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;">Refers</h1>
+                <h1 class="text-center" style="background: #40739f;color: rgb(255,255,255);font-size: 25px;padding: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;">Refers</h1>
                 <h2 class="display-5 text-center" style="color: #4ecb71;">{{user.profile.num_of_refers}}</h2>
             </div>
         </div>
@@ -44,16 +43,18 @@
     {% else %}
 
     {% endif %}
-    <div class="row">
-        <div class="col offset-md-0 offset-lg-0 offset-xl-0 offset-xxl-0 d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-center align-items-lg-center" style="margin-bottom: 35px;">
-            <div class="d-flex d-sm-flex d-md-flex d-lg-flex flex-column align-items-center flex-sm-column justify-content-sm-center align-items-sm-center flex-md-column justify-content-md-center flex-lg-row justify-content-lg-end flex-xl-row flex-xxl-row" style="background: rgba(200,200,200,0);width: 50%;">
-                <div class="d-lg-flex" style="width: 50%;">
-                    <a href="/brands/" class="btn btn-primary" type="button" style="width: 100%;background: rgb(255, 255, 255);color: rgb(0,0,0);border-width: 0px;border-top-left-radius: 4px;font-size: 21px;margin-bottom: 20px;padding-bottom: 6px; text-decoration: underline;">Local Brands&nbsp;🇸🇬</a>
-                </div>
-                <a href="/IntlBrands/" class="btn btn-primary" type="button" style="width: 50%;border-radius: 8px;font-size: 18px;border-width: 0px;background: rgb(64,115,159);margin-bottom: 20px;">International Brands</a>
-            </div>
+
+    <div class="row" style="margin-bottom: 100px;">
+        <div class="col d-flex justify-content-center">
+            <a href="/brands" class="btn btn-light" style="margin-left:15px; margin: right 15px; background: rgb(64,115,159); color: white;">
+                Local Brands 🇸🇬
+            </a>
+            <a href="/IntlBrands" class="btn btn-light" style="margin-left:15px; margin: right 15px; ">
+                International Brands
+            </a>
         </div>
     </div>
+
 
     <div class="row d-md-flex d-lg-flex">
         {% if partner %}
@@ -61,7 +62,7 @@
         <div class="col-md-4 brand-card" style="margin-bottom: 0px;padding-right: 12px;">
             <div data-bs-toggle="modal" data-bs-target="#{{brand.name}}Modal" style="cursor: pointer;background: #ffffff;box-shadow: 0px 0px 0px 0px;margin-bottom: 65px;padding-bottom: 10px;">
                 <img src="{{brand.img_link}}" style="height: auto;width: 100%;">
-                <h1 class="text-center" style="font-size: 33px;">Up to {{brand.cashback_amt}}% cashback</h1>
+                <h1 class="text-center" style="font-size: 20px;">Up to {{brand.cashback_amt}}% cashback</h1>
             </div>
         </div>
 
@@ -99,7 +100,7 @@
             <a href="https://www.aphyactive.com/" style="text-decoration: none; color: black;">
                 <div style="cursor: pointer;background: #ffffff;box-shadow: 0px 0px 0px 0px;margin-bottom: 65px;padding-bottom: 10px;">
                     <img src="https://ik.imagekit.io/2bmvtzrfkar/partner_merchants/Aphy_8QLnhk4BHur.png?updatedAt=1633665275272" style="height: auto;width: 100%;">
-                    <h1 class="text-center" style="font-size: 33px;">Coming Soon</h1>
+                    <h1 class="text-center" style="font-size: 20px;">Coming Soon</h1>
                 </div>
             </a>
         </div>
@@ -108,7 +109,7 @@
             <a href="https://www.revamproject.store/" style="text-decoration: none; color: black;">
                 <div style="cursor: pointer;background: #ffffff;box-shadow: 0px 0px 0px 0px;margin-bottom: 65px;padding-bottom: 10px;">
                     <img src="https://ik.imagekit.io/2bmvtzrfkar/partner_merchants/revampProject_jsP8QkM6t.png?updatedAt=1633665275563" style="height: auto;width: 100%;">
-                    <h1 class="text-center" style="font-size: 33px;">Coming Soon</h1>
+                    <h1 class="text-center" style="font-size: 20px;">Coming Soon</h1>
                 </div>
             </a>
         </div>
@@ -117,7 +118,7 @@
             <a href="https://www.singaplex.com/" style="text-decoration: none; color: black;">
                 <div style="cursor: pointer;background: #ffffff;box-shadow: 0px 0px 0px 0px;margin-bottom: 65px;padding-bottom: 10px;">
                     <img src="https://ik.imagekit.io/2bmvtzrfkar/partner_merchants/singa_S05lL3hvf.png?updatedAt=1633665275751" style="height: auto;width: 100%;">
-                    <h1 class="text-center" style="font-size: 33px;">Coming Soon</h1>
+                    <h1 class="text-center" style="font-size: 20px;">Coming Soon</h1>
                 </div>
             </a>
         </div>
@@ -125,32 +126,27 @@
 
 
     <div class="col-md-4 brand-card" data-bs-toggle="modal" data-bs-target="refer-cardModal"   style="margin-bottom: 0px;padding-right: 12px;">
-        <img src="https://ik.imagekit.io/2bmvtzrfkar/icons/Refer_UtPoniLS1.png" style="height: auto;width: 100%;padding-bottom: 47px;">
+        <img src="https://ik.imagekit.io/2bmvtzrfkar/icons/Refer_UtPoniLS1.png" style="height: auto;width: 100%;padding-bottom: 47px;">    
     </div>
-
-    <div class="modal fade" id="refer-cardModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span>How to Start Earning</span>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>1. Share your own link with your friend
-                        <br>
-                        2. Get $5 for every successful friend that joins
-                    </p>
-                </div>
-                <div style="margin-bottom: 8px; margin-left: 10px;">
-                    <div class="field" id="fieldRef">
-                        <input id="uniqueLinkRef" type="text" readonly value="{}">
-                        <button id="copyBtnRef">Copy</button>
-                    </div>
-                </div>
-            </div>
+    <div class="input-group col-md-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Copy Your Link!</span>
         </div>
+        <input id="inputRef" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" readonly value="https://moneymoves.app/ref/{{user.username}}">
+        <button class="btn btn-primary" id="copyBtnRef">Copy</button>
     </div>
 </main>
+
+<script>
+    const myInp = document.getElementById("inputRef");
+    const btnCopy = document.getElementById("copyBtnRef")
+
+    btnCopy.onclick = function(){
+        myInp.select();
+
+        document.execCommand("Copy");
+    }
+</script>
 
 <script type="module">
     import confetti from 'https://cdn.skypack.dev/canvas-confetti';
@@ -201,15 +197,10 @@
     inputDNC = document.getElementById("uniqueLink-Do-Not-Cross");
     copyDNC = document.getElementById("copyBtn-Do-Not-Cross");
 
-    fieldRef = document.getElementById("fieldRef")
-    inputRef = document.getElementById("uniqueLinkRef");
-    copyRef = document.getElementById("copyBtnRef");
-
     
     copyToClipboard(fieldJ, inputJ, copyJ);
     copyToClipboard(fieldDNC, inputDNC, copyDNC);
     copyToClipboard(fieldSV, inputSV, copySV);
-    copyToClipboard(fieldRef, inputRef, copyRef);
 
 </script>
 <script src="{% static 'users/js/brands.js' %}"></script>
