@@ -4,6 +4,27 @@
 {% block extra_head %}<link rel="stylesheet" href="{% static 'referrals/referral_form.css'%}">{% endblock %}
 {% block content %}
 
+<div class="container" style="margin-top: 150px;">
+    <div class="row d-md-flex flex-column justify-content-evenly flex-sm-column flex-md-column flex-lg-row flex-xl-row flex-xxl-row" style="padding-bottom: 0px;margin-bottom: 92px;">
+        <div class="col d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center" style="margin-bottom: 30px;">
+            <div style="box-shadow: 1px 1px 4px rgb(154,154,154);border-top-left-radius: 5px;border-top-right-radius: 5px;width: 80%;padding-bottom: 1px;">
+                <h1 class="text-center" style="background: #40739f;color: rgb(255,255,255);font-size: 33px;padding: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;">Earnings</h1>
+                <h2 class="display-5 text-center" style="color: #4ecb71;">${{user.profile.wallet}}</h2>
+            </div>
+    </div>
+    <div class="col d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center align-items-xl-center" style="margin-bottom: 30px;">
+        <div style="box-shadow: 1px 1px 4px rgb(154,154,154);border-top-left-radius: 5px;border-top-right-radius: 5px;width: 80%;padding-bottom: 1px;">
+            <h1 class="text-center" style="background: #40739f;color: rgb(255,255,255);font-size: 33px;padding: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;">Links Created</h1>
+            <h2 class="display-5 text-center" style="color: #4ecb71;">{change me}</h2>
+        </div>
+    </div>
+    <div class="col d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center align-items-xl-center" style="margin-bottom: 30px;">
+        <div style="box-shadow: 1px 1px 4px rgb(154,154,154);border-top-left-radius: 5px;border-top-right-radius: 5px;width: 80%;padding-bottom: 1px;">
+            <h1 class="text-center" style="background: #40739f;color: rgb(255,255,255);font-size: 33px;padding: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;">Refers</h1>
+            <h2 class="display-5 text-center" style="color: #4ecb71;">{{user.profile.num_of_refers}}</h2>
+        </div>
+    </div>
+</div>
 
 <section class="referral-form-container">
     {% if messages %}
@@ -18,16 +39,6 @@
         
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-    
-            <!-- <label for="id_merchant">Merchant:</label>
-            <select name="merchant" required="" id="id_merchant">
-                <option value="" selected="">---------</option>
-                <option value="Sunday Valley">Sunday Valley</option>
-                <option value="Do Not Cross">DO NOT CROSS</option>
-                <option value="Singaplex">Singaplex</option>
-            </select> -->
-            <!-- need to resolve this select statement -->
-    
             <label for="id_referee_Phone_Number">Friend's Phone Number/PayNow :</label>
             <input type="tel" name="referee_Phone_Number" id="id_referee_Phone_Number" required>
             

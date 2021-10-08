@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from merchants.models import Partner_Merchant
+from phonenumber_field.modelfields import PhoneNumberField
 import api.models
 from datetime import datetime
 from django.db.models.signals import post_save
@@ -20,6 +21,19 @@ def jsonfield_default_value():
         "product": 0
     }
     return productList
+
+class receipts(models.Model):
+    referer = models.ForeignKey(User, on_delete=CASCADE, related_name="RefererReceipts", null=True)
+    referee_phone = PhoneNumberField(null=True, blank=True, unique=True)
+    referee = models.CharField(max_length=150, default="None", null=True)
+    cashback = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    is_verified = models.BooleanField(default=False)
+    receipt_img = models.ImageField()
+    date_published = models.DateTimeField(default=datetime.now, blank=True)
+
+class orphanReceipt(models.Model):
+    referer = models.ForeignKey(User, on_delete=CASCADE, null=True)
+    referral_obj = models.OneToOneField(receipts, on_delete=CASCADE, default=None, null=True)
 
 # Create your models here.
 class Referral(models.Model):

@@ -4,17 +4,19 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import Referral
-from users.models import Profile, OrphanList
+from .models import Referral, orphanReceipt, receipts
+from users.models import Profile
 from django.contrib.auth.decorators import login_required
 
 @login_required
 def wallet_referrals(request):
     refers = Referral.objects.filter(referer_username = request.user.pk)
     referred = Referral.objects.filter(referee_email = request.user.email)
+    receipt = receipts.objects.filter(referer = request.user.pk)
     context = {
         'refers': refers,
-        'referred': referred
+        'referred': referred,
+        'receipt': receipt
     }
     return render(request, 'referrals/my_referrals.html', context)
 
@@ -34,11 +36,6 @@ def UploadReceipt(request):
         if user_phone_num == phone_input:
             messages.info(request, "The phone number you entered is registered under your account. Please fill up a friend's phone number")
             return redirect('/referral/upload')
-
-        #handles a successful case: 1. phone number filled and 2. a valid referee's phone number
-        elif len(phone_input) != 11:
-            messages.info(request, "Please enter a Singapore number (8 digits) without the country code")
-            return redirect('/referral/upload')
         else:
             referer = user
             friend_phone = request.POST['referee_Phone_Number']
@@ -51,15 +48,30 @@ def UploadReceipt(request):
                 for user in list(User.objects.all()):
                     if user.profile.Phone_Number == friend_phone:
                         friend_username = user.username
-                        new_ref_obj = Referral.objects.create(referer = referer, referee_Phone_Number = friend_phone ,  referee_username = friend_username ,receipt = img)
-                        new_ref_obj.save()
-                        break
+                    new_receipt_obj = receipts.objects.create(
+                        referer = referer,
+                        referee_phone = friend_phone,
+                        referee = friend_username,
+                        cashback = 0,
+                        receipt_img = img
+                    )
+                    new_receipt_obj.save()
+                    break
             else:
-                new_referral_obj = Referral.objects.create(referer = referer, referee_Phone_Number = friend_phone , receipt = img)
-                new_referral_obj.save()
-                new_orphan = OrphanList.objects.create(Phone_Number=friend_phone, referral_obj=new_referral_obj)
-                new_orphan.save()
+                new_receipt_obj = receipts.objects.create(
+                    referer = referer,
+                    referee_phone = friend_phone,
+                    referee = "None",
+                    cashback = 0,
+                    receipt_img = img
+                )
+                new_receipt_obj.save()
 
+                new_orphanReceipt = orphanReceipt.objects.create(
+                    referer = referer,
+                    referral_obj = new_receipt_obj
+                )
+                new_orphanReceipt.save()
 
             messages.success(request, "Referral created. Once we verify the transaction, you will be able to see your cashback")
             return redirect('/referral')
