@@ -86,6 +86,8 @@
                     <a href="{{brand.brand_link}}">Check them out here</a>
                     <br>
                     <small style="font-size: 12px;">Note: You will only get your cashback once your friend creates an account</small>
+                    <br>
+                    <a href="/referral/upload" class="btn btn-primary" type="button" style="border-radius: 10px; font-size: 1px;background: rgb(0,185,7);border-width: 0px;">Upload</a>
                 </div>
                 <div style="margin-bottom: 8px; margin-left: 10px;">
                     <input id="inputRef{{brand.brand_name}}" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" readonly value="{{brand.brand_link}}">
@@ -93,9 +95,10 @@
                 </div>
             </div>
             </div>
+            {% endfor %}
+            {% endif %}
         </div>
-        {% endfor %}
-        {% endif %}
+
 
         
         <div class="col-md-4 brand-card" data-bs-toggle="modal" data-bs-target="refer-cardModal"   style="margin-bottom: 0px;padding-right: 12px;">
