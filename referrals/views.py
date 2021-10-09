@@ -39,24 +39,20 @@ def UploadReceipt(request):
         else:
             referer = user
             friend_phone = request.POST['referee_Phone_Number']
-            
             img = request.FILES['receipt']
 
             #check if the referee phone number has an account with us
             #if the referee has an account, create a new referral obj with referee_username as friend phone
             if Profile.objects.filter(Phone_Number=friend_phone).exists():
-                for user in list(User.objects.all()):
-                    if user.profile.Phone_Number == friend_phone:
-                        friend_username = user.username
-                    new_receipt_obj = receipts.objects.create(
-                        referer = referer,
-                        referee_phone = friend_phone,
-                        referee = friend_username,
-                        cashback = 0,
-                        receipt_img = img
-                    )
-                    new_receipt_obj.save()
-                    break
+                referee = Profile.objects.get(Phone_Number = friend_phone)
+                new_receipt_obj = receipts.objects.create(
+                    referer = referer,
+                    referee_phone = referee.Phone_Number,
+                    referee = "There is account",
+                    cashback = 0,
+                    receipt_img = img
+                )
+                new_receipt_obj.save()
             else:
                 new_receipt_obj = receipts.objects.create(
                     referer = referer,

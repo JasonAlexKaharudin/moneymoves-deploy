@@ -24,12 +24,15 @@ def jsonfield_default_value():
 
 class receipts(models.Model):
     referer = models.ForeignKey(User, on_delete=CASCADE, related_name="RefererReceipts", null=True)
-    referee_phone = PhoneNumberField(null=True, blank=True, unique=True)
+    referee_phone = PhoneNumberField(null=True, blank=True)
     referee = models.CharField(max_length=150, default="None", null=True)
     cashback = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     is_verified = models.BooleanField(default=False)
     receipt_img = models.ImageField()
     date_published = models.DateTimeField(default=datetime.now, blank=True)
+
+    def __str__(self):
+        return f"Receipt by {self.referer} at {self.date_published}"
 
 class orphanReceipt(models.Model):
     referer = models.ForeignKey(User, on_delete=CASCADE, null=True)

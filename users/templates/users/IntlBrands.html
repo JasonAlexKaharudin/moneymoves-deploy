@@ -27,7 +27,7 @@
                     <h1 class="text-center" style="background: #40739f;color: rgb(255,255,255);font-size: 20px;padding: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;">Earnings</h1>
                     <h2 class="display-6 text-center" style="color: #4ecb71;">${{user.profile.wallet}}</h2>
                 </div>
-        </div>
+            </div>
         <!-- 
             <div class="col d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center align-items-xl-center" style="margin-bottom: 30px;">
             <div style="box-shadow: 1px 1px 4px rgb(154,154,154);border-top-left-radius: 5px;border-top-right-radius: 5px;width: 80%;padding-bottom: 1px;">
@@ -111,15 +111,39 @@
         {% endfor %}
         {% endif %}
         
-        <div class="col-md-4 brand-card" data-bs-toggle="modal" data-bs-target="refer-cardModal"   style="margin-bottom: 0px;padding-right: 12px;">
+        <div class="col-md-4 brand-card" data-toggle="modal" data-target="#referModal"   style="margin-bottom: 0px;padding-right: 12px;">
             <img src="https://ik.imagekit.io/2bmvtzrfkar/icons/Refer_UtPoniLS1.png" style="height: auto;width: 100%;padding-bottom: 47px;">    
         </div>
-        <div class="input-group col-md-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">Copy Your Link!</span>
+    
+        <div class="modal fade" id="referModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">How to Start Earning</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            1. Share this link with your friend
+                            <br>
+                            2. Get $5 for every successful friend that joins
+                        </p>
+
+                        {% if user.is_authenticated %}
+                        {% else %}
+                        <a href="/register" class="btn btn-primary" type="button" style="border-radius: 10px; font-size: 15px;background: rgb(0,185,7);border-width: 0px;">Sign Up</a>                       
+                        {% endif %}
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="modal-footer">
+                        <input id="inputRef" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" readonly value="https://moneymoves.app/ref/{{user.username}}">
+                        <button class="btn btn-primary" id="copyBtnRef">Copy</button>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
-            <input id="inputRef" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" readonly value="https://moneymoves.app/ref/{{user.username}}">
-            <button class="btn btn-primary" id="copyBtnRef">Copy</button>
         </div>
     </div>
 </main>
