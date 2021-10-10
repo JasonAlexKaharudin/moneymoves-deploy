@@ -40,14 +40,14 @@ def registerWCode(request, code):
             p_reg_form.code = user.username
             p_reg_form.recommended_by = referer
             p_reg_form.wallet = p_reg_form.wallet + round(decimal.Decimal(5),2)
-            p_reg_form.num_of_refers = p_reg_form.num_of_refers + 1
             p_reg_form.save()
 
-            referer.profile.num_of_refers = referer.profile.num_of_refers + 1
-            print("referer's refers: ", referer.profile.num_of_refers)
+            referer.profile.signup_refs = referer.profile.signup_refs + 1
             referer.profile.wallet = referer.profile.wallet + round(decimal.Decimal(5),2)
             referer.profile.save()
             username = user.username      
+
+
             messages.add_message(request, constants.SUCCESS, f"Account created for '{username}'.")
             new_user = authenticate(
                 username=form.cleaned_data['username'],
@@ -55,11 +55,18 @@ def registerWCode(request, code):
             )
 
             subject = 'Thank you for signing up!'
-            html_message = render_to_string('users/register_email.html', {'username': username})
+            html_message = render_to_string('users/followers.html')
             plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
             to = user.email
-            # mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+
+            subject = 'Thank you for Referring!'
+            html_message = render_to_string('users/influencer.html', {'user': referer})
+            plain_message = strip_tags(html_message)
+            from_email = settings.EMAIL_HOST_USER
+            to = referer.profile.email
+            mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
 
             login(request, new_user)
             return redirect('brands')

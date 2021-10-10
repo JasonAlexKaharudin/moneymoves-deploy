@@ -36,8 +36,11 @@ class receipts(models.Model):
 
 class orphanReceipt(models.Model):
     referer = models.ForeignKey(User, on_delete=CASCADE, null=True)
+    referee = models.CharField(max_length=50, default=0)
     referral_obj = models.OneToOneField(receipts, on_delete=CASCADE, default=None, null=True)
 
+    def __str__(self):
+        return f"Referral by {self.referer}"
 # Create your models here.
 class Referral(models.Model):
     referer_username = models.ForeignKey(User, on_delete=CASCADE, related_name="referer", null=True)
@@ -70,7 +73,6 @@ class OrphanList(models.Model):
     def __str__(self):
         return f"{self.merchant.name} {self.orderID}. Referred by: {self.referer_username.username}"   
 
-
 def sendEmailHelper(EmailSubject, template, context, to):
     template = render_to_string(template, context)
     message = strip_tags(template)
@@ -86,7 +88,6 @@ def cashbackCalc(cashbackAmt, price, qty):
 
 def splitCashback(currentCash, newCash):
     return currentCash + round(decimal.Decimal(newCash), 2)
-
 
 @receiver(post_save, sender=Referral)
 def post_save_Referral(sender, instance, created, *args, **kwargs):
@@ -188,3 +189,4 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
                 'referer': instance.referer_username.username, 
                 'cashback': instance.referee_cashback
             }, instance.referee_email)
+

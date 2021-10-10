@@ -14,11 +14,18 @@
   <h1>Cashback Earned:&nbsp;<span style="color: rgb(0,185,7);">${{user.profile.wallet}}</span></h1>
   <p style="color: grey;" >You have referred <span style="color: black;">{{user.profile.num_of_refers}} friends</span> so far!</p>
 
-  <button id="investBtn" class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">Invest</button>
-
+  <div class="img__wrap">
+    <p id="investBtn" class="img__img btn btn-primary" data-toggle="tooltip" data-placement="top" title="Tooltip on top"  style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">
+      Invest 
+    </p>
+    
+    <p class="img__description">Investments are only available for a select number of users at this time.</p>
+  </div>
+  
   <div class="history" style="margin-top: 35px;">
     <h1>Referral History</h1>
     <a href="/referral/upload" class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">Upload</a>
+    <a href="#" id="withdrawBtn" class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">Withdraw</a>
     <br>
     <br>
     {% if refers %}
@@ -78,9 +85,26 @@
   {% endif %}
   </div>
 
-  <button class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(208, 208, 208);border-width: 0px;">Withdraw</button>
+  {% if ref_receipt %}
+  {% for r in ref_receipt %}
+  {% if r.is_verified %}
+  <span class="date">{{ r.date_published }}</span>
+  <p class="">
+    <span class="cashback-earned">+${{ r.cashback }}</span> from {{r.referee}}, purchased from Amazon.
+  </p>
+  {% else %}  
+  <span class="date">{{ r.date_published }}</span>
+  <p>
+    <span class="pending">
+      Uploaded receipt is pending verification.
+    </span>
+  </p>    
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  </div>
 
-  <div class="input-group col-md-4" style="margin-top: 25px;">
+<div class="input-group col-md-4" style="margin-top: 25px;">
     <div class="input-group-prepend">
       <span class="input-group-text" id="inputGroup-sizing-default">Share and get $5</span>
     </div>
@@ -95,6 +119,10 @@
   document.getElementById("investBtn").addEventListener('click', function(){
     confetti();
   })
+
+  document.getElementById("withdrawBtn").addEventListener('click', function(){
+    confetti();
+  })
   const myInp = document.getElementById("inputRef");
   const btnCopy = document.getElementById("copyBtnRef")
 
@@ -104,6 +132,9 @@
       document.execCommand("Copy");
   }
 </script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 {% endblock %}
 
 

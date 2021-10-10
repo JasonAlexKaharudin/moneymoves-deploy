@@ -13,10 +13,12 @@ def wallet_referrals(request):
     refers = Referral.objects.filter(referer_username = request.user.pk)
     referred = Referral.objects.filter(referee_email = request.user.email)
     receipt = receipts.objects.filter(referer = request.user.pk)
+    referred_receipt = receipts.objects.filter(referee_phone = request.user.profile.Phone_Number)
     context = {
         'refers': refers,
         'referred': referred,
-        'receipt': receipt
+        'receipt': receipt,
+        'ref_receipt': referred_receipt
     }
     return render(request, 'referrals/my_referrals.html', context)
 
@@ -44,11 +46,12 @@ def UploadReceipt(request):
             #check if the referee phone number has an account with us
             #if the referee has an account, create a new referral obj with referee_username as friend phone
             if Profile.objects.filter(Phone_Number=friend_phone).exists():
-                referee = Profile.objects.get(Phone_Number = friend_phone)
+                referee_profile = Profile.objects.get(Phone_Number = friend_phone)
+                referee_username = referee_profile.user.username
                 new_receipt_obj = receipts.objects.create(
                     referer = referer,
-                    referee_phone = referee.Phone_Number,
-                    referee = "There is account",
+                    referee_phone = referee_profile.Phone_Number,
+                    referee = referee_username,
                     cashback = 0,
                     receipt_img = img
                 )
@@ -56,8 +59,8 @@ def UploadReceipt(request):
             else:
                 new_receipt_obj = receipts.objects.create(
                     referer = referer,
-                    referee_phone = friend_phone,
-                    referee = "None",
+                    referee_phone = phone_input,
+                    referee = "No account. See Orphan List for associated order",
                     cashback = 0,
                     receipt_img = img
                 )
@@ -65,6 +68,7 @@ def UploadReceipt(request):
 
                 new_orphanReceipt = orphanReceipt.objects.create(
                     referer = referer,
+                    referee = phone_input,
                     referral_obj = new_receipt_obj
                 )
                 new_orphanReceipt.save()
