@@ -76,14 +76,14 @@ input[type=submit]{
   .img__description {
     position: absolute;
     top: 0;
-    bottom: 0;
+    bottom: 10px;
     left: 75px;
     right: 0;
     background: rgba(0, 0, 0, 0.72);
     color: #fff;
     visibility: hidden;
     opacity: 0;
-  
+    font-size: 0.7rem;
     /* transition effect. not necessary */
     transition: opacity .2s, visibility .2s;
   }

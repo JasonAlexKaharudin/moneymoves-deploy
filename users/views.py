@@ -65,7 +65,7 @@ def registerWCode(request, code):
             html_message = render_to_string('users/influencer.html', {'user': referer})
             plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
-            to = referer.profile.email
+            to = referer.email
             mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
 
             login(request, new_user)
