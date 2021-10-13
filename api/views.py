@@ -4,9 +4,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from .models import orderRef, invalidOrder, trackWidget
-from referrals.models import Referral
-from merchants.models import Partner_Merchant
-from merchants.models import webhookOrders
+from merchants.models import Partner_Merchant, webhookOrders
 import time
 import decimal
 
@@ -35,14 +33,10 @@ def ref_api(request):
     orderID = orderID.split(" ")
     orderID = orderID[1]
     orderID = orderID.replace("#", "")
-
     
     refereeEmail = data['email']
     merchant_name = data['merchant']
     merchant_name = Partner_Merchant.objects.get(name = merchant_name)
-
-    # wait 3 seconds until webhook order shows up
-    time.sleep(5)
 
     if referrer.email == refereeEmail:
         #invalid referral. Referee email must be different from your account.
@@ -56,38 +50,17 @@ def ref_api(request):
         )
         invalidOrder_obj.save()
     else:
-        products = {}
-        totalAmt = decimal.Decimal(0)
-        # match the webhook object with merchant name first then filter the referee email with the latest webhook obj
-        obj = webhookOrders.objects.filter(merchant = merchant_name)
-        for x in obj:
-            if x.order_id == int(orderID):
-                products = x.products
-                totalAmt = decimal.Decimal(x.total_price)
-                break
-
+        time.sleep(3)
         # create new orderRef object, create new ReferralObj
         orderRef_obj = orderRef.objects.create(
             referrer = referrer,
             sessionID = sessionID, 
             orderID = orderID, 
-            totalAmt = totalAmt, 
+            totalAmt = decimal.Decimal(0), 
             refereeEmail = refereeEmail, 
             merchant_name = merchant_name,
-            webhook_obj = obj
+            webhook_obj = None
         )
         orderRef_obj.save()
-
-        referral_obj = Referral.objects.create(
-            referer_username = referrer,
-            merchant = merchant_name,
-            sessionID = sessionID,
-            orderID = orderID,
-            totalAmt = totalAmt,
-            referee_email = refereeEmail,
-            products = products,
-            orderRef_obj = orderRef_obj
-        )
-        referral_obj.save()
 
     return Response(status=status.HTTP_200_OK) 
