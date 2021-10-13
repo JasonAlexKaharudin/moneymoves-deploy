@@ -5,24 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{% block title %} {% endblock %}</title>
-    
     <link rel="stylesheet" href="{% static 'users/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{% static 'users/fonts/ionicons.min.css' %}">
     <link rel="stylesheet" href="{% static 'users/Footer-Clean.css' %}">
     <link rel="stylesheet" href="{% static 'users/Navigation-with-Button.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&amp;display=swap">
     <link rel="shortcut icon" href="{% static 'users/img/m-logo.png' %}" type="image/x-icon">
-
-    <!-- AnyTrack Tracking Code -->
-    <script>!function(e,t,n,s,a){(a=t.createElement(n)).async=!0,a.src="https://assets.anytrack.io/jYaT8QCCvscD.js",(t=t.getElementsByTagName(n)[0]).parentNode.insertBefore(a,t),e[s]=e[s]||function(){(e[s].q=e[s].q||[]).push(arguments)}}(window,document,"script","AnyTrack");</script>
-    <!-- End AnyTrack Tracking Code -->
     {% block extra_head %} {% endblock %}
 </head>
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="font-family: 'DM Sans', sans-serif;">
         <div class="container">
-            
             <a class="navbar-brand" href="/" style="padding-top: 5px;font-size: 23.2px;padding-left: 3.3px;">
                 <img style="padding-bottom: 8px;" src="{% static 'users/img/m-logo.png' %}">
                 Money<span style="color: rgb(64,115,159);">Moves</span>
@@ -38,11 +32,10 @@
                     <li class="nav-item"><a class="nav-link" href="/referral/" style="font-size: 17.5px;">Wallet</a></li>
                     <li class="nav-item"><a class="nav-link" href="/profile/" style="font-size: 17.5px;">Profile</a></li>
                     {% else %}
-                    <li class="nav-item"><a class="nav-link" href="/" style="font-size: 17.5px;">How it Works</a></li>
+                    {% block  navlink %}{% endblock %}
                     <li class="nav-item"><a class="nav-link" href="https://moves.money/merchant" style="font-size: 17.5px;">Merchants</a></li>
                     {% endif %}
                     <li class="nav-item"><a class="nav-link" href="https://rainy-mint-11d.notion.site/MoneyMoves-FAQ-00239b8983544167b533490fdddcdf8e" style="font-size: 17.5px;">FAQs</a></li>
-                    
                 </ul>
                 {% if user.is_authenticated %}
                 <span class="navbar-text actions"> 

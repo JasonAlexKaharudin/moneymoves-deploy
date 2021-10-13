@@ -4,6 +4,9 @@
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'users/brand.css' %}">
 {% endblock %}
+{% block  navlink %}
+<li class="nav-item"><a class="nav-link" href="#howitworks" style="font-size: 17.5px;">How It Works</a></li>
+{% endblock %}
 {% block content %}
 {% if messages %}
     {% for message in messages %}

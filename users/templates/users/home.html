@@ -1,6 +1,10 @@
 {% extends "users/base.html" %}
 {% load static %}
 {% block title %}Money Moves{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'users/home.css'%}">{% endblock %}
+{% block  navlink %}
+<li class="nav-item"><a class="nav-link" href="#howitworks" style="font-size: 17.5px;">How It Works</a></li>
+{% endblock %}
 {% block content %}
 
 <header class="d-lg-flex d-xl-flex justify-content-lg-center justify-content-xl-center" style="margin-top: 113px;margin-bottom: 113px;margin-right: 50px;margin-left: 50px;">
@@ -11,21 +15,26 @@
         <div class="col-md-6 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center">
             <div class="d-flex d-sm-flex d-xxl-flex flex-column align-items-center align-items-sm-center justify-content-xxl-center align-items-xxl-center">
                 <h1 style="font-size: 31.9px;text-align: center;">With Money<span style="color: rgb(64,115,159);">Moves</span>&nbsp;all you need to do is earn cashback and we'll handle the investing</h1>
-                <h1 style="font-size: 31.9px;margin-top: 49px;text-align: center;">Cashback in your Money<span style="color: rgb(64,115,159);">Moves</span>&nbsp;wallet earns up to 10%!</h1><a href="/register" class="btn btn-primary" type="button" style="font-size: 24px;margin-top: 38px;background: rgb(66,115,162);border-width: 0px;">Start Earning</a>
+                <h1 style="font-size: 31.9px;margin-top: 49px;text-align: center;">Cashback in your Money<span style="color: rgb(64,115,159);">Moves</span>&nbsp;wallet earns up to 10%!</h1>
+                <a href="/register" id="startearningbtn" class="btn btn-primary" type="button" style="font-size: 24px;margin-top: 38px;background: rgb(66,115,162);border-width: 0px;">Start Earning</a>
             </div>
         </div>
-        <div class="col-12 col-md-6 d-flex d-sm-flex d-md-flex justify-content-center justify-content-sm-center align-items-lg-center align-items-xl-center justify-content-xxl-center"><img class="d-flex justify-content-center align-items-center" src="https://ik.imagekit.io/2bmvtzrfkar/icons/header_asset_qzr6YbP32.png?updatedAt=1633558046695"></div>
+        <div class="col-12 col-md-6 d-flex d-sm-flex d-md-flex justify-content-center justify-content-sm-center align-items-lg-center align-items-xl-center justify-content-xxl-center">
+            <img id="mainpic" class="d-flex justify-content-center align-items-center" src="https://ik.imagekit.io/2bmvtzrfkar/icons/header_asset_qzr6YbP32.png?updatedAt=1633558046695">
+        </div>
     </div>
 </div>
 <div class="container" style="padding-top: 150px; padding-right: 50px;padding-left: 50px;">
     <div class="row d-flex">
-        <div class="col-md-12 d-sm-flex d-md-flex d-lg-flex justify-content-sm-center justify-content-md-center justify-content-lg-center" style="margin-top: 75px;"><img class="d-flex d-lg-flex" src="https://ik.imagekit.io/2bmvtzrfkar/icons/partners_8S3I6WuNq.png" style="width: 105%;"></div>
+        <div class="col-md-12 d-sm-flex d-md-flex d-lg-flex justify-content-sm-center justify-content-md-center justify-content-lg-center" style="margin-top: 75px;">
+            <img id="brandshero" class="d-flex d-lg-flex" src="https://ik.imagekit.io/2bmvtzrfkar/icons/partners_8S3I6WuNq.png" style="width: 105%;">
+        </div>
     </div>
 </div>
 <main style="padding-right: 50px;padding-left: 50px;padding-top: 250px;padding-bottom: 50px;">
     <div class="row">
         <div class="col d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-xl-center">
-            <h1 style="text-align: center;font-size: 76px;">How it Works</h1>
+            <h1 style="text-align: center;font-size: 76px;" id="howitworks" class="howitworks">How it Works</h1>
         </div>
     </div>
     <section>

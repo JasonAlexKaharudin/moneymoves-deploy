@@ -15,16 +15,9 @@
         </div>
         {% endif %}
 
-
         <h1 class="profile-heading">Profile Info</h1>
         <h3>Username: <span class="inputField">{{user.username}}</span></h3>
         <h3>Email: <span class="inputField">{{user.email}}</span></h3>
-
-        {% if user.profile.Phone_Number == ''%}
-        <h3>Phone Number: <a href="/phone" class="inputField">Fill up your phone number to receive cashback</a></h3>
-        {% else %}
-        <h3>Phone Number: <span class="inputField">{{user.profile.Phone_Number}}</span></h3>
-        {% endif %}
         
         <form class="profile-form" method="post">
             {% csrf_token %}
