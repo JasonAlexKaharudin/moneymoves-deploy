@@ -30,13 +30,19 @@ def ref_api(request):
     referrer = data['username']
     referrer = User.objects.get(username = referrer)
     sessionID = data['sesh']
+
     orderID = data['orderID']
+    orderID = orderID.split(" ")
+    orderID = orderID[1]
+    orderID = orderID.replace("#", "")
+
+    
     refereeEmail = data['email']
     merchant_name = data['merchant']
     merchant_name = Partner_Merchant.objects.get(name = merchant_name)
 
     # wait 3 seconds until webhook order shows up
-    time.sleep(3)
+    time.sleep(5)
 
     if referrer.email == refereeEmail:
         #invalid referral. Referee email must be different from your account.
@@ -51,7 +57,7 @@ def ref_api(request):
         invalidOrder_obj.save()
     else:
         # match the webhook object with merchant name first then filter the referee email with the latest webhook obj
-        obj = webhookOrders.objects.filter(name = merchant_name)
+        obj = webhookOrders.objects.filter(merchant = merchant_name)
         for x in obj:
             if x.order_id == int(orderID):
                 products = x.products
