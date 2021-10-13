@@ -56,6 +56,8 @@ def ref_api(request):
         )
         invalidOrder_obj.save()
     else:
+        products = {}
+        totalAmt = decimal.Decimal(0)
         # match the webhook object with merchant name first then filter the referee email with the latest webhook obj
         obj = webhookOrders.objects.filter(merchant = merchant_name)
         for x in obj:
