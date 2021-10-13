@@ -30,7 +30,7 @@ class receipts(models.Model):
     is_verified = models.BooleanField(default=False)
     receipt_img = models.ImageField()
     date_published = models.DateTimeField(default=datetime.now, blank=True)
-
+    
     def __str__(self):
         return f"Receipt by {self.referer} at {self.date_published}"
 
