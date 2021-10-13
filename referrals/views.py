@@ -6,7 +6,11 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Referral, orphanReceipt, receipts
 from users.models import Profile
+from django.template.loader import render_to_string
+from django.core import mail
+from django.utils.html import strip_tags
 from django.contrib.auth.decorators import login_required
+from webapp import settings
 
 @login_required
 def wallet_referrals(request):
@@ -56,6 +60,21 @@ def UploadReceipt(request):
                     receipt_img = img
                 )
                 new_receipt_obj.save()
+
+                subject = 'Thank you for Referring!'
+                html_message = render_to_string('referrals/success-referral-copy.html', {'user': referer})
+                plain_message = strip_tags(html_message)
+                from_email = settings.EMAIL_HOST_USER
+                to = referer.email
+                mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+
+                subject = 'Thank you for shopping!'
+                html_message = render_to_string('referrals/success-referee-copy.html', {'user': referee_profile.user})
+                plain_message = strip_tags(html_message)
+                from_email = settings.EMAIL_HOST_USER
+                to = referee_profile.user.email
+                mail.send_mail(subject, plain_message, from_email,[to], html_message = html_message)
+
             else:
                 new_receipt_obj = receipts.objects.create(
                     referer = referer,
