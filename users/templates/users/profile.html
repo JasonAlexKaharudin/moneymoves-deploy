@@ -1,5 +1,9 @@
 {% extends "users/base.html" %}
 {% load static %}
+{% block title %}Profile Page{% endblock %}
+{% block extra_meta %}
+<meta name="description" content="MoneyMoves Profile Page. Refer your friends and get $5!">
+{% endblock %}
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'users/profile.css' %}">
 {% endblock %}

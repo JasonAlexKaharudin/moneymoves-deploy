@@ -1,7 +1,12 @@
 {% extends "users/base.html" %}
 {% load static %}
 {% block title %}Money Moves{% endblock %}
-{% block extra_head %}<link rel="stylesheet" href="{% static 'users/home.css'%}">{% endblock %}
+{% block extra_meta %}
+<meta name="description" content="MoneyMoves is a Fintech company that helps invest users cashback earned shopping on our platform">
+{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'users/home.css'%}">
+{% endblock %}
 {% block  navlink %}
 <li class="nav-item"><a class="nav-link" href="#howitworks" style="font-size: 17.5px;">How It Works</a></li>
 {% endblock %}
@@ -20,7 +25,7 @@
             </div>
         </div>
         <div class="col-12 col-md-6 d-flex d-sm-flex d-md-flex justify-content-center justify-content-sm-center align-items-lg-center align-items-xl-center justify-content-xxl-center">
-            <img id="mainpic" class="d-flex justify-content-center align-items-center" src="https://ik.imagekit.io/2bmvtzrfkar/icons/header_asset_qzr6YbP32.png?updatedAt=1633558046695">
+            <img id="mainpic" class="d-flex justify-content-center align-items-center" src="https://ik.imagekit.io/2bmvtzrfkar/icons/header_asset_qzr6YbP32.png?updatedAt=1633558046695" alt="phone of money moves picture">
         </div>
     </div>
 </div>
@@ -40,19 +45,22 @@
     <section>
         <div class="row">
             <div class="col-lg-4 d-sm-flex d-md-flex justify-content-sm-center justify-content-md-center align-items-md-center">
-                <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex flex-column justify-content-center align-items-center align-items-sm-center align-items-md-center align-items-lg-center align-items-xl-center justify-content-xxl-center align-items-xxl-center" style="margin-top: 40px;"><img src="https://ik.imagekit.io/2bmvtzrfkar/icons/3_G987o430P.png?updatedAt=1633633786566" style="width: 85%;">
+                <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex flex-column justify-content-center align-items-center align-items-sm-center align-items-md-center align-items-lg-center align-items-xl-center justify-content-xxl-center align-items-xxl-center" style="margin-top: 40px;">
+                    <img src="https://ik.imagekit.io/2bmvtzrfkar/icons/3_G987o430P.png?updatedAt=1633633786566" style="width: 85%;" alt="step1 of how it works">
                     <h1 class="text-center" style="font-size: 32px;margin-top: 32px;">1. Get your link</h1>
                     <p class="text-center" style="font-size: 21px;">Choose your brand, copy the link and share it with your friend.</p>
                 </div>
             </div>
             <div class="col-lg-4 offset-lg-0 d-sm-flex d-md-flex justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center">
-                <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex flex-column align-items-center align-items-sm-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center" style="margin-top: 36px;"><img class="d-lg-flex d-xl-flex justify-content-xl-center" src="https://ik.imagekit.io/2bmvtzrfkar/icons/2_N9pijnEkX.png?updatedAt=1633633786425" style="width: 85%;">
+                <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex flex-column align-items-center align-items-sm-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center" style="margin-top: 36px;">
+                    <img class="d-lg-flex d-xl-flex justify-content-xl-center" src="https://ik.imagekit.io/2bmvtzrfkar/icons/2_N9pijnEkX.png?updatedAt=1633633786425" style="width: 85%;" alt="step2 of howitworks">
                     <h1 class="text-center" style="font-size: 32px;margin-top: 32px;">2. Shop</h1>
                     <p class="text-center" style="font-size: 21px;">Once your friend makes a purchase, both of you split the cashback. </p>
                 </div>
             </div>
             <div class="col-lg-4 offset-lg-0 d-sm-flex d-md-flex justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center">
-                <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex flex-column align-items-center align-items-sm-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center" style="margin-top: 40px;"><img src="https://ik.imagekit.io/2bmvtzrfkar/icons/1_E5XWU4f3wP9.png?updatedAt=1633633786471" style="width: 85%;">
+                <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex flex-column align-items-center align-items-sm-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center" style="margin-top: 40px;">
+                    <img src="https://ik.imagekit.io/2bmvtzrfkar/icons/1_E5XWU4f3wP9.png?updatedAt=1633633786471" style="width: 85%;" alt="step3 of moneymoves">
                     <h1 class="text-center" style="font-size: 32px;margin-top: 32px;">3. Earn &amp; Invest</h1>
                     <p class="text-center" style="font-size: 21px;">Your cashback will be credited to your MoneyMoves wallet. </p>
                 </div>
@@ -70,17 +78,20 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-10 offset-xl-1 d-flex d-xxl-flex flex-column justify-content-center align-items-center flex-sm-column align-items-sm-center flex-md-column flex-lg-row flex-xl-row justify-content-xl-center align-items-xl-center flex-xxl-row justify-content-xxl-center align-items-xxl-center" style="margin-top: 47px;"><img src="https://ik.imagekit.io/2bmvtzrfkar/icons/scream_1__tdCUdL4PF.png?updatedAt=1633559841238">
+                <div class="col-xl-10 offset-xl-1 d-flex d-xxl-flex flex-column justify-content-center align-items-center flex-sm-column align-items-sm-center flex-md-column flex-lg-row flex-xl-row justify-content-xl-center align-items-xl-center flex-xxl-row justify-content-xxl-center align-items-xxl-center" style="margin-top: 47px;">
+                    <img src="https://ik.imagekit.io/2bmvtzrfkar/icons/scream_1__tdCUdL4PF.png?updatedAt=1633559841238" alt="illustration of screaming man in distress">
                     <h1 style="font-size: 22.9px;text-align: center;margin-top: 45px;padding-left: 35px;">At Money<span style="font-family: 'DM Sans', sans-serif;font-size: 22.9px;color: rgb(63,117,158);">Moves</span>, we recognise that investing can be overwhelming.</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xl-10 offset-xl-1 d-flex flex-column-reverse align-items-center flex-sm-column-reverse justify-content-sm-center align-items-sm-center flex-md-column-reverse flex-lg-row flex-xl-row align-items-xl-center flex-xxl-row" style="margin-top: 47px;">
-                    <h1 style="font-size: 22.9px;text-align: center;margin-top: 45px;">We take care of the investments so you can focus on shopping and sharing.</h1><img src="https://ik.imagekit.io/2bmvtzrfkar/icons/ecommerce_1__SVjy7ATuY.png?updatedAt=1633559840023">
+                    <h1 style="font-size: 22.9px;text-align: center;margin-top: 45px;">We take care of the investments so you can focus on shopping and sharing.</h1>
+                    <img src="https://ik.imagekit.io/2bmvtzrfkar/icons/ecommerce_1__SVjy7ATuY.png?updatedAt=1633559840023" alt="illustration of e commerce">
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-10 offset-xl-1 d-flex flex-column align-items-center flex-sm-column align-items-sm-center flex-md-column flex-lg-row flex-xl-row align-items-xl-center flex-xxl-row" style="margin-top: 47px;"><img src="https://ik.imagekit.io/2bmvtzrfkar/icons/travel_1__nShms_sOF.png?updatedAt=1633559869107">
+                <div class="col-xl-10 offset-xl-1 d-flex flex-column align-items-center flex-sm-column align-items-sm-center flex-md-column flex-lg-row flex-xl-row align-items-xl-center flex-xxl-row" style="margin-top: 47px;">
+                    <img src="https://ik.imagekit.io/2bmvtzrfkar/icons/travel_1__nShms_sOF.png?updatedAt=1633559869107" alt="illustration of global world, travelling">
                     <h1 style="font-size: 22.9px;margin-top: 45px;text-align: center;">Use the money for your next holiday, next purchase or just let it grow for your future self. </h1>
                 </div>
             </div>

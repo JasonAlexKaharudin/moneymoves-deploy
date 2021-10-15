@@ -1,5 +1,8 @@
 {% extends "users/base.html" %}
 {% block title %}Brands{% endblock %}
+{% block extra_meta %}
+<meta name="description" content="Start the easiest financial journey with our brands.">
+{% endblock %}
 {% load static %}
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'users/brand.css' %}">
@@ -64,7 +67,7 @@
         {% for brand in partner %}    
         <div class="col-md-4 brand-card" style="margin-bottom: 0px;padding-right: 12px;">
             <div data-bs-toggle="modal" data-bs-target="#{{brand.name}}Modal" style="cursor: pointer;background: #ffffff;box-shadow: 0px 0px 0px 0px;margin-bottom: 65px;padding-bottom: 10px;">
-                <img src="{{brand.img_link}}" style="height: auto;width: 100%;">
+                <img src="{{brand.img_link}}" style="height: auto;width: 100%;" alt="brand image of {{brand.name}}">
                 <h1 class="text-center" style="font-size: 20px;">Up to {{brand.cashback_amt}}% cashback</h1>
             </div>
         </div>
@@ -103,7 +106,7 @@
         <div class="col-md-4 brand-card" style="margin-bottom: 0px;padding-right: 12px;">
             <a href="https://www.aphyactive.com/" style="text-decoration: none; color: black;">
                 <div style="cursor: pointer;background: #ffffff;box-shadow: 0px 0px 0px 0px;margin-bottom: 65px;padding-bottom: 10px;">
-                    <img src="https://ik.imagekit.io/2bmvtzrfkar/partner_merchants/Aphy_8QLnhk4BHur.png?updatedAt=1633665275272" style="height: auto;width: 100%;">
+                    <img src="https://ik.imagekit.io/2bmvtzrfkar/partner_merchants/Aphy_8QLnhk4BHur.png?updatedAt=1633665275272" style="height: auto;width: 100%;" alt="brand image of aphy active">
                     <h1 class="text-center" style="font-size: 20px;">Coming Soon</h1>
                 </div>
             </a>
@@ -112,7 +115,7 @@
         <div class="col-md-4 brand-card" style="margin-bottom: 0px;padding-right: 12px;">
             <a href="https://www.revamproject.store/" style="text-decoration: none; color: black;">
                 <div style="cursor: pointer;background: #ffffff;box-shadow: 0px 0px 0px 0px;margin-bottom: 65px;padding-bottom: 10px;">
-                    <img src="https://ik.imagekit.io/2bmvtzrfkar/partner_merchants/revampProject_jsP8QkM6t.png?updatedAt=1633665275563" style="height: auto;width: 100%;">
+                    <img src="https://ik.imagekit.io/2bmvtzrfkar/partner_merchants/revampProject_jsP8QkM6t.png?updatedAt=1633665275563" style="height: auto;width: 100%;" alt="brand image of revamp">
                     <h1 class="text-center" style="font-size: 20px;">Coming Soon</h1>
                 </div>
             </a>
@@ -121,14 +124,14 @@
         <div class="col-md-4 brand-card" style="margin-bottom: 0px;padding-right: 12px;">
             <a href="https://www.singaplex.com/" style="text-decoration: none; color: black;">
                 <div style="cursor: pointer;background: #ffffff;box-shadow: 0px 0px 0px 0px;margin-bottom: 65px;padding-bottom: 10px;">
-                    <img src="https://ik.imagekit.io/2bmvtzrfkar/partner_merchants/singa_S05lL3hvf.png?updatedAt=1633665275751" style="height: auto;width: 100%;">
+                    <img src="https://ik.imagekit.io/2bmvtzrfkar/partner_merchants/singa_S05lL3hvf.png?updatedAt=1633665275751" style="height: auto;width: 100%;" alt="brand image of singaplex">
                     <h1 class="text-center" style="font-size: 20px;">Coming Soon</h1>
                 </div>
             </a>
         </div>
 
         <div class="col-md-4 brand-card" data-toggle="modal" data-target="#referModal"   style="margin-bottom: 0px;padding-right: 12px;">
-            <img src="https://ik.imagekit.io/2bmvtzrfkar/icons/Refer_UtPoniLS1.png" style="height: auto;width: 100%;padding-bottom: 47px;">    
+            <img src="https://ik.imagekit.io/2bmvtzrfkar/icons/Refer_UtPoniLS1.png" style="height: auto;width: 100%;padding-bottom: 47px;" alt="brand image of refer a friend">    
         </div>
     
         <div class="modal fade" id="referModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.messages import constants
 from django.contrib.auth import authenticate, login
-from django.utils import html
 from merchants.models import Amazon_Brand, Partner_Merchant
 from .forms import UserUpdateForm, UserRegisterForm, PhoneForm
 from django.contrib.auth.decorators import login_required
@@ -12,6 +11,8 @@ from django.core import mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from webapp import settings
+from django.views.decorators.http import require_GET
+from django.http import HttpResponse
 
 def home(request):
     context = {
@@ -148,3 +149,11 @@ def register(request):
         'p_reg_form': p_reg_form
     }
     return render(request, 'users/register.html', context)
+
+@require_GET
+def robots_txt(request):
+    lines = [
+        "User-Agent: *",
+        "Disallow: /admin/",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")

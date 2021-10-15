@@ -7,6 +7,7 @@
     {% analytical_head_bottom %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% block extra_meta %}{% endblock %}
     <title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'users/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{% static 'users/fonts/ionicons.min.css' %}">
@@ -22,7 +23,7 @@
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="font-family: 'DM Sans', sans-serif;">
         <div class="container">
             <a class="navbar-brand" href="/" style="padding-top: 5px;font-size: 23.2px;padding-left: 3.3px;">
-                <img style="padding-bottom: 8px;" src="{% static 'users/img/m-logo.png' %}">
+                <img style="padding-bottom: 8px;" src="{% static 'users/img/m-logo.png' %}" alt="logo of moneymoves">
                 Money<span style="color: rgb(64,115,159);">Moves</span>
             </a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
