@@ -49,7 +49,7 @@ def post_save_webhook(sender, instance, created, *args, **kwargs):
         orderRef_obj.save()
 
         #create a new referral object
-        ref_obj = referrals.models.Referral.create(
+        ref_obj = referrals.models.Referral.objects.create(
             referer_username = orderRef_obj.referrer,
             merchant = instance.merchant,
             sessionID = orderRef_obj.sessionID,

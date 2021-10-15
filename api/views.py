@@ -50,7 +50,6 @@ def ref_api(request):
         )
         invalidOrder_obj.save()
     else:
-        time.sleep(3)
         # create new orderRef object, create new ReferralObj
         orderRef_obj = orderRef.objects.create(
             referrer = referrer,

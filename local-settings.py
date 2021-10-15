@@ -48,8 +48,10 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'rest_framework',
     'corsheaders',
+    'analytical'
 ]
 
+CLICKY_SITE_ID = '101337032'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
