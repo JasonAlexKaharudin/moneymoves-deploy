@@ -18,7 +18,7 @@
   <p style="color: grey;" >You have referred <span style="color: black;">{{user.profile.num_of_refers}} friends</span> so far!</p>
 
   <div class="img__wrap">
-    <p id="investBtn" class="img__img btn btn-primary" data-toggle="tooltip" data-placement="top" title="Tooltip on top"  style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">
+    <p id="investBtn" class="img__img btn btn-primary" data-toggle="tooltip" data-placement="top" title="Tooltip on top"  style="border-radius: 13px;font-weight: bold; background: rgb(0,185,7);border-width: 0px;">
       Invest 
     </p>
     
@@ -27,8 +27,35 @@
   
   <div class="history" style="margin-top: 35px;">
     <h1>Referral History</h1>
-    <a href="/referral/upload" class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">Upload</a>
-    <a href="#" id="withdrawBtn" class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold;font-size: 18px;background: rgb(0,185,7);border-width: 0px;">Withdraw</a>
+    <a href="/referral/upload" class="btn btn-primary" type="button" style="border-radius: 13px;font-weight: bold; background: rgb(0,185,7);border-width: 0px;">Upload</a>
+
+    <button id="modelBtn-tm" class="btn btn-primary" style="border-radius: 13px; font-weight: bold; background: rgb(0,185,7); border-width: 0px;">
+      Withdraw
+    </button>
+
+    <div id="simpleModal" class="modal-tm">
+      <div class="modal-tm-content">
+        <div class="modal-tm-header" style="margin-bottom: 15px; border-bottom: 1px solid rgb(160, 160, 160);">
+          <h2 style="margin: 0;">How to withdraw your cashback</h2>
+          <span class="closeBtn-tm">&times;</span>        
+        </div>
+        <div class="modal-tm-body">
+          <p>
+            Cashback earned from new signs ups will be eligible once:
+            <ul>
+              <li>New sign ups make <span style="text-decoration: underline;">3 successful product recommendations</span></li>
+              <li>A recommendation is successful once your friend uses your product link to purchase an item from one of our brands</li>
+            </ul>
+          </p>
+        </div>
+        <div class="modal-tm-footer">
+          <small style="font-size: 0.8rem;">
+            The rationale behind these requirements is to reduce the amount of fraud (1 person with multiple accounts). Thank you for your understanding. 😊
+          </small>
+        </div>
+      </div>
+    </div>
+
     <br>
     <br>
     {% if refers %}
@@ -112,7 +139,7 @@
       <span class="input-group-text" id="inputGroup-sizing-default">Share and get $5</span>
     </div>
     <input id="inputRef" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" readonly value="https://moneymoves.app/ref/{{user.username}}">
-    <button class="btn btn-primary" id="copyBtnRef">Copy</button>
+    <button class="btn btn-primary" id="copyBtnRef" style="background-color: rgb(23, 109, 184); border: 0px;">Copy</button>
 </div>
 </main>
 
@@ -123,9 +150,6 @@
     confetti();
   })
 
-  document.getElementById("withdrawBtn").addEventListener('click', function(){
-    confetti();
-  })
   const myInp = document.getElementById("inputRef");
   const btnCopy = document.getElementById("copyBtnRef")
 
@@ -134,6 +158,9 @@
       confetti();
       document.execCommand("Copy");
   }
+</script>
+
+<script src="{% static 'referrals/js/wallet.js' %}">
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

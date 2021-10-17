@@ -1,11 +1,11 @@
+from django.db import connections
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from .models import orderRef, invalidOrder, trackWidget
-from merchants.models import Partner_Merchant, webhookOrders
-import time
+from merchants.models import Partner_Merchant
 import decimal
 
 @api_view(['POST']) 
@@ -20,6 +20,21 @@ def widget(request):
     )
     tracking.save()
     return Response(status=status.HTTP_200_OK) 
+
+
+@api_view(['POST']) 
+def links_generated(request):
+    data = request.data
+    username = data['username'];
+    clicks = data['clicks'];
+
+    print(clicks)
+    if User.objects.filter(username = username).exists():
+        curr_user = User.objects.get(username = username)
+        curr_user.profile.links_created = curr_user.profile.links_created + 1;
+        curr_user.profile.save()
+    return Response(status=status.HTTP_200_OK) 
+
 
 @api_view(['POST']) 
 def ref_api(request):

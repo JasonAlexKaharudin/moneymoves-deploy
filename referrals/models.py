@@ -78,9 +78,10 @@ def sendEmailHelper(EmailSubject, template, context, to):
     message = strip_tags(template)
     mail.send_mail(EmailSubject, message, settings.EMAIL_HOST_USER, [to], html_message=template);
 
-def updateWallet(user, cashback):
+def updateWallet(user, cashback, isReferer):
         user.profile.wallet = user.profile.wallet + cashback
-        user.profile.num_of_refers = user.profile.num_of_refers + 1
+        if isReferer == True:
+            user.profile.num_of_refers = user.profile.num_of_refers + 1
         user.profile.save()
 
 def cashbackCalc(cashbackAmt, price, qty):
@@ -141,14 +142,14 @@ def post_save_Referral(sender, instance, created, *args, **kwargs):
 
             #update referrer wallet
             referer = instance.referer_username
-            updateWallet(referer, instance.referer_cashback)
+            updateWallet(referer, instance.referer_cashback, True)
 
         #check the if refereeEmail has an account 
         #if exist, then update wallet of referee, 
         #if dne, then send email to them and populate orphan list
         if User.objects.filter(email=instance.referee_email).exists():
             referee = User.objects.filter(email=instance.referee_email)[0]
-            updateWallet(referee, instance.referee_cashback)
+            updateWallet(referee, instance.referee_cashback, False)
 
             instance.referee_username = referee.username
             instance.referee_has_account = True

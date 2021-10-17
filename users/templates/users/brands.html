@@ -157,7 +157,7 @@
                     </div>
                     {% if user.is_authenticated %}
                     <div class="modal-footer">
-                        <input id="inputRef" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" readonly value="https://moneymoves.app/ref/{{user.username}}">
+                        <input id="inputRef" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" readonly value="https://moneymoves.app/ref/{{user.username}}" username="{{user.username}}">
                         <button class="btn btn-primary" id="copyBtnRef">Copy</button>
                     </div>
                     {% endif %}
@@ -166,17 +166,6 @@
         </div>
     </div>
 </main>
-
-<script>
-    const myInp = document.getElementById("inputRef");
-    const btnCopy = document.getElementById("copyBtnRef")
-
-    btnCopy.onclick = function(){
-        myInp.select();
-
-        document.execCommand("Copy");
-    }
-</script>
 
 <script type="module">
     import confetti from 'https://cdn.skypack.dev/canvas-confetti';
@@ -196,44 +185,9 @@
     document.getElementById("copyBtnRef").addEventListener('click', function(){
         confetti();
     })
-
 </script>
 
-<script>
-    function copyToClipboard(field, input, copy){
-        copy.onclick = ()=>{
-            input.select(); //select input value
-            if(document.execCommand("copy")){ //if the selected text copy
-                field.classList.add("active");
-                copy.innerText = "Copied";
-                setTimeout(()=>{
-                window.getSelection().removeAllRanges(); //remove selection from document
-                field.classList.remove("active");
-                copy.innerText = "Copy";
-                }, 3000);
-            }
-        }
-    }
-
-    fieldSV = document.getElementById("field-Sunday-Valley")
-    inputSV = document.getElementById("uniqueLink-Sunday-Valley");
-    copySV = document.getElementById("copyBtn-Sunday-Valley");
-
-    fieldJ = document.getElementById("field-Jemaime")
-    inputJ = document.getElementById("uniqueLink-Jemaime");
-    copyJ = document.getElementById("copyBtn-Jemaime");
-
-    fieldDNC = document.getElementById("field-Do-Not-Cross")
-    inputDNC = document.getElementById("uniqueLink-Do-Not-Cross");
-    copyDNC = document.getElementById("copyBtn-Do-Not-Cross");
-
-    
-    copyToClipboard(fieldJ, inputJ, copyJ);
-    copyToClipboard(fieldDNC, inputDNC, copyDNC);
-    copyToClipboard(fieldSV, inputSV, copySV);
-
-</script>
-<!-- <script src="{% static 'users/js/brands.js' %}"></script> -->
+<script src="{% static 'referrals/js/tracklinks.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

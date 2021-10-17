@@ -1,0 +1,48 @@
+.modal-tm{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: "DM Sans", sans-serif;
+}
+
+.modal-tm-content{
+    background-color: #f4f4f4;
+    margin: 20% auto;
+    padding: 20px;
+    width: 70%;
+    border-radius: 13px;
+    animation-name: modalopen;
+    animation-duration: 0.5s;
+}
+
+.modal-tm-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-tm-body{
+    padding-bottom: 10px 20px;
+}
+
+@keyframes modalopen {
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+
+.closeBtn-tm{
+    color: #ccc;
+    font-size: 30px;
+}
+
+.closeBtn-tm:hover, .closeBtn:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
