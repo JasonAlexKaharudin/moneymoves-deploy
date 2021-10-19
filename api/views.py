@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
+from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import orderRef, invalidOrder, trackWidget
 from merchants.models import Partner_Merchant
@@ -34,7 +35,6 @@ def links_generated(request):
         curr_user.profile.links_created = curr_user.profile.links_created + 1;
         curr_user.profile.save()
     return Response(status=status.HTTP_200_OK) 
-
 
 @api_view(['POST']) 
 def ref_api(request):
@@ -78,3 +78,20 @@ def ref_api(request):
         orderRef_obj.save()
 
     return Response(status=status.HTTP_200_OK) 
+
+def involveAsia(request):
+    user_id = request.GET['uid']
+    order_id = request.GET['order_id']
+    amount = request.GET['amt']
+    date = request.GET['date']
+    merchant = request.GET['merchant']
+    conversion_id = request.GET['cid']
+
+    print(user_id)
+    print(order_id)
+    print(amount)
+    print(date)
+    print(merchant)
+    print(conversion_id)
+
+    return render(request, 'users/home.html', {})

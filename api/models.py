@@ -35,3 +35,11 @@ class trackWidget(models.Model):
 
     def __str__(self):
         return f"{self.merchant}. clicks: {self.numClicks}"
+
+# class involveAsia_PostbackURL(models.Model):
+#     merchant = models.CharField(max_length=200)
+#     user_id = models.CharField(max_length=200)
+#     order_id = models.IntegerField()
+#     conversion_id = models.IntegerField()
+#     date = models.DateTimeField(default = datetime.now, blank=True)
+#     amt = models.CharField(max_length=200)
