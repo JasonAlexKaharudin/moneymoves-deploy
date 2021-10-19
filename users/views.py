@@ -149,11 +149,3 @@ def register(request):
         'p_reg_form': p_reg_form
     }
     return render(request, 'users/register.html', context)
-
-@require_GET
-def robots_txt(request):
-    lines = [
-        "User-Agent: *",
-        "Disallow: /admin/",
-    ]
-    return HttpResponse("\n".join(lines), content_type="text/plain")

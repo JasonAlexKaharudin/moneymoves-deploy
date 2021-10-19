@@ -1,0 +1,8 @@
+User-Agent: *
+
+Disallow: /admin
+Disallow: /referral
+Disallow: /referral/upload
+Disallow: /api
+
+Sitemap: https://moneymoves.app/sitemap.xml

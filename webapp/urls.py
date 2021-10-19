@@ -4,7 +4,13 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
+from users.sitemaps import PartnerSiteMap
+from django.contrib.sitemaps.views import sitemap
+from django.views.generic.base import TemplateView
 
+sitemaps = {
+    'Partner': PartnerSiteMap
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -20,10 +26,11 @@ urlpatterns = [
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),
     path('brands/', user_views.brands, name = 'brands'),
     path('IntlBrands/', user_views.intlBrands, name = 'IntlBrands'),
-    path("robots.txt", user_views.robots_txt),
     path('referral/', include('referrals.urls')),
     path('api/', include('api.urls')),
-    path('merchants/', include('merchants.urls'))
+    path('merchants/', include('merchants.urls')),
+    path("robots.txt",TemplateView.as_view(template_name="users/robots.txt", content_type="text/plain")),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ] 
 
 if settings.DEBUG:
