@@ -28,8 +28,8 @@ def links_generated(request):
     data = request.data
     username = data['username'];
     clicks = data['clicks'];
-
     print(clicks)
+    
     if User.objects.filter(username = username).exists():
         curr_user = User.objects.get(username = username)
         curr_user.profile.links_created = curr_user.profile.links_created + 1;

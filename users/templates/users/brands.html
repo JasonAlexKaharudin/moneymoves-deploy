@@ -11,6 +11,7 @@
 <li class="nav-item"><a class="nav-link" href="#howitworks" style="font-size: 17.5px;">How It Works</a></li>
 {% endblock %}
 {% block content %}
+
 {% if messages %}
     {% for message in messages %}
     <div class="alert alert-{{ message.tags }}">  <!-- singular -->
@@ -159,7 +160,7 @@
                     <div class="modal-footer">
                         <input id="inputRef" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" readonly value="https://moneymoves.app/ref/{{user.username}}" username="{{user.username}}">
                         <button class="btn btn-primary" id="copyBtnRef">Copy</button>
-                    </div>
+                    </div> 
                     {% endif %}
                 </div>
             </div>
