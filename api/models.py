@@ -42,4 +42,7 @@ class trackWidget(models.Model):
 #     order_id = models.IntegerField()
 #     conversion_id = models.IntegerField()
 #     date = models.DateTimeField(default = datetime.now, blank=True)
-#     amt = models.CharField(max_length=200)
+#     amt = models.decimal.
+
+#     def __str__(self):
+#         return f"{self.merchant} #{self.order_id}"

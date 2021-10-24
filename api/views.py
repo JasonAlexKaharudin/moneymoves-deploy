@@ -79,19 +79,24 @@ def ref_api(request):
 
     return Response(status=status.HTTP_200_OK) 
 
+#post back URL view
 def involveAsia(request):
     user_id = request.GET['uid']
-    order_id = request.GET['order_id']
-    amount = request.GET['amt']
+    order_id = int(request.GET['order_id']) 
+    amount = int(request.GET['amt'])
+    
     date = request.GET['date']
     merchant = request.GET['merchant']
     conversion_id = request.GET['cid']
 
-    print(user_id)
-    print(order_id)
-    print(amount)
-    print(date)
-    print(merchant)
-    print(conversion_id)
+    # obj = involveAsia_PostbackURL.objects.create(
+    #     merchant = merchant,
+    #     user_id = user_id,
+    #     order_id = order_id,
+    #     conversion_id = conversion_id,
+    #     date = date,
+    #     amt = amount
+    # )
+    # obj.save()
 
     return render(request, 'users/home.html', {})
