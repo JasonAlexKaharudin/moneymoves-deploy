@@ -23,11 +23,7 @@ SECRET_KEY = 'django-insecure-f(hah&4f0c5i#%sw8bs#^bf6^bvw^o1lbl^2$69212@6c&@94e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
-# using ngrok to test api 
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 SHOPIFY_WEBHOOK_SIGNED_KEY_SV = '861014dfdc17f51698d6e0a902cb55fae580b5f1a8dc269f7900bb111859d14c'
 SHOPIFY_WEBHOOK_SIGNED_KEY_DNC = '2c3b08d3c85d54a43f6e26a7a9483f28ad0539a76a062075c5daace260f96f62'

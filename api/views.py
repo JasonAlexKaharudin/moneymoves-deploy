@@ -5,8 +5,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import orderRef, invalidOrder, trackWidget
+from .models import orderRef, invalidOrder, trackWidget, involveAsia_PostbackURL
 from merchants.models import Partner_Merchant
+
 import decimal
 
 @api_view(['POST']) 
@@ -89,14 +90,17 @@ def involveAsia(request):
     merchant = request.GET['merchant']
     conversion_id = request.GET['cid']
 
-    # obj = involveAsia_PostbackURL.objects.create(
-    #     merchant = merchant,
-    #     user_id = user_id,
-    #     order_id = order_id,
-    #     conversion_id = conversion_id,
-    #     date = date,
-    #     amt = amount
-    # )
-    # obj.save()
+    #print user_id, order_id, amount, date, merchant, conversion_id
+    print(request.GET)
+
+    # create a new involveAsia_PostbackURL object named obj
+    obj = involveAsia_PostbackURL.objects.create(
+        merchant = merchant,
+        user_id = user_id,
+        order_id = order_id,
+        conversion_id = conversion_id,
+        amount = amount
+    )
+    obj.save()    
 
     return render(request, 'users/home.html', {})

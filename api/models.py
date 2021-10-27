@@ -1,7 +1,9 @@
+from decimal import DecimalException
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
+
 
 class orderRef(models.Model):
     referrer = models.ForeignKey(User, on_delete=CASCADE,null=True, default=None)
@@ -36,13 +38,13 @@ class trackWidget(models.Model):
     def __str__(self):
         return f"{self.merchant}. clicks: {self.numClicks}"
 
-# class involveAsia_PostbackURL(models.Model):
-#     merchant = models.CharField(max_length=200)
-#     user_id = models.CharField(max_length=200)
-#     order_id = models.IntegerField()
-#     conversion_id = models.IntegerField()
-#     date = models.DateTimeField(default = datetime.now, blank=True)
-#     amt = models.decimal.
+class involveAsia_PostbackURL(models.Model):
+    merchant = models.CharField(max_length=200)
+    user_id = models.CharField(max_length=200)
+    order_id = models.IntegerField()
+    conversion_id = models.IntegerField()
+    date = models.DateTimeField(default = datetime.now, blank=True)
+    amount = models.DecimalField(max_digits=6, decimal_places=2, default=0)
 
-#     def __str__(self):
-#         return f"{self.merchant} #{self.order_id}"
+    def __str__(self):
+        return f"{self.merchant} #{self.order_id}"
