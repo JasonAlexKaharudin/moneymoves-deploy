@@ -1,6 +1,6 @@
 from webapp.adminMixins import ExportCSVMixin
 from django.contrib import admin
-from .models import orderRef, invalidOrder, trackWidget
+from .models import orderRef, invalidOrder, trackWidget, involveAsia_PostbackURL
 
 @admin.register(trackWidget)
 class widgetAdmin(admin.ModelAdmin, ExportCSVMixin):
@@ -18,4 +18,10 @@ class orderRefAdmin(admin.ModelAdmin, ExportCSVMixin):
 class invalidOrderAdmin(admin.ModelAdmin, ExportCSVMixin):
     list_display = ("referrer","merchant_name" ,"orderID", "refereeEmail", "date_published")
     list_filter = ("referrer","merchant_name" ,"orderID", "refereeEmail", "date_published")
+    actions = ["export_as_csv"]
+
+@admin.register(involveAsia_PostbackURL)
+class involveAsiaAdmin(admin.ModelAdmin, ExportCSVMixin):
+    list_display = ("merchant", "user_id")
+    list_filter = ("merchant", "user_id", "date")
     actions = ["export_as_csv"]
