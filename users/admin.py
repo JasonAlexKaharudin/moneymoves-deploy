@@ -7,8 +7,8 @@ from .models import Profile
 
 @admin.register(Profile)
 class profileAdmin(admin.ModelAdmin, ExportCSVMixin):
-    list_display = ("user", "wallet", "num_of_refers", "signup_refs")
-    list_filter = ("wallet", "num_of_refers", "signup_refs")
+    list_display = ("user", "wallet", "num_of_refers", "signup_refs", "links_created")
+    list_filter = ("wallet", "num_of_refers", "signup_refs", "links_created")
     actions = ['export_as_csv']
 
 class MyUserAdmin(UserAdmin):
