@@ -7,9 +7,17 @@ from api.models import Order_Controller
 def post_save_webhookOrders(sender, instance, created, *args, **kwargs):
     if created:
         if Order_Controller.objects.filter(order_id = instance.order_id).exists():
-            print("found a matching order_controller obj")
             controllerObj = Order_Controller.objects.get(order_id = instance.order_id)
-            if controllerObj.webhook == None:
+            if controllerObj.webhook == None and controllerObj.orderRef_obj != None:
                 controllerObj.webhook = instance
                 controllerObj.matched = True
-            controllerObj.save()
+                controllerObj.save()
+        else:
+            # create a new order_controller object named obj
+            obj = Order_Controller(
+                    webhook = instance,
+                    orderRef_obj = None, 
+                    order_id = instance.order_id,
+                    matched = False
+                )
+            obj.save()

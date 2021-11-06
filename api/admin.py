@@ -4,8 +4,8 @@ from .models import orderRef, invalidOrder, trackWidget, involveAsia_PostbackURL
 
 @admin.register(Order_Controller)
 class Order_ControllerAdmin(admin.ModelAdmin, ExportCSVMixin):
-    list_display = ("webhook", "matched")
-    list_filter = ("webhook", "matched")
+    list_display = ("orderRef_obj", "webhook", "matched")
+    list_filter = ("matched")
     actions = ["export_as_csv"]
 
 @admin.register(trackWidget)

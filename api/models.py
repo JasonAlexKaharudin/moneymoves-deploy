@@ -29,9 +29,7 @@ class Order_Controller(models.Model):
     
     class Meta:
         verbose_name_plural = "Order Controller"
-    
-    def __str__(self):
-        return f"{self.webhook.order_id}"
+
 
 class invalidOrder(models.Model):
     referrer = models.ForeignKey(User, on_delete=CASCADE,null=True, default=None)
