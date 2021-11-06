@@ -6,7 +6,7 @@ from referrals.models import Referral
 @receiver(post_save, sender=orderRef)
 def post_save_orderRef(sender, instance, created,*args ,**kwargs):
     if created:
-        if Order_Controller.objects.filter(order_id = int(instance.orderID)).exist():
+        if Order_Controller.objects.filter(order_id = int(instance.orderID)).exists():
             controllerObj = Order_Controller.objects.get(order_id = int(instance.orderID))
             if controllerObj.orderRef_obj == None and controllerObj.webhook != None:
                 controllerObj.orderRef_obj = instance
