@@ -15,6 +15,9 @@ class orderRef(models.Model):
     date_published = models.DateTimeField(default=datetime.now, blank=True)
     webhook_obj = models.ForeignKey("merchants.webhookOrders", on_delete=CASCADE, null=True, default=None)
 
+    class Meta:
+        verbose_name_plural = "Referral Orders"
+
     def __str__(self):
         return f"{self.merchant_name.name} {self.orderID}. Referred by: {self.referrer.username}"
 
@@ -23,7 +26,10 @@ class Order_Controller(models.Model):
     orderRef_obj = models.OneToOneField(orderRef, on_delete=CASCADE, default = None, null=True)
     order_id = models.IntegerField()
     matched = models.BooleanField(default=False)
-
+    
+    class Meta:
+        verbose_name_plural = "Order Controller"
+    
     def __str__(self):
         return f"{self.webhook.order_id}"
 
@@ -35,7 +41,9 @@ class invalidOrder(models.Model):
     refereeEmail = models.EmailField(max_length=40, default = "None")
     merchant_name = models.ForeignKey("merchants.Partner_Merchant", on_delete=CASCADE, null=True, default=None)
     date_published = models.DateTimeField(default=datetime.now, blank=True)
-
+    class Meta:
+        verbose_name_plural = "Invalid Referrals"
+    
     def __str__(self):
         return f"Referrer: {self.referrer.email}, Referee email: {self.refereeEmail}"
 
@@ -54,6 +62,9 @@ class involveAsia_PostbackURL(models.Model):
     conversion_id = models.IntegerField()
     date = models.DateTimeField(default = datetime.now, blank=True)
     amount = models.DecimalField(max_digits=6, decimal_places=2, default=0)
-
+    
+    class Meta:
+        verbose_name_plural = "Involve Postback URLs"
+    
     def __str__(self):
         return f"{self.merchant} #{self.order_id}"

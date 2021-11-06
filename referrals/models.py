@@ -22,6 +22,9 @@ class receipts(models.Model):
     receipt_img = models.ImageField()
     date_published = models.DateTimeField(default=datetime.now, blank=True)
     
+    class Meta:
+        verbose_name_plural = "Uploaded Receipts"
+
     def __str__(self):
         return f"Receipt by {self.referer} at {self.date_published}"
 
@@ -32,6 +35,7 @@ class orphanReceipt(models.Model):
 
     def __str__(self):
         return f"Referral by {self.referer}"
+
 # Create your models here.
 class Referral(models.Model):
     referer_username = models.ForeignKey(User, on_delete=CASCADE, related_name="referer", null=True)

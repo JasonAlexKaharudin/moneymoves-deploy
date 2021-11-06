@@ -140,21 +140,23 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = BASE_DIR / "staticfiles-cdn" # in production, we want cdn
+# S3 spaces on digital ocean for static files
 
-MEDIA_ROOT = BASE_DIR / "staticfiles-cdn" / "uploads"
+# STATIC_ROOT = BASE_DIR / "staticfiles-cdn" # in production, we want cdn
 
-AWS_ACCESS_KEY_ID="GHAQ2JWQPEB5BTHBJHBF"
-AWS_SECRET_ACCESS_KEY="3M2OXFvBUxfrc1+VCU7t+4TePq6JnHHrwCzEQSF57mU"
-AWS_STORAGE_BUCKET_NAME="moneymoves-static"
-AWS_S3_URL="https://sgp1.digitaloceanspaces.com"
-AWS_S3_OBJECT_PARAMETERS = {
-    "CacheControl": "max-age=86400",
-}
-AWS_LOCATION="https://moneymoves-static.sgp1.digitaloceanspaces.com"
+# MEDIA_ROOT = BASE_DIR / "staticfiles-cdn" / "uploads"
 
-DEFAULT_FILE_STORAGE = "webapp.cdn.backends.MediaRootS3Boto3Storage"
-STATICFILES_STORAGE = "webapp.cdn.backends.StaticRootS3Boto3Storage"
+# AWS_ACCESS_KEY_ID="GHAQ2JWQPEB5BTHBJHBF"
+# AWS_SECRET_ACCESS_KEY="3M2OXFvBUxfrc1+VCU7t+4TePq6JnHHrwCzEQSF57mU"
+# AWS_STORAGE_BUCKET_NAME="moneymoves-static"
+# AWS_S3_URL="https://sgp1.digitaloceanspaces.com"
+# AWS_S3_OBJECT_PARAMETERS = {
+#     "CacheControl": "max-age=86400",
+# }
+# AWS_LOCATION="https://moneymoves-static.sgp1.digitaloceanspaces.com"
+
+# DEFAULT_FILE_STORAGE = "webapp.cdn.backends.MediaRootS3Boto3Storage"
+# STATICFILES_STORAGE = "webapp.cdn.backends.StaticRootS3Boto3Storage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -30,7 +30,10 @@ class webhookOrders(models.Model):
     total_price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     products = models.JSONField(default = jsonfield_default_value, null=True)
     date_published = models.DateTimeField(default=datetime.now, blank=True)
-
+    
+    class Meta:
+        verbose_name_plural = "Webhook Orders"
+        
     def __str__(self):
         return f"{self.merchant.name} order ID: #{self.order_id}"
 
