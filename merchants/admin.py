@@ -3,8 +3,6 @@ from django import forms
 from webapp.adminMixins import ExportCSVMixin
 from .models import Partner_Merchant, Amazon_Brand, webhookOrders
 
-
-
 @admin.register(Partner_Merchant)
 class partner_merchants(admin.ModelAdmin, ExportCSVMixin):
     list_display = ("name", "cashback_amt", "date_joined")

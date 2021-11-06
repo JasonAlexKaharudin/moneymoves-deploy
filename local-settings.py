@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'rest_framework',
     'corsheaders',
-    'analytical'
+    'analytical',
+    'storages'
 ]
 
 CLICKY_SITE_ID = '101337032'
@@ -139,8 +140,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+STATIC_ROOT = BASE_DIR / "staticfiles-cdn" # in production, we want cdn
+
+MEDIA_ROOT = BASE_DIR / "staticfiles-cdn" / "uploads"
+
+AWS_ACCESS_KEY_ID="GHAQ2JWQPEB5BTHBJHBF"
+AWS_SECRET_ACCESS_KEY="3M2OXFvBUxfrc1+VCU7t+4TePq6JnHHrwCzEQSF57mU"
+AWS_STORAGE_BUCKET_NAME="moneymoves-static"
+AWS_S3_URL="https://sgp1.digitaloceanspaces.com"
+AWS_S3_OBJECT_PARAMETERS = {
+    "CacheControl": "max-age=86400",
+}
+AWS_LOCATION="https://moneymoves-static.sgp1.digitaloceanspaces.com"
+
+DEFAULT_FILE_STORAGE = "webapp.cdn.backends.MediaRootS3Boto3Storage"
+STATICFILES_STORAGE = "webapp.cdn.backends.StaticRootS3Boto3Storage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -1,4 +1,3 @@
-from typing import OrderedDict
 from django.db import models
 from datetime import datetime
 from django.db.models.deletion import CASCADE

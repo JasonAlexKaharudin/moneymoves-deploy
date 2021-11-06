@@ -1,6 +1,6 @@
-from decimal import DecimalException
 from django.db import models
 from datetime import datetime
+from merchants.models import webhookOrders
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 
@@ -17,6 +17,15 @@ class orderRef(models.Model):
 
     def __str__(self):
         return f"{self.merchant_name.name} {self.orderID}. Referred by: {self.referrer.username}"
+
+class Order_Controller(models.Model):
+    webhook = models.OneToOneField(webhookOrders, on_delete=CASCADE, default = None, null=True)
+    orderRef_obj = models.OneToOneField(orderRef, on_delete=CASCADE, default = None, null=True)
+    order_id = models.IntegerField()
+    matched = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.webhook.order_id}"
 
 class invalidOrder(models.Model):
     referrer = models.ForeignKey(User, on_delete=CASCADE,null=True, default=None)
