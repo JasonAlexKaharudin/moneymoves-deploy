@@ -7,6 +7,7 @@ from referrals.models import Referral
 def post_save_orderRef(sender, instance, created,*args ,**kwargs):
     if created:
         if Order_Controller.objects.filter(order_id = int(instance.orderID)).exists():
+            print("found a matching order_controller obj")
             controllerObj = Order_Controller.objects.get(order_id = int(instance.orderid))
             controllerObj.orderRef_obj = instance
             controllerObj.matched = True
@@ -14,8 +15,9 @@ def post_save_orderRef(sender, instance, created,*args ,**kwargs):
         
 
 @receiver(post_save, sender = Order_Controller)
-def post_save_webhook(sender, instance, created, *args, **kwargs):
+def post_save_order_controller(sender, instance, created, *args, **kwargs):
     if instance.orderRef_obj is not None and instance.webhook is not None:
+        print("orderRef and webhook match, now creating referral obj")
         ref_obj = Referral.objects.create(
             referer_username = instance.orderRef_obj.referrer,
             merchant = instance.webhook.merchant,
