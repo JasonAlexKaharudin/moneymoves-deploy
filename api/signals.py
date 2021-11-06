@@ -1,4 +1,4 @@
-from django.dispatch.dispatcher import receiver
+from django.dispatch import receiver
 from django.db.models.signals import post_save
 from .models import Order_Controller, orderRef
 from referrals.models import Referral
@@ -6,17 +6,18 @@ from referrals.models import Referral
 @receiver(post_save, sender=orderRef)
 def post_save_orderRef(sender, instance, created,*args ,**kwargs):
     if created:
-        if Order_Controller.objects.filter(order_id = int(instance.orderID)).exists():
-            print("found a matching order_controller obj")
-            controllerObj = Order_Controller.objects.get(order_id = int(instance.orderid))
-            controllerObj.orderRef_obj = instance
-            controllerObj.matched = True
-            controllerObj.save()
+        obj = Order_Controller.objects.create(
+            webhook = None,
+            orderRef_obj = instance,
+            order_id = int(instance.orderID),
+            matched = False
+        )
+        obj.save()
         
 
 @receiver(post_save, sender = Order_Controller)
 def post_save_order_controller(sender, instance, created, *args, **kwargs):
-    if instance.orderRef_obj is not None and instance.webhook is not None:
+    if instance.orderRef_obj != None and instance.webhook != None:
         print("orderRef and webhook match, now creating referral obj")
         ref_obj = Referral.objects.create(
             referer_username = instance.orderRef_obj.referrer,

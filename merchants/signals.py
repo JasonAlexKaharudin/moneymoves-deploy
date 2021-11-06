@@ -1,4 +1,4 @@
-from django.dispatch.dispatcher import receiver
+from django.dispatch import receiver
 from django.db.models.signals import post_save
 from .models import webhookOrders
 from api.models import Order_Controller
@@ -6,11 +6,10 @@ from api.models import Order_Controller
 @receiver(post_save, sender=webhookOrders)
 def post_save_webhookOrders(sender, instance, created, *args, **kwargs):
     if created:
-        obj = Order_Controller.objects.create(
-                webhook = instance, 
-                orderRef_obj = None, 
-                order_id=instance.order_id,
-                matched=False
-            )
-        obj.save()
-        print("Webhook created and order_controller obj created")
+        if Order_Controller.objects.filter(order_id = instance.order_id).exists():
+            print("found a matching order_controller obj")
+            controllerObj = Order_Controller.objects.get(order_id = instance.order_id)
+            if controllerObj.webhook == None:
+                controllerObj.webhook = instance
+                controllerObj.matched = True
+            controllerObj.save()
