@@ -59,7 +59,7 @@ class Referral(models.Model):
         return reverse('referrals:referral-list')
 
     def __str__(self):
-        return f"{self.merchant.name} {self.orderID}. Referred by: {self.referer_username.username}"
+        return f"{self.merchant.name} {self.orderID}"
 
 class OrphanList(models.Model):
     refereeEmail = models.EmailField(max_length=40, default=0)

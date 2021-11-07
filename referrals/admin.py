@@ -17,7 +17,7 @@ class orphanReceiptAdmin(admin.ModelAdmin, ExportCSVMixin):
 
 @admin.register(Referral)
 class ReferralsAdmin(admin.ModelAdmin, ExportCSVMixin):
-    list_display = ("referer_username", "merchant", "orderID", "referee_has_account", "date_published")
+    list_display = ("merchant", "orderID", "referee_has_account", "date_published")
     list_filter = ("merchant", "totalAmt", "is_Verified", "date_published")
     actions = ["export_as_csv"]
 
