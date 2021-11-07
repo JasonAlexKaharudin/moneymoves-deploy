@@ -6,8 +6,8 @@ from referrals.models import Referral
 @receiver(post_save, sender=webhookOrders)
 def post_save_webhookOrders(sender, instance, created, *args, **kwargs):
     if created:
-        if Referral.objects.filter(order_id = str(instance.order_id), merchant = instance.merchant).exists():
-            controllerObj = Referral.objects.get(order_id = instance.order_id, merchant = instance.merchant)
+        if Referral.objects.filter(orderID = str(instance.order_id), merchant = instance.merchant).exists():
+            controllerObj = Referral.objects.get(orderID = instance.order_id, merchant = instance.merchant)
             if controllerObj.webhook == None and controllerObj.orderRef_obj != None:
                 controllerObj.webhook = instance
                 controllerObj.save()

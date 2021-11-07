@@ -20,7 +20,7 @@ def post_save_orderRef(sender, instance, created,*args ,**kwargs):
                 totalAmt = instance.totalAmt,
                 products = {"product": 0},
                 referee_email = "None",
-                orderRef_obj = instance.orderRef_obj,
+                orderRef_obj = instance,
                 webhook = None
             )
             obj.save()
