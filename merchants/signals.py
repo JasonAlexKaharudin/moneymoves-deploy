@@ -18,7 +18,6 @@ def post_save_webhookOrders(sender, instance, created, *args, **kwargs):
                 orderID = str(instance.order_id),
                 totalAmt = instance.total_price,
                 products = instance.products,
-                orderRef_obj = instance.orderRef_obj,
                 webhook = instance
             )
             obj.save()
