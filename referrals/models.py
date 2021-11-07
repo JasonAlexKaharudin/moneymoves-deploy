@@ -52,6 +52,7 @@ class Referral(models.Model):
     stored_in_wallet = models.BooleanField(default=False)
     referee_has_account = models.BooleanField(default=False)
     orderRef_obj = models.OneToOneField(api.models.orderRef, on_delete=CASCADE, null=True, default=None)
+    webhook = models.OneToOneField(merchants.models.webhookOrders, on_delete=CASCADE, null=True, default=None)
     date_published = models.DateTimeField(default=datetime.now, blank=True)
 
     def get_absolute_url(self):
