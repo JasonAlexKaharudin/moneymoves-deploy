@@ -1,11 +1,6 @@
 from webapp.adminMixins import ExportCSVMixin
 from django.contrib import admin
-from .models import orderRef, invalidOrder, trackWidget, involveAsia_PostbackURL, Order_Controller
-
-# @admin.register(Order_Controller)
-# class Order_ControllerAdmin(admin.ModelAdmin, ExportCSVMixin):
-#     list_display = ("orderRef_obj", "webhook", "matched")
-#     actions = ["export_as_csv"]
+from .models import orderRef, invalidOrder, trackWidget, involveAsia_PostbackURL
 
 @admin.register(trackWidget)
 class widgetAdmin(admin.ModelAdmin, ExportCSVMixin):

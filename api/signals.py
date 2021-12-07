@@ -1,6 +1,6 @@
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from .models import Order_Controller, orderRef
+from .models import orderRef
 from referrals.models import Referral
 
 @receiver(post_save, sender=orderRef)

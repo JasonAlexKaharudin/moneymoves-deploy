@@ -21,16 +21,6 @@ class orderRef(models.Model):
     def __str__(self):
         return f"{self.merchant_name.name} {self.orderID}. Referred by: {self.referrer.username}"
 
-class Order_Controller(models.Model):
-    webhook = models.OneToOneField(webhookOrders, on_delete=CASCADE, default = None, null=True)
-    orderRef_obj = models.OneToOneField(orderRef, on_delete=CASCADE, default = None, null=True)
-    order_id = models.IntegerField()
-    matched = models.BooleanField(default=False)
-    
-    class Meta:
-        verbose_name_plural = "Order Controller"
-
-
 class invalidOrder(models.Model):
     referrer = models.ForeignKey(User, on_delete=CASCADE,null=True, default=None)
     sessionID = models.IntegerField()
