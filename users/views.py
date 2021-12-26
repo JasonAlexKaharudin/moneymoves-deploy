@@ -13,6 +13,10 @@ from django.utils.html import strip_tags
 from webapp import settings
 from django.views.decorators.http import require_GET
 from django.http import HttpResponse
+import theme
+
+def test(request):
+    return render(request, 'theme/base.html', {})
 
 def home(request):
     context = {

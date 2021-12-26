@@ -1,57 +1,57 @@
+{% load tailwind_tags %}
 {% load static %}
-{% load analytical %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% analytical_head_top %}
-    {% analytical_head_bottom %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     {% block extra_meta %}{% endblock %}
+    {% tailwind_css %}
     <title>{% block title %} {% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'users/bootstrap.min.css'%}">
-    <link rel="stylesheet" href="{% static 'users/fonts/ionicons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'users/Footer-Clean.css' %}">
-    <link rel="stylesheet" href="{% static 'users/Navigation-with-Button.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&amp;display=swap">
-    <link rel="shortcut icon" href="{% static 'users/img/m-logo.png' %}" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"> 
+    <link rel="shortcut icon" href="{% static 'users/img/pageAssets/m-logo.png' %}" type="image/x-icon">
     {% block extra_head %} {% endblock %}
 </head>
 
-<body>
-    {% analytical_body_top %}
-    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="font-family: 'DM Sans', sans-serif;">
-        <div class="container">
-            <a class="navbar-brand" href="/" style="padding-top: 5px;font-size: 23.2px;padding-left: 3.3px;">
-                <img style="padding-bottom: 8px;" src="{% static 'users/img/m-logo.png' %}" alt="logo of moneymoves">
-                Money<span style="color: rgb(64,115,159);">Moves</span>
-            </a>
-            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
-                <span class="visually-hidden">Toggle navigation</span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="/brands/" style="font-size: 17.5px;">Shop</a></li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link" href="/referral/" style="font-size: 17.5px;">Wallet</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/profile/" style="font-size: 17.5px;">Profile</a></li>
-                    {% else %}
-                    {% block  navlink %}{% endblock %}
-                    <li class="nav-item"><a class="nav-link" href="https://moves.money/merchant" style="font-size: 17.5px;">Merchants</a></li>
-                    {% endif %}
-                    <li class="nav-item"><a class="nav-link" href="https://rainy-mint-11d.notion.site/MoneyMoves-FAQ-00239b8983544167b533490fdddcdf8e" style="font-size: 17.5px;">FAQs</a></li>
-                </ul>
+<body class="font-DMsans tracking-wide">
+    <nav class="py-4 sm:py-6 top-0 overflow-hidden w-full border-b-2">
+        <div class="container flex justify-between items-center mx-auto px-3 w-full">
+            <div class="flex flex-row">
+                <div class="flex flex-row justify-center items-center">
+                    <img src="{% static 'users/img/pageAssets/m-logo.png' %}" alt="logo of moneymoves">
+                    <a class="font-bold ml-1 text-2xl mr-5" href="/">Money<span class="text-primary">Moves</span></a> 
+                    <div class="hidden sm:flex space-x-6 items-center">
+                        <a href="/brands/">Brands</a>
+                        {% if user.is_authenticated %}
+                        <a href="/referral/" class="hidden md:block">Wallet</a>
+                        <a href="/profile/" class="hidden md:block">Profile</a>
+                        {% else %}
+                        {% block navlink %}{% endblock %}
+                        <a href="https://moves.money/merchant" class="hidden md:block">For Merchants</a>
+                        {% endif %}
+                        <a href="https://rainy-mint-11d.notion.site/MoneyMoves-FAQ-00239b8983544167b533490fdddcdf8e" class="hidden md:block">FAQs</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden md:flex md:flex-row">
                 {% if user.is_authenticated %}
-                <span class="navbar-text actions"> 
-                    <a class="btn btn-light action-button" role="button" href="/logout/" style="background: #40739f;font-size: 17.5px;margin-bottom: 5px;">Log Out</a>
-                </span>
+                <a href="/logout/" class="hidden sm:block sm:py-1 sm:px-3">Logout</a>
                 {% else %}
-                <span class="navbar-text actions"> 
-                    <a class="login" href="/login/" style="font-size: 17.5px;">Log In</a>
-                    <a class="btn btn-light action-button" role="button" href="/register/" style="background: #40739f;font-size: 17.5px;margin-bottom: 5px;">Sign Up</a>
-                </span>
+                <a href="/login/" class="hidden sm:block sm:py-1 sm:px-3">Login</a>
+                <a href="/register/">
+                    <button class="px-3 py-1 bg-primary text-white rounded-2xl">
+                        Sign Up
+                    </button>
+                </a>
                 {% endif %}
+            </div>
+            <div class="md:hidden">
+                <svg width="26" height="18" viewBox="0 0 26 18" stroke="black" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 17.5H0.25V14.6667H13V17.5ZM25.75 10.4167H0.25V7.58333H25.75V10.4167ZM25.75 3.33333H13V0.5H25.75V3.33333Z" fill="white"/>
+                </svg>
             </div>
         </div>
     </nav>
@@ -59,50 +59,77 @@
     {% block content %}
     {% endblock %}
     
-    <footer class="footer-clean" style="padding-bottom: 0px;">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-sm-4 col-md-3 item">
-                    <h3 style="color: rgb(64,115,159);">Get cashback</h3>
-                    <ul>
-                        <li><a href="/">How it Works</a></li>
-                        <li><a href="/brands/">Brands</a></li>
-                        <li><a href="https://rainy-mint-11d.notion.site/MoneyMoves-FAQ-00239b8983544167b533490fdddcdf8e">FAQs</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-4 col-md-3 item">
-                    <h3 style="color: rgb(64,115,159);">Merchants</h3>
-                    <ul>
-                        <li><a href="https://moves.money/">Why Join Us</a></li>
-                        <li><a href="https://moves.money/">Reward your Customers</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-4 col-md-3 item">
-                    <h3 style="color: rgb(64,115,159);">Email us</h3>
-                    <a href="mailto:hello@moves.money">hello@moves.money</a>
-                    <a href="mailto:support@moves.money">support@moves.money</a>
-                </div>
-                <div class="col-lg-3 item social">
-                    <h3 style="color: rgb(64,115,159);">Follow Us</h3>
-                    <a href="https://www.instagram.com/get.moneymoves/">
-                        <i class="icon ion-social-instagram"></i>
-                    </a>
-                    <p class="copyright">Money Moves © 2021</p>
-                </div>
+    <footer class="text-center lg:text-left bg-gray-100 text-gray-600 mt-40">
+        <div class="mx-6 py-10 text-center md:text-left border-t-2">
+          <div class="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="">
+              <h6 class="
+                  uppercase
+                  font-semibold
+                  mb-4
+                  flex
+                  items-center
+                  justify-center
+                  md:justify-start
+                ">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cubes"
+                  class="w-4 mr-3" role="img" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512">
+                  <path fill="currentColor"
+                    d="M488.6 250.2L392 214V105.5c0-15-9.3-28.4-23.4-33.7l-100-37.5c-8.1-3.1-17.1-3.1-25.3 0l-100 37.5c-14.1 5.3-23.4 18.7-23.4 33.7V214l-96.6 36.2C9.3 255.5 0 268.9 0 283.9V394c0 13.6 7.7 26.1 19.9 32.2l100 50c10.1 5.1 22.1 5.1 32.2 0l103.9-52 103.9 52c10.1 5.1 22.1 5.1 32.2 0l100-50c12.2-6.1 19.9-18.6 19.9-32.2V283.9c0-15-9.3-28.4-23.4-33.7zM358 214.8l-85 31.9v-68.2l85-37v73.3zM154 104.1l102-38.2 102 38.2v.6l-102 41.4-102-41.4v-.6zm84 291.1l-85 42.5v-79.1l85-38.8v75.4zm0-112l-102 41.4-102-41.4v-.6l102-38.2 102 38.2v.6zm240 112l-85 42.5v-79.1l85-38.8v75.4zm0-112l-102 41.4-102-41.4v-.6l102-38.2 102 38.2v.6z">
+                  </path>
+                </svg>
+                Need help?
+              </h6>
+              <p>Send us an email at
+                <a href="mailto:support@moves.money">support@moves.money</a>
+              </p>
             </div>
-        </div>
-    </footer>
-    <script src="{% static 'users/js/base.js' %}"></script>
-    <script>
-        // add user specific custom data
-        var usersplit_params = {email:"getmoneymoves@gmail.com",name:"jason"};
-    </script>
+            <div class="">
+              <h6 class="uppercase font-semibold mb-4 flex justify-center md:justify-start">
+                links
+              </h6>
+              <p class="mb-4">
+                <a href="#!" class="text-gray-600">For Merchants</a>
+              </p>
+              <p class="mb-4">
+                <a href="#!" class="text-gray-600">FAQs</a>
+              </p>
+            </div>
+            <div class="">
+              <h6 class="uppercase font-semibold mb-4 flex justify-center md:justify-start">
+                Get connected
+              </h6>
+              <p class="flex items-center justify-center md:justify-start mb-4">
+                <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram"
+                     class="w-4 mr-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path fill="currentColor"
+                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
+                    </path>
+                </svg>
+                <a href="https://www.instagram.com/get.moneymoves/">@get.money_moves</a>
+              </p>
 
-    <script data-host="https://usersplit.com" data-dnt="false" src="https://usersplit.com/js/script.js" id="ZwSg9rf6GA" async defer></script>
-    
-    <script async src="//static.getclicky.com/101337032.js"></script>
-    <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101337032ns.gif" /></p></noscript>
-    {% analytical_body_bottom %}
+              <p class="flex items-center justify-center md:justify-start mb-4">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope"
+                  class="w-4 mr-4" role="img" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512">
+                  <path fill="currentColor"
+                    d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z">
+                  </path>
+                </svg>
+                <a href="mailto:hello@moves.money">hello@moves.money</a>
+              </p>
+              <p class="flex items-center justify-center md:justify-start mb-4">
+            </div>
+          </div>
+        </div>
+        <div class="text-center p-6 bg-gray-200">
+          <span>© 2021 Copyright:</span>
+          <a class="text-gray-600 font-semibold" href="/">MoneyMoves</a>
+        </div>
+      </footer>
+    <script src="{% static 'users/js/base.js' %}"></script>
 </body>
 </html>
 
