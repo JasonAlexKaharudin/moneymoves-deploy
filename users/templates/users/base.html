@@ -21,22 +21,22 @@
             <div class="flex flex-row">
                 <div class="flex flex-row justify-center items-center">
                     <img src="{% static 'users/img/pageAssets/m-logo.png' %}" alt="logo of moneymoves">
-                    <a class="font-bold ml-1 text-2xl mr-5" href="/">Money<span class="text-primary">Moves</span></a> 
-                    <div class="hidden sm:flex space-x-6 items-center">
-                        <a href="/brands/">Brands</a>
+                    <a class="font-bold ml-1 text-2xl sm:text-xl mr-5" href="/">Money<span class="text-primary">Moves</span></a> 
+                    <div class="hidden sm:flex space-x-6 items-center text-sm lg:text-lg">
+                        <a href="/brands/" class="hidden md:block">Brands</a>
                         {% if user.is_authenticated %}
                         <a href="/referral/" class="hidden md:block">Wallet</a>
                         <a href="/profile/" class="hidden md:block">Profile</a>
                         {% else %}
                         {% block navlink %}{% endblock %}
-                        <a href="https://moves.money/merchant" class="hidden md:block">For Merchants</a>
+                        <a href="https://moves.money/merchant" class="hidden md:block max-w-xs">For Merchants</a>
                         {% endif %}
                         <a href="https://rainy-mint-11d.notion.site/MoneyMoves-FAQ-00239b8983544167b533490fdddcdf8e" class="hidden md:block">FAQs</a>
                     </div>
                 </div>
             </div>
 
-            <div class="hidden md:flex md:flex-row">
+            <div class="hidden md:flex md:flex-row ">
                 {% if user.is_authenticated %}
                 <a href="/logout/" class="hidden sm:block sm:py-1 sm:px-3">Logout</a>
                 {% else %}
@@ -60,7 +60,7 @@
     {% endblock %}
     
     <footer class="text-center lg:text-left bg-gray-100 text-gray-600 mt-40">
-        <div class="mx-6 py-10 text-center md:text-left border-t-2">
+        <div class="mx-6 py-10 text-center md:text-left border-t-2 px-7 sm:px-12 md:px-20 lg:px-28">
           <div class="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="">
               <h6 class="

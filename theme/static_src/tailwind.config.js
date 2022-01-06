@@ -62,7 +62,11 @@ module.exports = {
               primary: "#40739F",
               secondary: "#4ECB71",
               bg1: "#CDE7FD",
-              bg2: "#E1E1E1"
+              bg2: "#E1E1E1",
+              bg3: "#F9F9F9",
+              greyCard: "#EEEEEE",
+              greenCard: "#E0FFEA",
+              blueCard: "#7DB4DD",
             },
             fontFamily: {
               'DMsans': ["'DM Sans'",'sans-serif'],
