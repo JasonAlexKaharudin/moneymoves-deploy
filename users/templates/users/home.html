@@ -49,7 +49,7 @@
             </div>
         </section>
 
-        <section id="value-proposition" class="">
+        <section id="value-proposition">
             <div class="pt-14 sm:pt-10 md:pt-16 lg:pt-20 px-7 sm:px-12 md:px-20 lg:px-28 pb-24 flex flex-col-reverse md:flex-row justify-center')">
                 <div class="3benefits mx-5">
                     <div class="shop flex flex-row mb-10 justify-start items-start">
@@ -84,8 +84,52 @@
             </div>
         </section>
 
-        <section id="howitworks">
-            <div class="pt-14 sm:pt-10 md:pt-16 lg:pt-20 px-8 sm:px-12 md:px-20 lg:px-28">
+        <section id="shopwithus" class="bg-bg3 py-20 px-7 sm:px-12 md:px-20 lg:px-28 sm:pt-10 md:pt-16 lg:pt-20">
+            <h1 class="text-3xl sm:text-4xl font-semibold">Shop with MoneyMoves</h1>
+            <p class="text-md mt-2">Find stores where you can earn cashback online.</p>
+            
+            <h2 class="text-lg mt-10">Featured Amazon Brands</h2>
+            <div class="amazonstores mt-3 flex justify-evenly overflow-hidden">
+                <div class="py-3 pr-5">
+                    <a href="https://amazon.sg">
+                        <img class="w-full sm:10/12 md:w-11/12 hover:scale-105" src="{% static 'users/img/pageAssets/ck.png' %}" alt="background for amazon brand">
+                    </a>
+                </div>
+                <div class="py-3 pr-5">
+                    <a href="https://amazon.sg">
+                        <img class="w-full sm:10/12 md:w-11/12 hover:scale-105" src="{% static 'users/img/pageAssets/nike.png' %}" alt="background for amazon brand">
+                    </a>
+                </div>
+                <div class="py-3">
+                    <a href="https://amazon.sg">
+                        <img class="w-full sm:10/12 md:w-11/12 hover:scale-105" src="{% static 'users/img/pageAssets/adidas.png' %}" alt="background for amazon brand">
+                    </a>
+                </div>
+            </div>
+            <p class="text-right text-sm">see more</p>
+
+            <h2 class="text-lg mt-10">Featured Local Brands</h2>
+            <div class="amazonstores mt-3 flex justify-evenly overflow-hidden">
+                <div class="py-3 pr-5">
+                    <a href="https://jemaime.co/">
+                        <img class="w-full sm:10/12 md:w-11/12 hover:scale-105" src="{% static 'users/img/pageAssets/jmc.png' %}" alt="jemaimeco brand">
+                    </a>
+                </div>
+                <div class="py-3 pr-5">
+                    <a href="https://donotcrosss.com/">
+                        <img class="w-full sm:10/12 md:w-11/12 hover:scale-105" src="{% static 'users/img/pageAssets/dnc.png' %}" alt="donotcross brand">
+                    </a>
+                </div>
+                <div class="py-3">
+                    <a href="https://sunday-valley.com/">
+                        <img class="w-full sm:10/12 md:w-11/12 hover:scale-105" src="{% static 'users/img/pageAssets/sv.png' %}" alt="sundayvalley brand">
+                    </a>
+                </div>
+            </div>
+            <p class="text-right text-sm">see more</p>
+        </section>
+        <section id="howitworks" class="my-10 ">
+            <div class="mt-14 sm:pt-10 md:pt-16 lg:pt-20 px-8 sm:px-12 md:px-20 lg:px-28">
                 <h1 class="text-4xl text-center sm:text-left font-semibold">Earn cashback through everyday spending</h1>
                 <div class="flex flex-col sm:flex-row justify-between pt-10 sm:pt-20">
                     <div class="px-3">
@@ -115,40 +159,31 @@
             </div>
         </section>
 
-        <section id="shopwithus" class="bg-bg3 py-20 px-7 sm:px-12 md:px-20 lg:px-28">
-            <h1 class="text-2xl sm:text-3xl font-semibold">Shop with MoneyMoves</h1>
-            <p class="text-md mt-2">Find stores where you can earn cashback online.</p>
-            
-            <h2 class="text-lg mt-10">Featured Amazon Brands</h2>
-            <div class="slider">
-                <div class="slider-inner">
-                    <div class="slide-img">
-                        <a href="https://amazon.sg">
-                            <img class="w-8/12 sm:w-4/12 h-auto hover:scale-105" src="{% static 'users/img/pageAssets/ck.png' %}" alt="background for amazon brand">
-                        </a>
+        <section class="nothard">
+            <div class="mt-14 sm:pt-10 md:pt-16 lg:pt-20 px-7 sm:px-12 md:px-20 lg:px-28 pb-20 flex flex-col-reverse md:flex-row justify-center')">
+                <div class="3benefits mx-5">
+                    <h1 class="text-3xl md:text-4xl text-center sm:text-left font-bold pt-24 pb-20">Personal finance shouldn't be hard</h1>
+                    <div class="shop flex flex-row mb-10 justify-start items-start">
+                        <img class="w-2/12 h-auto sm:w-1/12 pt-2 mr-2" src="{% static 'users/img/icons/stress.png' %}" alt="shopping cart icon">
+                        <div class="pl-5">
+                            <p class="text-lg w-11/12">We recognise that investing can be overwhelming.</p>
+                        </div>
                     </div>
-                    <div class="slide-img">
-                        <a href="https://amazon.sg">
-                            <img class="w-8/12 sm:w-4/12 h-auto hover:scale-105" src="{% static 'users/img/pageAssets/nike.png' %}" alt="background for amazon brand">
-                        </a>
+                    <div class="safe flex flex-row mb-10 justify-start items-start">
+                        <img class="w-2/12 h-auto sm:w-1/12 pt-2 mr-2" src="{% static 'users/img/icons/bank.png' %}" alt="key lock icon">
+                        <div class="pl-5">
+                            <p class="text-lg">Let us help you make the first step by saving and investing with every purchase.</p>
+                        </div>
                     </div>
-                    <div class="slide-img">
-                        <a href="https://amazon.sg">
-                            <img class="w-8/12 sm:w-4/12 h-auto hover:scale-105" src="{% static 'users/img/pageAssets/adidas.png' %}" alt="background for amazon brand">
-                        </a>
+                    <div class="rewards flex flex-row mb-10 justify-start items-start">
+                        <img class="w-2/12 h-auto sm:w-1/12 pt-2 mr-2" src="{% static 'users/img/icons/WallStreetBetsGuy.png' %}" alt="users icon">
+                        <div class="pl-5">
+                            <p class="text-lg">The cashback in your wallet will earn up to 10%! </p>
+                        </div>
                     </div>
                 </div>
-
             </div>
-
-            <div class="local-stores flex flex-col pt-5">
-
-            </div>
-
-            <h2 class="text-lg">Featured Local Brands</h2>
         </section>
     </main>
-
 </main>
-
 {% endblock %}
