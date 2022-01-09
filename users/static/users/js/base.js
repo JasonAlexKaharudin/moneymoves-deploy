@@ -3,6 +3,7 @@ console.log("here I am at the beach")
 //navbar animations, responsive navbar
 const toggleBtn = document.getElementsByClassName('toggle-button')[0]
 const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+const headerIMG = document.getElementsByClassName('woodenhand')[0];
 const menuBtn = document.querySelector('.burgerbuns');
 const navbar = document.querySelector('.navbar');
 let menuOpen = false
@@ -14,11 +15,15 @@ toggleBtn.addEventListener('click', () => {
         navbarLinks.classList.add('border-t-2');
         navbar.classList.remove('border-b-2');
         menuOpen = true;
+
+        headerIMG.classList.add('hidden')
     } else {
         menuBtn.classList.remove('open');
         navbarLinks.classList.add('hidden');
         navbarLinks.classList.remove('border-t-2');
         navbar.classList.add('border-b-2');
         menuOpen = false;
+
+        headerIMG.classList.remove('hidden')
     }
 })

@@ -1,16 +1,13 @@
 {% extends "users/base.html" %}
 {% block title %}Sign Up{% endblock %}
 {% load static %}
-{% block extra_head %} 
-<link rel="stylesheet" type="text/css" href="{% static 'users/register.css' %}">
-{% endblock %}
-{% block content %}
 
+{% block content %}
 <section class="register_user">
     <div class="signup-container">
         <h1 class="heading">Join today. Start earning <span class="moves">cashback</span>. See it grow 🚀</h1>
         <form method="POST">
-            {{ form}}
+            {{ form }}
             {{ p_reg_form }}
             {% csrf_token %}
             <button type="submit">Sign Up</button>
