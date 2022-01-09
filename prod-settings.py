@@ -54,17 +54,10 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'rest_framework',
     'corsheaders',
-    'analytical',
-    'storages',
-    'tailwind',
-    'theme'
+    'analytical'
 ]
 
 CLICKY_SITE_ID = '101337032'
-
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -185,5 +178,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'ryan@moves.money'
+EMAIL_HOST_USER = 'hello@moves.money'
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD','') 
