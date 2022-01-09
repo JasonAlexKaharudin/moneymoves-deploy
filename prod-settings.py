@@ -54,7 +54,14 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'rest_framework',
     'corsheaders',
-    'analytical'
+    'analytical',
+    'tailwind',
+    'theme'
+]
+TAILWIND_APP_NAME = 'theme'
+
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 CLICKY_SITE_ID = '101337032'
