@@ -8,11 +8,6 @@
     margin: 0;
 }
 
-#value-proposition{
-    background-image: none;
-    background-size: 100% 100%;
-}
-
 .logos{
     width: 10%;
     height: 10%;
@@ -25,10 +20,74 @@
     margin: 0;
 }
 
+.toggle-button{
+    position: absolute;
+    top: 1.9rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 30px;
+    height: 21px;
+}
+
+.burger{
+    width: 20px;
+    height: 3px;
+    /* margin-top: 2px;
+    margin-bottom: 2px; */
+    background: black;
+    border-radius: 5px;
+    transition: all 5s ease-in-out;
+}
+
+.burger::before,
+.burger::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 3px;
+    background: black;
+    border-radius: 5px;
+    transition: all .5s ease-in-out;
+}
+
+.burger::before{
+    transform: translateY(-6px);
+}
+.burger::after{
+    transform: translateY(6px);
+}
+
+.navbar-links{
+    background: white;
+    transition: all 1s ease-out;
+    opacity: 1;
+}
+
+/* Animation */
+.open .burger{
+    transform: translateX(-50px);
+    transition-duration: 0.2s;
+    background: transparent;
+}
+
+.open .burger::before{
+    transform: rotate(45deg) translate(35px, -35px);
+}
+.open .burger::after{
+    transform: rotate(-45deg) translate(35px, 35px);
+}
+
 @media (min-width: 640px) {
     .icons{
         width: 20%;
         height: 20%;
         margin: 0;
+    }
+}
+
+@media (min-width: 768px){
+    .toggle-button{
+        display: none;
     }
 }

@@ -1,7 +1,7 @@
 {% load tailwind_tags %}
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -15,45 +15,67 @@
     {% block extra_head %} {% endblock %}
 </head>
 
-<body class="font-DMsans tracking-wide">
-    <nav class="py-4 sm:py-6 top-0 overflow-hidden w-full border-b-2">
-        <div class="container flex justify-between items-center mx-auto px-3 w-full">
-            <div class="flex flex-row">
-                <div class="flex flex-row justify-center items-center">
-                    <img src="{% static 'users/img/pageAssets/m-logo.png' %}" alt="logo of moneymoves">
-                    <a class="font-bold ml-1 text-2xl sm:text-xl mr-5" href="/">Money<span class="text-primary">Moves</span></a> 
-                    <div class="hidden sm:flex space-x-6 items-center text-sm lg:text-lg">
-                        <a href="/brands/" class="hidden md:block">Brands</a>
-                        {% if user.is_authenticated %}
-                        <a href="/referral/" class="hidden md:block">Wallet</a>
-                        <a href="/profile/" class="hidden md:block">Profile</a>
-                        {% else %}
-                        {% block navlink %}{% endblock %}
-                        <a href="https://moves.money/merchant" class="hidden md:block max-w-xs">For Merchants</a>
-                        {% endif %}
-                        <a href="https://rainy-mint-11d.notion.site/MoneyMoves-FAQ-00239b8983544167b533490fdddcdf8e" class="hidden md:block">FAQs</a>
-                    </div>
-                </div>
-            </div>
+<body class="font-DMsans tracking-wide scroll-smooth">
+    <nav class="navbar flex items-start flex-col md:flex-row md:justify-between md:items-center text-black py-4  border-b-2">
+      <div class="brand-title text-3xl flex px-3 sm:px-5">
+        <img src="{% static 'users/img/pageAssets/m-logo.png' %}" alt="logo of moneymoves">
+        <a class="font-bold text-2xl sm:text-xl px-3 pt-2" href="/">
+          Money<span class="text-primary">Moves</span>
+        </a> 
+      </div>
 
-            <div class="hidden md:flex md:flex-row ">
-                {% if user.is_authenticated %}
-                <a href="/logout/" class="hidden sm:block sm:py-1 sm:px-3">Logout</a>
-                {% else %}
-                <a href="/login/" class="hidden sm:block sm:py-1 sm:px-3">Login</a>
-                <a href="/register/">
-                    <button class="px-3 py-1 bg-primary text-white rounded-2xl">
-                        Sign Up
-                    </button>
-                </a>
-                {% endif %}
-            </div>
-            <div class="md:hidden">
-                <svg width="26" height="18" viewBox="0 0 26 18" stroke="black" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 17.5H0.25V14.6667H13V17.5ZM25.75 10.4167H0.25V7.58333H25.75V10.4167ZM25.75 3.33333H13V0.5H25.75V3.33333Z" fill="white"/>
-                </svg>
-            </div>
+      <a href="#" class="toggle-button">
+        <div class="
+          burgerbuns
+          flex
+          flex-col
+          justify-center 
+          items-center 
+          sm:w-6
+          sm:h-7
+          w-5 
+          h-6 
+          cursor-pointer 
+          transition-all 
+          duration-500 
+          "
+        >
+          <div class="burger"></div>
         </div>
+      </a>
+
+      <div class="">
+        <ul class="navbar-links m-0 mt-4 hidden md:mt-0 md:flex list-none fixed md:static w-full h-full">
+          <div id="navbar-wrapper" class="flex flex-col md:flex-row justify-center items-center mt-5 md:mt-0">
+            <li><a class="block p-2 hover:text-gray-600" href="/brands/">Brands</a></li>
+            {% if user.is_authenticated %}
+            <li><a class="block p-2 hover:text-gray-600" href="/referrals/">Wallet</a></li>
+            <li><a class="block p-2 hover:text-gray-600" href="/profile/">Profile</a></li>
+            {% else %}
+            {% block navlink %}{% endblock %}
+            <li><a class="block p-2 hover:text-gray-600" href="https://moves.money/merchant">For Merchants</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <li>          
+              <a class="block pt-1" href="/register/">
+                <button class="px-3 py-1 bg-gray-700 text-white rounded-2xl">
+                  Sign Up
+                </button>
+              </a>  
+            </li>
+            {% else %}
+            <li><a class="block p-2 sm:pl-4 hover:text-gray-300" href="">Login</a></li>
+            <li>          
+              <a class="block pt-1" href="/register/">
+                <button class="px-3 py-1 bg-primary text-white rounded-2xl">
+                  Sign Up
+                </button>
+              </a>  
+            </li>
+            {% endif %}
+          </div>
+        </ul>
+      </div>
     </nav>
     
     {% block content %}
@@ -90,10 +112,10 @@
                 links
               </h6>
               <p class="mb-4">
-                <a href="#!" class="text-gray-600">For Merchants</a>
+                <a href="#" class="text-gray-600">For Merchants</a>
               </p>
               <p class="mb-4">
-                <a href="#!" class="text-gray-600">FAQs</a>
+                <a href="https://rainy-mint-11d.notion.site/MoneyMoves-FAQ-00239b8983544167b533490fdddcdf8e" class="text-gray-600">FAQs</a>
               </p>
             </div>
             <div class="">
@@ -125,8 +147,8 @@
           </div>
         </div>
         <div class="text-center p-6 bg-gray-200">
-          <span>© 2021 Copyright:</span>
-          <a class="text-gray-600 font-semibold" href="/">MoneyMoves</a>
+          <span>© 2021 Copyright</span>
+          <a class="text-gray-600 font-semibold" href="/">MoneyMoves &#8482</a>
         </div>
       </footer>
     <script src="{% static 'users/js/base.js' %}"></script>
