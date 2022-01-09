@@ -54,10 +54,17 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'rest_framework',
     'corsheaders',
-    'analytical'
+    'analytical',
+    'storages',
+    'tailwind',
+    'theme'
 ]
 
 CLICKY_SITE_ID = '101337032'
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
