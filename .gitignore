@@ -1,7 +1,7 @@
 db.sqlite3
 *.pyc
 media/
-!local-settings.py
-!prod-settings.py
-!parsingJSON.py
+local-settings.py
+prod-settings.py
+parsingJSON.py
 .vscode/
