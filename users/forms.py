@@ -6,15 +6,14 @@ from .models import Profile
 from phonenumber_field.modelfields import PhoneNumberField
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
-    password1 = forms.CharField(max_length=16, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
-    password2 = forms.CharField(max_length=16, widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email' , 'class': 'inputs'}))
+    password1 = forms.CharField(max_length=16, widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'inputs'}))
+    password2 = forms.CharField(max_length=16, widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password', 'class': 'inputs'}))
     class Meta:
         model = User
         fields = ['username','email','password1', 'password2']
         widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Username'}),
-            'password2': forms.PasswordInput(attrs={'placeholder': 'Confirm Password'})
+            'username': forms.TextInput(attrs={'placeholder': 'Username', 'class': 'inputs'}),
         }
 
 class UserUpdateForm(forms.ModelForm):
@@ -27,5 +26,5 @@ class PhoneForm(forms.ModelForm):
         model = Profile
         fields = ['Phone_Number']
         widgets = {
-            'Phone_Number': forms.TextInput(attrs={'placeholder': 'Phone Number'})
+            'Phone_Number': forms.TextInput(attrs={'placeholder': 'Phone Number', 'class': 'inputs'})
         }

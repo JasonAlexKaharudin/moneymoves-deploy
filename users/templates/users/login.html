@@ -1,36 +1,59 @@
-{% extends "users/base.html" %}
-{% block title %}Log In{% endblock %}
+{% load tailwind_tags %}
 {% load static %}
-{% block extra_head %}<link rel="stylesheet" type="text/css" href="{% static 'users/login.css' %}">{% endblock %}
-{% block content %}
-
-    <section class="login-container">
-        {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">  <!-- singular -->
-                <h4>{{ message }}</h4>
-            </div>
-            {% endfor %}
-        {% endif %}   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MoneyMoves is a fintech company that helps users grow their cashback earned through our platform.">
+    {% tailwind_css %}
+    <title>Login | MoneyMoves</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"> 
+    <link rel="shortcut icon" href="{% static 'users/img/pageAssets/m-logo.png' %}" type="image/x-icon">
+</head>
+<body class="font-DMsans">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <h1>{{ message }}</h1>
         
-        {{ form.errors }}
-
-        <h1 class="heading">Log in to Money <span class="moves">Moves</span></h1>
-        <form method="POST">
-            {% csrf_token %}
-            <div class="inputs">
-                <input name="username" type="text" placeholder="Username" required>
-                <input name="password" type="password" placeholder="Password" required>
-            </div>
-            
-            <div>
-                <button class="btn btn-outline-info" type="submit">Log In</button>
-            </div>
-        </form>
-        <div>
-            <small class="text-muted">
-                Forgot Password? <a class="ml-2" href="{% url 'password_reset' %}">Request a new one</a>
-            </small>
+        {% endfor %}
+    </ul>
+{% endif %}
+    <main>
+        <div class="brand-title text-3xl flex px-3 sm:px-5 mt-5">
+            <img src="{% static 'users/img/pageAssets/m-logo.png' %}" alt="logo of moneymoves">
+            <a class="font-bold text-2xl sm:text-xl px-3 pt-3" href="/">
+              Money<span class="text-primary">Moves</span>
+            </a> 
         </div>
-    </section>
-{% endblock content %}
+        <section class="py-20 px-12 sm:px-16 md:px-20 lg:px-28">
+            <h1 class="text-2xl sm:text-6xl text-center font-bold">Log in to Money<span class="text-primary"> Moves</span></h1>
+            <h2 class="text-md sm:text-2xl text-center my-5">Don't compromise your lifestyle to start investing and earning.</h2>
+            <div>
+                <form method="POST" class="flex flex-col justify-center items-center">
+                    {% csrf_token %}
+                    <input type="username" for="username" placeholder="Username">
+                    <input type="password" for="password" placeholder="Password">
+                    <button class="my-5 sm:mt-10 px-6 py-1 sm:px-3 sm:py-1 text-lg bg-primary hover:bg-blue-500 hover:scale-105 text-white rounded-lg">
+                        Confirm
+                    </button>
+                </form>
+                <div>
+                    <small>
+                        Already have an account? <a href="{% url 'login' %}"> <span class="text-blue-500 hover:text-blue-300">Sign In.</span></a>
+                    </small>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-bg2 py-10 px-12 sm:px-16 md:px-20 lg:px-28">
+        <h1 class="text-lg">Feel free to send us an email if you have any questions</h1>
+        <a href="mailto:hello@moves.money" class="text-sm mt-5">hello@moves.money</a>
+    </footer>
+</body>
+</html>

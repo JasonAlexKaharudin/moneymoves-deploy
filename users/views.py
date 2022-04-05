@@ -1,4 +1,5 @@
 import decimal
+from email import message
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.messages import constants
@@ -11,12 +12,6 @@ from django.core import mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from webapp import settings
-from django.views.decorators.http import require_GET
-from django.http import HttpResponse
-import theme
-
-def test(request):
-    return render(request, 'theme/base.html', {})
 
 def home(request):
     context = {
@@ -31,6 +26,41 @@ def refSignUp(request, *args, **kwargs):
         return registerWCode(request, code)
     else:
         return render(request, 'users/home.html', {})
+
+
+def intlBrands(request):
+    context = {
+        'amazon': Amazon_Brand.objects.all(),
+        'partner': Partner_Merchant.objects.all()
+    }
+    return render(request, 'users/IntlBrands.html', context)
+
+def brands(request):
+    context = {
+        'amazon': Amazon_Brand.objects.all(),
+        'partner': Partner_Merchant.objects.all()
+    }
+    return render(request, 'users/brands.html', context)
+
+@login_required
+def profile(request):
+    user = User.objects.get(pk=request.user.pk)
+    if request.method=="POST":
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        if u_form.is_valid():
+            u_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('/profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+
+
+    context = {
+        'user': user,
+        'u_form': u_form,
+    }
+
+    return render(request, 'users/profile.html', context)
 
 def registerWCode(request, code):
     if request.method == 'POST':
@@ -84,40 +114,6 @@ def registerWCode(request, code):
     }
     return render(request, 'users/register.html', context)
 
-def intlBrands(request):
-    context = {
-        'amazon': Amazon_Brand.objects.all(),
-        'partner': Partner_Merchant.objects.all()
-    }
-    return render(request, 'users/IntlBrands.html', context)
-
-def brands(request):
-    context = {
-        'amazon': Amazon_Brand.objects.all(),
-        'partner': Partner_Merchant.objects.all()
-    }
-    return render(request, 'users/brands.html', context)
-
-@login_required
-def profile(request):
-    user = User.objects.get(pk=request.user.pk)
-    if request.method=="POST":
-        u_form = UserUpdateForm(request.POST, instance=request.user)
-        if u_form.is_valid():
-            u_form.save()
-            messages.success(request, f'Your account has been updated!')
-            return redirect('/profile')
-    else:
-        u_form = UserUpdateForm(instance=request.user)
-
-
-    context = {
-        'user': user,
-        'u_form': u_form,
-    }
-
-    return render(request, 'users/profile.html', context)
-
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -153,3 +149,16 @@ def register(request):
         'p_reg_form': p_reg_form
     }
     return render(request, 'users/register.html', context)
+
+def login(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        message.add_message(request, constants.SUCCESS, f'Successfully logged in.')
+        return redirect('/brands/')
+    else:
+        print("error loading in")
+    return render(request, 'users/login.html', {})
+    

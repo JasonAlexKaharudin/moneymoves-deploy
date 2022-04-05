@@ -84,10 +84,44 @@
         height: 20%;
         margin: 0;
     }
+    .inputs{
+        width: 80%;
+    }
 }
 
 @media (min-width: 768px){
     .toggle-button{
         display: none;
     }
+}
+
+
+/* Register Page */
+
+
+.inputs{
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.helptext{
+    display: none;
+}
+
+label{
+    display: none;
+}
+
+br{
+    display: none;
+}
+
+.errorlist{
+    display: flex;
+    justify-content: center;
+    color: red;
+    font-size: small;
+    width: 100%;
 }
